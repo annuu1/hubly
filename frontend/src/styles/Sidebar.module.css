@@ -1,0 +1,149 @@
+  /* Sidear */
+  .sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 15vw;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 1000
+}
+  .nav{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .navLink {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    color: #5f6368;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    position: relative;
+    text-decoration: none;
+  }
+.navLink:hover {
+    background-color: #e8f0fe;
+  }
+  .navLink.active {
+    color: rgba(24, 119, 242, 1);
+    background-color: rgba(243, 243, 241, 1);
+  }
+  .navLink svg {
+    margin: 0 1.5rem;
+  }
+  .navLink.active svg path {
+    fill: rgba(24, 119, 242, 1);
+  }
+  .createButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #1877F2;
+    color: #1877F2;
+    padding: 3px 10px;
+    border-radius: 2rem;
+    font-weight: 400;
+    margin: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    background-color: transparent;
+    font-size: 16px;
+    text-decoration: none;
+    max-width: 150px;
+  }
+  .plus{
+    font-size: 24px;
+  }
+  .createButton:hover{
+    background-color: #1877F2;
+    color: #fff;
+    }
+  
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .topNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+  }
+
+  
+
+  .sidebar {
+    height: auto;
+    width: 100%;
+    min-width: unset;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 1px solid #ddd;
+    border-right: none;
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .navItem {
+    margin-right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .navLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #5f6368;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navItemIcon {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+  }
+
+  .createButton {
+    display: none;
+  }
+
+  .userProfile {
+    display: none;
+  }
+}

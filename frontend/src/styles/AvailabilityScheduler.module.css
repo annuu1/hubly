@@ -1,0 +1,359 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    padding: 24px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  
+  .logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+  }
+  
+  .logoText {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a73e8;
+  }
+  
+  .nav {
+    flex-grow: 1;
+  }
+  
+  .navItem {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: #5f6368;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .navItem.active {
+    color: #1a73e8;
+  }
+  
+  .navItemIcon {
+    margin-right: 8px;
+  }
+  
+  .userProfile {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
+  
+  .userAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .userName {
+    font-size: 14px;
+    color: #5f6368;
+  }
+  
+  /* Main Content */
+  .main {
+    flex: 1;
+  }
+  
+  .header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #202124;
+    margin-bottom: 8px;
+  }
+  
+  .subHeader {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 24px;
+  }
+  
+  .tabContainer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    background-color: #E8E8E8;
+    width: max-content;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  
+  .tab {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #676767;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: transparent;
+  }
+  
+  .tab.active {
+    border-radius: 6px;
+    background-color: #ffffff;
+  }
+  
+  /* Card (used for both Availability and Calendar View) */
+  .card {
+    background-color: #ffffff;
+    width: 50%;
+    min-width: 500px;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dropdowns (Activity and Time Zone) */
+  .dropdownContainer {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .dropdownWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdownLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5f6368;
+    margin-bottom: 4px;
+  }
+  
+  .dropdown {
+    width: max-content;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    font-size: 14px;
+    color: #1877F2;
+    background-color: #ffffff;
+    font-weight: 300;
+  }
+  
+  /* Availability Tab */
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #202124;
+    margin-bottom: 16px;
+  }
+  
+  .dayRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .dayLabel {
+    width: 60px;
+    font-size: 14px;
+    color: #202124;
+  }
+  
+  .timeInputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  
+  .timeInput {
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #202124;
+  }
+  
+  .unavailableText {
+    font-size: 14px;
+    color: #5f6368;
+  }
+  
+  .removeButton {
+    color: #5f6368;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .removeButton:hover {
+    color: #202124;
+  }
+  
+  .addButton {
+    color: #1a73e8;
+    font-size: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  
+  .addButton:hover {
+    color: #1557b0;
+  }
+  
+  /* Calendar View */
+  .calendarControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .navButtons,
+  .viewButtons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .navButton,
+  .viewButton {
+    padding: 8px 16px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #5f6368;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .viewButton.active {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border-color: #1a73e8;
+  }
+  
+  .searchInput {
+    padding: 8px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #202124;
+    width: 150px;
+  }
+  
+  .calendarGrid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    gap: 1px;
+    background-color: #dadce0;
+  }
+  
+  .timeColumn {
+    background-color: #ffffff;
+    padding: 8px;
+  }
+  
+  .timeHeader {
+    height: 48px;
+  }
+  
+  .timeSlot {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 12px;
+    color: #5f6368;
+  }
+  
+  .dayColumn {
+    background-color: #ffffff;
+    position: relative;
+  }
+  
+  .dayHeader {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #202124;
+    border-bottom: 1px solid #dadce0;
+  }
+  
+  .dayGrid {
+    display: grid;
+    grid-template-rows: repeat(16, 24px);
+  }
+  
+  .availabilitySlot {
+    position: absolute;
+    background-color: rgba(26, 115, 232, 0.1);
+    border-left: 4px solid #1a73e8;
+    left: 0;
+    right: 0;
+  }
+  
+  .eventSlot {
+    position: absolute;
+    padding: 4px;
+    font-size: 12px;
+    color: #202124;
+    left: 0;
+    right: 0;
+  }
+  
+  .eventSlot.meeting {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #5f6368;
+  }
+  
+  .eventSlot.meeting2 {
+    background-color: rgba(103, 58, 183, 0.1);
+    border-left: 4px solid #673ab7;
+  }
+  
+  .timeZoneIndicator {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
+    color: #5f6368;
+  }
+
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      padding: 16px;
+    }
+  
+    .content {
+      padding: 16px;
+    }
+  }

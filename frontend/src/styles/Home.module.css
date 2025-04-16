@@ -1,0 +1,390 @@
+.container{
+    background-color: rgba(251, 251, 251, 1);
+    height: 400vh;
+}
+.container h1{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.header{
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: 1.5rem;
+    border-radius: 4rem;
+}
+.main{
+    margin: 0 10%;
+}
+.signupBtn{
+    background-color: #1877F2;
+    color: #F0F0F0;
+    padding: 10px 20px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 2.5rem;
+}
+.signupBtn.large{
+    margin: 2rem;
+    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+}
+.hero{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+.heroImage{
+    height: 50%;
+    width: 50%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+}
+
+.feature{
+    display: flex;
+}
+.list-caption{
+    font-size: larger;
+}
+.list{
+    font-size: larger;
+}
+.list-item{
+    line-height: 2.5rem;
+    font-size: 1rem;
+}
+
+.cardsContainer{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.croppedCard1{
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    box-shadow: 20px rgb(0, 17, 255) solid;
+    margin: 10px;
+    transform: rotate(-10deg);
+}
+.croppedCard2{
+    position: absolute;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    box-shadow: 20px rgb(0, 17, 255) solid;
+    margin: 10px;
+    transform: rotate(10deg);
+}
+.card{
+    position : absolute;
+    width: 100%;
+    height: 1005;
+    perspective: 1000px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    object-fit: cover; 
+
+}
+.card1{
+    z-index: 1;
+    transform: scale(2);
+    transform: translate(10px);
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+.logoImage{
+    width: 25px;
+    width: 35px;
+}
+.review{
+    height: 800px;
+    display: flex;
+    flex-direction: column;    
+}
+.reviewHead{
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding:10px;
+    margin: 2rem 0;
+}
+.storyBtn{
+    border: 2px #1877F2 solid;
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 2rem;
+    color: #1877F2;
+    font-size: 1.2rem;
+}
+.testimonials{
+    display: grid;
+    grid-template-columns : repeat(2, 1fr);
+    grid-template-rows : repeat(2, 1fr);
+    gap: 1.5rem;
+}
+.testimonialCard{
+    background-color: #DEDEDE;
+    border-radius: 20px;
+    padding: 1.5rem;
+}
+.userDetails h2{
+  font-size: 16px;
+  font-weight: 300;
+}
+.userInfo{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.userPic{
+    width: 80px;
+    height: 80px;
+    background-color: #1877F2;
+    border-radius: 50%;
+}
+
+.integrationsList{
+    display: grid;
+    grid-template-columns : repeat(3, 1fr);
+    grid-template-rows : repeat(3, 1fr);
+}
+
+
+.integration{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.appIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    min-height: 4px;
+    background-color: #b9bcc0;
+    border-radius: 5px;
+}
+
+
+.footer {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0  -4px 98px rgba(24, 119, 242, 0.3);
+    padding: 20px;
+    text-align: center;
+  }
+  .footer-content{
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .footer-buttons {
+    margin-bottom: 20px;
+    display: flex;
+  }
+  
+  .footer-button {
+    text-wrap: nowrap;
+    background-color: rgba(239, 240, 236, 1);
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    height: max-content;
+    border: none;
+  }
+  
+  .footer-button-primary {
+    text-wrap: nowrap;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    height: max-content;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-column {
+    text-align: left;
+  }
+  
+  .footer-column-header {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer-link {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(30, 35, 48, 1);
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+
+  .footer-bottom{
+    display: flex;
+    gap: 10px;
+  }
+  
+  .footer-acknowledgment {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(30, 35, 48, 1);
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .social-icon {
+    font-size: 20px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .container{
+      height: 450vh;
+      overflow: hidden;
+    }
+    .container h1{
+      font-size: 18px;
+    }
+    .container h2{
+      font-size: 14px;
+    }
+    .container p{
+      font-size: 12px;
+    }
+    .signupBtn{
+      font-size: 12px;
+    }
+    .signupBtn.large{
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+    .hero-title {
+      font-size: 36px;
+    }
+  
+    .dashboard-preview {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .calendar,
+    .participants {
+      max-width: 100%;
+    }
+  
+    .features-list {
+      text-align: center;
+    }
+  
+    .section-title {
+      font-size: 28px;
+    }
+  
+    .testimonial-card,
+    .integration-card {
+      max-width: 100%;
+    }
+  
+    .footer-links {
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cardsContainer{
+      display: none;
+    }
+    .heroImage{
+      width: 100%;
+    }
+    .storyBtn{
+      font-size: 12px;
+    }
+    .userPic{
+      height: 50px;
+      width: 70px;
+    }
+    .integrationsList{
+      display: flex;
+      flex-direction: column;
+    }
+    .footer-content{
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .footer-button{
+      display: none;
+    }
+    .footer-column{
+      padding: 0px;
+    }
+    .footer-links{
+      padding: 0;
+    }
+    .footer-acknowledgment{
+      display: none;
+    }
+  }
+
+  
+  @media (max-width: 480px) {
+    .hero h1{
+      font-size: 24px;
+    }
+    .hero-title {
+      font-size: 28px;
+    }
+  
+    .sign-up-button,
+    .read-more-button,
+    .footer-button,
+    .footer-button-primary {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  
+    .section-title {
+      font-size: 24px;
+    }
+  
+    .stats {
+      font-size: 20px;
+    }
+  }

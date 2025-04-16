@@ -1,0 +1,102 @@
+.container {
+    padding: 50px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .headerText {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .headerTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .headerSubtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 0 0;
+  }
+  .createButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #1877F2;
+    color: #1877F2;
+    padding: 3px 10px;
+    border-radius: 2rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    background-color: transparent;
+    font-size: 12px;
+    text-wrap: nowrap;
+    text-decoration: none;
+    max-width: 150px;
+  }
+  .plus{
+    font-size: 24px;
+  }
+  .createButton:hover{
+    background-color: #1877F2;
+    color: #fff;
+    }
+  
+  .mainContent {
+    margin-top: 40px;
+    /* background-color: #fff; */
+    /* border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .container{
+      margin-top: 80px;
+      padding: 20px;
+      background-color: #fff;
+    }
+    .container h1{
+      font-size: 18px;
+    }
+    .container p{
+      font-size: 12px;
+    }
+    .header {
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .headerText{
+      font-size: 18px;
+    }
+  
+    .headerAction {
+      display: flex;
+      width: 100%;
+      padding: 0;
+    }
+    .createButton{
+      width: 100%;
+      justify-content: center;
+      padding: 5px 0;
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 100%;
+    }
+    .plus{
+      font-size: 16px;
+    }
+  }
