@@ -1,0 +1,86 @@
+.ticketsContainer {
+    display: flex;
+    height: 100vh;
+  }
+  .icon {
+    display: block;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .searchBar input {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .tabs {
+    margin: 10px 0;
+  }
+  
+  .tab {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .active {
+    border-bottom: 2px solid #1da1f2;
+    color: #1da1f2;
+  }
+  
+  .ticketItem {
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .ticketHeader {
+    display: flex;
+    justify-content: space-between;
+    color: #657786;
+    font-size: 12px;
+  }
+  
+  .ticketBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .ticketFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .ticketInfo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .userImg {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .ticketDuration {
+    color: #657786;
+  }
+  
+  .openButton {
+    background: #1da1f2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import DashboardLayout from "../components/layout/DashboardLayout";
-import EventList from "../components/Events/EventList";
+import Tickets from "../components/tickets/Tickets";
 import Booking from "../components/booking/Booking";
 import Availability from "../components/availabilityScheduler/AvailabilityScheduler";
 import Settings from "../components/settings/ProfileForm";
@@ -25,14 +25,14 @@ const Dashboard = () => {
       <div className={styles.content}>
         <Routes>
           <Route
-            path="events"
+            path="tickets"
             element={
               <DashboardLayout
                 headerAction="true"
-                title="Event Types"
+                title="Dashboard"
                 subtitle="Create events to share for people to book on your calendar."
               >
-                <EventList />
+                <Tickets />
               </DashboardLayout>
             }
           />

@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 
 // Signup
 router.post('/signup', async (req, res) => {
-  const {firstName, lastName, username=null, email, password } = req.body;
+  const {firstName, lastName, username=null, email, password, role="member" } = req.body;
   // console.log(username)
   try {
     if (!email || !password) {
@@ -20,7 +20,7 @@ router.post('/signup', async (req, res) => {
 
     const hashedPass = await bcrypt.hash(password, 10);
 
-    const user = new User({ firstName, lastName, email, password: hashedPass });
+    const user = new User({ firstName, lastName, email, password: hashedPass, role });
     await user.save();
     res.status(201).json({success:true, message: 'User created' });
   } catch (error) {
