@@ -11,6 +11,7 @@ import EventForm from "../components/Events/EventForm";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ContactCenter from "../components/contactCenter/ContactCenter";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -37,13 +38,13 @@ const Dashboard = () => {
             }
           />
           <Route
-            path="booking"
+            path="contact-center"
             element={
               <DashboardLayout
-                title="Booking"
+                title="Contact Center"
                 subtitle="See upcoming and past events booked through your event type links."
               >
-                <Booking />
+                <ContactCenter />
               </DashboardLayout>
             }
           />

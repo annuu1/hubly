@@ -1,0 +1,21 @@
+.contact-center {
+    display: flex;
+    flex-direction: row;
+}
+
+.ticket-list {
+    width: 25%;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+}
+
+.conversation {
+    width: 40%;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+}
+
+.ticket-details {
+    width: 35%;
+    padding: 10px;
+}

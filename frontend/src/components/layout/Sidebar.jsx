@@ -35,7 +35,7 @@ function Sidebar({ activeTab, setActiveTab }) {
           </NavLink>
 
           <NavLink
-            to="/dashboard/booking"
+            to="/dashboard/contact-center"
             className={({ isActive }) =>
               `${styles.navLink} ${isActive ? styles.active : ""}`
             }

@@ -1,0 +1,107 @@
+.ticketsContainer {
+    display: flex;
+    height: 100vh;
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  .icon {
+    font-size: 24px;
+    margin: 15px 0;
+    cursor: pointer;
+  }
+  
+  .chatsSection {
+    width: 200px;
+    background: #fff;
+    border-right: 1px solid #e1e8ed;
+    padding: 10px;
+  }
+  
+  .chatsLabel {
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .chatItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    background: #f1f1f1;
+  }
+  
+  .chatItem.active {
+    background: #e1f0fa;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .chatName {
+    font-weight: bold;
+    color: #1da1f2;
+  }
+  
+  .chatSnippet {
+    color: #657786;
+    font-size: 12px;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .ticketHeader {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 20px;
+  }
+  
+  .chatWindow {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+  }
+  
+  .chatMessage {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e1e8ed;
+  }
+  
+  .messageText {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .messageTime {
+    color: #657786;
+    font-size: 12px;
+  }
+  
+  .chatInput {
+    padding: 10px;
+    border-top: 1px solid #e1e8ed;
+  }
+  
+  .inputLabel {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    background: #f9f9f9;
+  }
