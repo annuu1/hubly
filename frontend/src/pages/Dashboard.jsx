@@ -2,12 +2,9 @@ import React from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import Tickets from "../components/tickets/Tickets";
-import Booking from "../components/booking/Booking";
-import Availability from "../components/availabilityScheduler/AvailabilityScheduler";
 import Settings from "../components/settings/ProfileForm";
 import styles from "../styles/Dashboard.module.css";
 import Sidebar from "../components/layout/Sidebar";
-import EventForm from "../components/Events/EventForm";
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -55,7 +52,7 @@ const Dashboard = () => {
                 title="Availability"
                 subtitle="Set your available times for scheduling."
               >
-                <Availability />
+                {/* <Availability /> */}
               </DashboardLayout>
             }
           />
@@ -77,7 +74,7 @@ const Dashboard = () => {
                 title="Create Event"
                 subtitle="New events to share for people to book on your calendar."
               >
-                <EventForm />
+                {/* <EventForm /> */}
               </DashboardLayout>
             }
           />
@@ -88,7 +85,7 @@ const Dashboard = () => {
                 title="Edit Event"
                 subtitle="New events to share for people to book on your calendar."
               >
-                <EventForm />
+                {/* <EventForm /> */}
               </DashboardLayout>
             }
           />
