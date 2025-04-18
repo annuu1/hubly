@@ -1,6 +1,7 @@
 .ticketsContainer {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    height: 100%;
     background: #f9f9f9;
     font-family: Arial, sans-serif;
   }
@@ -13,7 +14,7 @@
   .chatsSection {
     width: 200px;
     background: #fff;
-    border-right: 1px solid #e1e8ed;
+    border: 1px solid #e1e8ed;
     padding: 10px;
   }
   
@@ -56,7 +57,7 @@
   
   .mainContent {
     flex: 1;
-    padding: 20px;
+    padding: 10px;
     background: #fff;
   }
   
@@ -70,11 +71,37 @@
   .chatWindow {
     display: flex;
     flex-direction: column;
+    justify-content: end;
     height: calc(100vh - 80px);
-    border: 1px solid #e1e8ed;
-    border-radius: 8px;
   }
-  
+  .dateDivider{
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+  }
+  .dateDivider::before,
+        .dateDivider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #ccc;
+        }
+        .dateDivider::before {
+          left: 0;
+      }
+
+      .dateDivider::after {
+          right: 0;
+      }
+      .dateDivider span {
+        background: white;
+        padding: 0 10px;
+        position: relative;
+        z-index: 1;
+    }
+
   .chatMessage {
     display: flex;
     align-items: center;
@@ -91,10 +118,35 @@
     color: #657786;
     font-size: 12px;
   }
+  .inputArea{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
   
   .chatInput {
+    width: 100%;
+    height: 100px;
     padding: 10px;
-    border-top: 1px solid #e1e8ed;
+    border: 1px solid #D1D6DA;
+    border-radius: 4px;
+  }
+  .chatInput:focus {
+    outline: none;
+    border-color: #1da1f2;
+  }
+  .chatInput::placeholder {
+    color: #657786;
+  }
+  .inputArea button {
+    position: absolute;
+    right: 0px;
+    bottom: 0;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
   }
   
   .inputLabel {
