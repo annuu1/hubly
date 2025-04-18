@@ -6,7 +6,8 @@
     min-width: 5vw;
     height: 100vh;
     background-color: #FAFBFC;
-    z-index: 1000
+    z-index: 1000;
+    padding: 0 0.5rem;
 }
   .nav{
     flex-grow: 1;
@@ -36,6 +37,7 @@
     font-size: 10px;
     color: #424242;
     visibility: hidden;
+    text-wrap: nowrap;
   }
   .navLink.active span {
     visibility: visible;
