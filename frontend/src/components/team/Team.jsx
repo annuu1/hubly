@@ -14,7 +14,6 @@ const Team = () => {
 
       {/* Main Content */}
       <div className={styles.mainContent}>
-        <div className={styles.teamHeader}>Team</div>
         <table className={styles.teamTable}>
           <thead>
             <tr>
