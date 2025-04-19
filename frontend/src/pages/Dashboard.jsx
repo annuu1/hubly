@@ -10,6 +10,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactCenter from "../components/contactCenter/ContactCenter";
 import Analytics from "../components/analytics/Analytics";
+import ChatBot from "../components/chatBot/ChatBot";
+import Team from "../components/team/Team";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -58,6 +60,28 @@ const Dashboard = () => {
             }
           />
           <Route
+            path="chat-bot"
+            element={
+              <DashboardLayout
+                title="Create Event"
+                subtitle="New events to share for people to book on your calendar."
+              >
+                <ChatBot />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="team"
+            element={
+              <DashboardLayout
+                title="Edit Event"
+                subtitle="New events to share for people to book on your calendar."
+              >
+                <Team />
+              </DashboardLayout>
+            }
+          />
+          <Route
             path="settings"
             element={
               <DashboardLayout
@@ -68,28 +92,7 @@ const Dashboard = () => {
               </DashboardLayout>
             }
           />
-          <Route
-            path="create"
-            element={
-              <DashboardLayout
-                title="Create Event"
-                subtitle="New events to share for people to book on your calendar."
-              >
-                {/* <EventForm /> */}
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="event/:id/edit"
-            element={
-              <DashboardLayout
-                title="Edit Event"
-                subtitle="New events to share for people to book on your calendar."
-              >
-                {/* <EventForm /> */}
-              </DashboardLayout>
-            }
-          />
+          
         </Routes>
       </div>
     </div>

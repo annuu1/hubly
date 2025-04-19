@@ -5,15 +5,15 @@ import logoutIcon from "../../assets/icons/logoutIcon.svg";
 import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
-  const [logout, setLogout] = useState(false);
-  const userName = JSON.parse(localStorage.getItem("user")).name;
-  const navigate = useNavigate();
+  // const [logout, setLogout] = useState(false);
+  // const userName = JSON.parse(localStorage.getItem("user")).name;
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   localStorage.removeItem("name");
+  //   navigate("/login");
+  // };
   const handleMouseClick = () => {
     setLogout(!logout);
   };

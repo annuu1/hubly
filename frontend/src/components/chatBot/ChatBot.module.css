@@ -1,0 +1,225 @@
+.chatBotContainer {
+    display: flex;
+    height: 100vh;
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sidebar {
+    width: 60px;
+    background: #fff;
+    border-right: 1px solid #e1e8ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .icon {
+    font-size: 24px;
+    margin: 15px 0;
+    cursor: pointer;
+    color: #1da1f2;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chatHeader {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 20px;
+  }
+  
+  .chatArea {
+    flex: 1;
+    overflow-y: auto; /* Make scrollable */
+    padding-right: 10px;
+  }
+  
+  .chatMessage {
+    display: flex;
+    margin-bottom: 15px;
+  }
+  
+  .chatMessage.bot {
+    flex-direction: row;
+  }
+  
+  .chatMessage.user {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .messageBubble {
+    background: #f1f1f1;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 70%;
+    position: relative;
+  }
+  
+  .messageBubble.welcome {
+    background: #e9ecef;
+  }
+  
+  .messageBubble.info {
+    background: #d1e7dd;
+    color: #0f5132;
+  }
+  
+  .messageBubble form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .messageBubble input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+  }
+  
+  .messageBubble button {
+    padding: 5px 10px;
+    background: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .timerGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .timerGrid input {
+    width: 40px;
+    padding: 5px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .timerGrid button {
+    padding: 5px 10px;
+    background: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .inputArea {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    background: #fff;
+  }
+  
+  .inputArea span {
+    margin-right: 10px;
+  }
+  
+  .attachIcon {
+    font-size: 18px;
+    color: #1da1f2;
+    cursor: pointer;
+  }
+  
+  .customizationPanel {
+    width: 300px;
+    background: #fff;
+    border-left: 1px solid #e1e8ed;
+    padding: 20px;
+    overflow-y: auto; /* Make scrollable */
+  }
+  
+  .customCard {
+    background: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .customCard h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .colorOptions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .colorBox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #e1e8ed;
+    cursor: pointer;
+  }
+  
+  .colorBox.white {
+    background: #fff;
+  }
+  
+  .colorBox.black {
+    background: #000;
+  }
+  
+  .colorBox.blue {
+    background: #3475E8;
+  }
+  
+  .colorBox.gray {
+    background: #EEEEEE;
+  }
+  
+  .customCard input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .messageOptions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .messageOptions input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+  }
+  
+  .editIcon {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #1da1f2;
+    cursor: pointer;
+  }
