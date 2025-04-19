@@ -9,6 +9,7 @@ import Sidebar from "../components/layout/Sidebar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ContactCenter from "../components/contactCenter/ContactCenter";
+import Analytics from "../components/analytics/Analytics";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -46,13 +47,13 @@ const Dashboard = () => {
             }
           />
           <Route
-            path="availability"
+            path="analytics"
             element={
               <DashboardLayout
-                title="Availability"
+                title="Analytics"
                 subtitle="Set your available times for scheduling."
               >
-                {/* <Availability /> */}
+                <Analytics />
               </DashboardLayout>
             }
           />

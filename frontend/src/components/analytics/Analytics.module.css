@@ -1,0 +1,88 @@
+.analyticsContainer {
+    display: flex;
+    height: 100vh;
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+  }
+  
+  .sidebar {
+    width: 60px;
+    background: #fff;
+    border-right: 1px solid #e1e8ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+  }
+  
+  .icon {
+    font-size: 24px;
+    margin: 15px 0;
+    cursor: pointer;
+    color: #1da1f2;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background: #fff;
+  }
+  
+  .analyticsHeader {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+  
+  .chartContainer {
+    position: relative;
+    height: 300px; /* Fixed height to prevent continuous increase */
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .chartLabel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    background: #000;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .metricValue {
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 10px;
+  }
+  
+  .progressCircle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#28a745 80%, #e1e8ed 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #28a745;
+  }
