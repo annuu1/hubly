@@ -23,7 +23,7 @@
   }
   
   .mainContent {
-    flex: 1;
+    width: 55%;
     padding: 20px;
     background: #fff;
   }

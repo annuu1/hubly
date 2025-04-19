@@ -10,17 +10,19 @@ const Analytics = () => {
       label: 'Missed Chats',
       data: [12, 18, 15, 20, 13, 10, 14, 16, 19, 25],
       fill: false,
-      borderColor: '#28a745',
-      tension: 0.1,
+      borderColor: '#00D907',
+      tension: 0.4,
       pointRadius: 5,
       pointHoverRadius: 7,
-      pointBackgroundColor: '#000',
+      pointBackgroundColor: '#fff',
+      pointBorderColor: '#000',
+      pointBorderWidth: 2,
     }],
   };
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Allow custom height
+    maintainAspectRatio: false,
     scales: {
       y: {
         beginAtZero: true,
@@ -31,9 +33,20 @@ const Analytics = () => {
     plugins: {
       legend: { display: false },
       tooltip: {
+        enabled: true,
+        position: 'nearest',
         callbacks: {
-          label: (context) => `${context.dataset.label}: ${context.raw}`,
+          title: function(tooltipItems) {
+            return 'Chats';
+          },
+          label: (context) => {
+            const label = context.dataset.label || '';
+            const value = context.raw;
+            return `${value} `;
+          },
         },
+        xAlign: 'center',
+      yAlign: 'bottom',
       },
     },
   };
@@ -42,7 +55,6 @@ const Analytics = () => {
     <div className={styles.analyticsContainer}>
       {/* Main Content */}
       <div className={styles.mainContent}>
-        <div className={styles.analyticsHeader}>Analytics</div>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Missed Chats</h2>
           <div className={styles.chartContainer}>
