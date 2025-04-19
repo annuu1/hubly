@@ -8,8 +8,7 @@ const DashboardLayout = ({ title, subtitle, headerAction, children }) => {
       {/* Header Section */}
       <div className={styles.header}>
         <div className={styles.headerText}>
-          <h1 className={styles.headerTitle}>{title}</h1>
-          <p className={styles.headerSubtitle}>{subtitle}</p>
+          <p className={styles.headerTitle}>{title}</p>
         </div>
         {headerAction && (
           <div className={styles.headerAction}>
