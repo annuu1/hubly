@@ -1,0 +1,335 @@
+.landingContainer {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+  }
+  
+  .headerActions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .loginButton, .signupButton {
+    padding: 8px 20px;
+    border: 1px solid #1da1f2;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .loginButton {
+    background: none;
+    color: #1da1f2;
+  }
+  
+  .signupButton {
+    background: #1da1f2;
+    color: #fff;
+  }
+  
+  .mainContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 40px;
+    flex: 1;
+  }
+  
+  .textSection {
+    max-width: 50%;
+  }
+  
+  .title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .getStartedButton, .watchVideoButton {
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .getStartedButton {
+    background: #1da1f2;
+    color: #fff;
+    border: none;
+  }
+  
+  .watchVideoButton {
+    background: none;
+    color: #1da1f2;
+    border: 1px solid #1da1f2;
+  }
+  
+  .imageSection {
+    position: relative;
+  }
+  
+  .mainImage {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+  }
+  
+  .widgetCalendar {
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendarDays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .calendarDays span {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ecf0f1;
+    border-radius: 50%;
+  }
+  
+  .widgetChat {
+    position: absolute;
+    top: 150px;
+    right: -120px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 200px;
+  }
+  
+  .chatTime {
+    font-size: 12px;
+    color: #7f8c8d;
+  }
+  
+  .widgetStats {
+    position: absolute;
+    bottom: 20px;
+    right: -100px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .statsGraph {
+    width: 100px;
+    height: 50px;
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    border-radius: 5px;
+    margin: 5px 0;
+  }
+  
+  .crmSection {
+    padding: 50px 40px;
+    text-align: center;
+  }
+  
+  .crmTitle {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .crmSubtitle {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  .funnelDiagram {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .funnelStage {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin: 10px 0;
+  }
+  
+  .funnelIcons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .funnelText {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+  }
+  
+  .funnelList {
+    text-align: left;
+    font-size: 14px;
+    color: #7f8c8d;
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .plansSection {
+    padding: 50px 40px;
+    text-align: center;
+  }
+  
+  .plansTitle {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .plansSubtitle {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+  }
+  
+  .plansCards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .planCard {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+  }
+  
+  .planPrice {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+    margin: 10px 0;
+  }
+  
+  .planDescription {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+  }
+  
+  .planFeatures {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+  
+  .planFeatures li {
+    margin-bottom: 10px;
+  }
+  
+  .planFeatures li:before {
+    content: "✔";
+    color: #2ecc71;
+    margin-right: 10px;
+  }
+  
+  .planButton {
+    padding: 10px 20px;
+    background: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .footer {
+    padding: 40px;
+    background: #f5f7fa;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .footerLogo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1da1f2;
+  }
+  
+  .footerColumns {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .footerColumns h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footerColumns ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .footerColumns ul li {
+    font-size: 14px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+  }
+  
+  .footerSocial {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+  }
