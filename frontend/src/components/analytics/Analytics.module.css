@@ -18,7 +18,14 @@
   }
   
   .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 30px;
+  }
+  .sectionDetails{
+    padding: 0 20px;
+    width: 85%;
   }
   
   .sectionTitle {
@@ -30,7 +37,7 @@
   
   .chartContainer {
     position: relative;
-    height: 300px; /* Fixed height to prevent continuous increase */
+    height: 300px;
     width: 100%;
     overflow: hidden;
   }
@@ -67,4 +74,11 @@
     font-size: 24px;
     font-weight: bold;
     color: #28a745;
+  }
+  .doughnutContainer{
+    height: 100px;
+    width: 100px;
+    border: 2px solid #F7F7F8;
+    padding: 10px;
+    border-radius: 10px;
   }
