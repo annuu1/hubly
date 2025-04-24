@@ -1,62 +1,25 @@
 import React from 'react';
+import ChatBotWindow from './ChatBotWindow';
 import styles from './ChatBot.module.css';
 
 const ChatBot = () => {
+  // Sample messages for the ChatBotWindow
+  const messages = [
+    {
+      type: 'incoming',
+      content: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
+    },
+    {
+      type: 'outgoing',
+      content: ['How can I help you?', 'Ask me anything!'],
+    },
+  ];
+
   return (
     <div className={styles.appContainer}>
       <main className={styles.mainContent}>
         {/* Chatbot Window */}
-        <section className={styles.chatbotWindow}>
-          <header className={styles.chatHeader}>
-            <div className={styles.chatLogo}>
-              <div className={styles.avatar}></div>
-              <div className={styles.statusIndicator}></div>
-            </div>
-            <h1>Hubly</h1>
-            <h2>Chat Bot</h2>
-          </header>
-          <div className={styles.chatBody}>
-            <div className={`${styles.message} ${styles.incoming}`}>
-              <p>👋 Want to chat about Hubly? I'm a chatbot here to help you find your way.</p>
-            </div>
-            <div className={`${styles.message} ${styles.outgoing}`}>
-              <p>How can I help you?</p>
-              <p>Ask me anything!</p>
-            </div>
-          </div>
-          <footer className={styles.chatFooter}>
-            <input
-              type="text"
-              placeholder="Write a message"
-              className={styles.messageInput}
-            />
-            <button className={styles.sendButton}>
-              <span className={styles.sendIcon}></span>
-            </button>
-          </footer>
-        </section>
-
-        {/* Introduction Form (Popup) */}
-        <div className={styles.introForm}>
-          <h3>Introduce Yourself</h3>
-          <form>
-            <div className={styles.formGroup}>
-              <label htmlFor="name">Your Name</label>
-              <input type="text" id="name" placeholder="Your name" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="phone">Your Phone</label>
-              <input type="tel" id="phone" placeholder="+1 (000) 000-0000" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email">Your Email</label>
-              <input type="email" id="email" placeholder="example@gmail.com" />
-            </div>
-            <button type="submit" className={styles.submitButton}>
-              Thank You!
-            </button>
-          </form>
-        </div>
+        <ChatBotWindow messages={messages} />
 
         {/* Settings Panels */}
         <aside className={styles.settingsPanel}>

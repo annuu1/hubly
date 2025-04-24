@@ -41,6 +41,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
 
 :local(.chatLogo) {
@@ -75,6 +76,28 @@ body {
   font-size: 18px;
   color: #6A6B70;
   margin-left: auto;
+}
+
+:local(.chatIcon) {
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:local(.chatIconInner) {
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: #B0C1D4;
+  border-radius: 50%;
 }
 
 :local(.chatBody) {
@@ -141,52 +164,57 @@ body {
 }
 
 :local(.introForm) {
-  width: 280px;
+  flex: 1;
   background: #fff;
-  border-radius: 16px;
-  padding: 14px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 :local(.introForm) h3 {
   font-family: 'Poppins', sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 :local(.formGroup) {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 :local(.formGroup) label {
   display: block;
   font-family: 'Poppins', sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   color: #4F4F4F;
   margin-bottom: 5px;
 }
 
 :local(.formGroup) input {
   width: 100%;
-  padding: 5px 0;
-  border: none;
+  padding: 8px;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
   font-family: 'Poppins', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   color: #000;
 }
 
 :local(.submitButton) {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: #184E7F;
   border: none;
   border-radius: 9px;
   color: #fff;
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 :local(.settingsPanel) {
