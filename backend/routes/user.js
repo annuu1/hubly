@@ -2,13 +2,32 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-router.get('/test', (req, res) => {
+router.post('/new', async (req, res) => {
+  const { fullName, phone, email, role } = req.body;
   try {
-    res.json({ success: true, message: 'Test route working' });
+    if (!fullName || !phone || !email || !role) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+    const existingUser  = await User.findOne({ 
+      $or: [
+        { email: email }, 
+        { phone: phone } 
+      ] 
+    });
+    
+    if (existingUser) {
+      return res.status(409).json({ success: false, message: 'User already exists' });
+    }
+
+    const user = new User({ fullName, phone, email, role });
+    await user.save();
+    res.status(201).json({ success: true, message: 'User created' });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message }); 
+    res.status(500).json({ success: false, error: error.message });
   }
-});
+}
+);
+// Get all members
 
 router.get('/members', async (req, res) => {
   try {
