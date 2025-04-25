@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Team.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Team = () => {
   const teamMembers = [
@@ -9,6 +10,10 @@ const Team = () => {
     { id: 4, name: 'Joe Doe', phone: '+1 (000) 000-0000', email: 'example@gmail.com', role: 'Member' },
   ];
 
+  const navigate = useNavigate();
+  const handleAddMember = () => {
+    navigate('/add-member');
+  };
   return (
     <div className={styles.teamContainer}>
 
@@ -42,7 +47,7 @@ const Team = () => {
             ))}
           </tbody>
         </table>
-        <button className={styles.addButton}>+ Add Team members</button>
+        <button className={styles.addButton} onClick={handleAddMember} >+ Add Team members</button>
       </div>
     </div>
   );
