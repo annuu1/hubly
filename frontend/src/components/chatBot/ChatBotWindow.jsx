@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './ChatBot.module.css';
+import styles from './ChatBotWindow.module.css';
 
 const ChatBotWindow = ({ messages = [] }) => {
   const [showIntroForm, setShowIntroForm] = useState(true);
@@ -10,7 +10,7 @@ const ChatBotWindow = ({ messages = [] }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setShowIntroForm(false); // Switch to chat interface after form submission
+    setShowIntroForm(false);
   };
 
   return (
