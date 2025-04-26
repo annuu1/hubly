@@ -1,6 +1,7 @@
 const route = require('express').Router();
 const Ticket = require('../models/Ticket');
 const User = require('../models/User');
+const auth = require('../middleware/auth')
 
 route.post('/', async (req, res) =>{
     const {name, phone, email} = req.body;
@@ -39,9 +40,9 @@ route.post('/', async (req, res) =>{
 })
 
 //get all tickets
-route.get('/', async (req, res) =>{
+route.get('/', auth, async (req, res) =>{
     try{
-        const tickets = await Ticket.find().populate('assignedTo', 'name email');
+        const tickets = await Ticket.find({_id:"6800e4cc128bf7206a836458"}).populate('assignedTo', 'name email');
         return res.status(200).json(tickets);
     }catch(err){
         console.log(err);

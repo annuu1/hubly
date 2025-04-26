@@ -16,13 +16,17 @@ const Tickets = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
+        const token = localStorage.getItem("token");
         const url = `${import.meta.env.VITE_API_URL}api/tickets`;
-        console.log(url);
-        const response = await axios.get(url);
-        const data = response.data; // Fixed: No await needed
+        const response = await axios.get(url, {
+          headers:{
+            Authorization:token
+          }
+        });
+        const data = response.data; 
         console.log(data);
         setTickets(data);
-        setFilteredTickets(data); // Initialize filteredTickets
+        setFilteredTickets(data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -32,12 +36,11 @@ const Tickets = () => {
     fetchTickets();
   }, []);
 
-  // Update elapsed time every minute
   useEffect(() => {
     const interval = setInterval(() => {
-      setTick((prev) => prev + 1); // Trigger re-render
-    }, 60000); // Every 60 seconds
-    return () => clearInterval(interval); // Cleanup
+      setTick((prev) => prev + 1);
+    }, 60000);
+    return () => clearInterval(interval);
   }, []);
 
   // Search functionality
