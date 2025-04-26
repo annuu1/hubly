@@ -3,7 +3,7 @@ import styles from "./Conversation.module.css";
 import avatar from "../../assets/icons/avatar.png";
 import axios from "axios";
 
-const Conversation = ({ ticketId, userName }) => {
+const Conversation = ({ ticketId, userName, status}) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
@@ -42,7 +42,7 @@ const Conversation = ({ ticketId, userName }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -52,7 +52,6 @@ const Conversation = ({ ticketId, userName }) => {
       console.error("Error sending message:", error);
     }
   };
-  // Function to format date for display
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -62,12 +61,10 @@ const Conversation = ({ ticketId, userName }) => {
     });
   };
 
-  // Function to get date part (YYYY-MM-DD) for comparison
   const getDatePart = (dateString) => {
     return dateString.split("T")[0];
   };
 
-  // Render messages with dynamic date dividers
   const renderMessages = () => {
     let lastDate = null;
     const elements = [];
@@ -112,7 +109,9 @@ const Conversation = ({ ticketId, userName }) => {
       <div className={styles.mainContent}>
         <div className={styles.chatWindow}>{renderMessages()}</div>
       </div>
-      <div className={styles.inputArea}>
+      {
+        status === "unresolved" ? (
+          <div className={styles.inputArea}>
         <input
           type="text"
           placeholder="Type here"
@@ -134,6 +133,12 @@ const Conversation = ({ ticketId, userName }) => {
           </svg>
         </button>
       </div>
+        ):(
+          <div className={styles.resolvedContainer}>
+            <p className={styles.unresolved}>This chat has been resolved</p>
+          </div>
+        )
+      }
     </div>
   );
 };
