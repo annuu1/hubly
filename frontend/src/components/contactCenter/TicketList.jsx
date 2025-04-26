@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './TicketList.module.css';
 import avatar from '../../assets/icons/avatar.png';
 
-const TicketList = ({ tickets, onSelect }) => {
-    return (
+const TicketList = ({ tickets, onSelect, selectedTicket}) => {
+
+return (
         <ul className={styles.ticketList}>
             {tickets.length === 0 && <li>No tickets available</li>}
             {tickets.map((ticket, index) => (
-                <li key={ticket.ticketId} onClick={() => onSelect(ticket)} className={styles.ticketItem}>
+                <li
+                key={ticket.ticketId}
+                onClick={() => onSelect(ticket)}
+                className={`${styles.ticketItem} ${
+                    selectedTicket && selectedTicket._id === ticket._id
+                        ? styles.selected
+                        : ''
+                }`}
+            >
                     <img src={avatar} alt="Avatar" className={styles.avatar} />
                     Chat {index+1}
                 </li>

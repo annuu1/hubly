@@ -31,6 +31,9 @@ const ContactCenter = () => {
                 );
 
                 setTickets(response.data);
+                if (response.data.length > 0) {
+                    setSelectedTicket(response.data[0]);
+                }
             } catch (error) {
                 console.error('Error fetching tickets:', error);
                 setError('Failed to fetch tickets. Please try again later.');
@@ -53,7 +56,9 @@ const ContactCenter = () => {
             {!loading && !error && (
                 <>
                     <div className={styles["ticket-list"]}>
-                        <TicketList tickets={tickets} onSelect={handleTicketSelect} />
+                        <TicketList tickets={tickets} onSelect={handleTicketSelect} 
+                        selectedTicket={selectedTicket}
+                        />
                     </div>
                     <div className={styles["conversation"]}>
                         {selectedTicket && <Conversation ticketId={selectedTicket._id} />}
