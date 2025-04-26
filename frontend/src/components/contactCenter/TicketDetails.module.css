@@ -31,10 +31,31 @@
     border-radius: 8px;
     border: 2px solid #e1e8ed;
   }
-  
-  .dropdown {
+  .dropdownContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
     border: 1px solid #e1e8ed;
-    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  .dropdownHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #e1e8ed;
+    padding-right: 10px;
+    border-radius: 20px;
+  }
+  .dropdownHeader>div{
+    display: flex;
+    align-items: center;
+  }
+  .dropdown {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e1e8ed;
     padding: 5px;
     background: #fff;
   }
