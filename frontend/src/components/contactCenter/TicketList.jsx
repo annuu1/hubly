@@ -9,7 +9,7 @@ return (
             {tickets.length === 0 && <li>No tickets available</li>}
             {tickets.map((ticket, index) => (
                 <li
-                key={ticket.ticketId}
+                key={index}
                 onClick={() => onSelect(ticket)}
                 className={`${styles.ticketItem} ${
                     selectedTicket && selectedTicket._id === ticket._id
