@@ -1,18 +1,35 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Conversation.module.css";
 import avatar from "../../assets/icons/avatar.png";
+import axios from 'axios';
 
 const Conversation = ({ ticketId }) => {
   const [messages, setMessages] = useState([]);
 
-  // useEffect(() => {
-  //     const fetchMessages = async () => {
-  //         const response = await fetch(`/api/tickets/${ticketId}/messages`); // Replace with your API endpoint
-  //         const data = await response.json();
-  //         setMessages(data);
-  //     };
-  //     fetchMessages();
-  // }, [ticketId]);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+      const fetchMessages = async () => {
+          const response = await axios.get(import.meta.env.VITE_API_URL + `api/conversations/${ticketId}`);
+          const data = await response.data;
+          setMessages(data.messages);
+          console.log(data);
+      };
+      fetchMessages();
+  }, [ticketId]);
+
+  const handleSendMessage = async (message) => {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(import.meta.env.VITE_API_URL + `api/conversations/${ticketId}/messages`, {
+      type: "text",
+      content: message,
+      sender: "user",
+    }, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    setMessages((prevMessages) => [...prevMessages, response.data]);
+  }
 
   return (
     <div className={styles.ticketsContainer}>
@@ -26,8 +43,14 @@ const Conversation = ({ ticketId }) => {
           <div className={styles.chatMessage}>
             <img src={avatar} alt="Avatar" className={styles.avatar} />
             <div>
-              <span className={styles.messageText}>Chat 1</span>
-              <p>I have a question</p>
+              {
+                messages.map((message) => (
+                  <div>
+                    <span className={styles.messageText}>Chat 1</span>
+                    <p>{message.content}</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -38,7 +61,7 @@ const Conversation = ({ ticketId }) => {
           placeholder="Type here"
           className={styles.chatInput}
         />
-        <button>
+        <button className={styles.sendButton} onClick={() => handleSendMessage(document.querySelector(`.${styles.chatInput}`).value)}>
           <svg
             width="20"
             height="20"

@@ -45,11 +45,12 @@ router.get('/:ticketId', async (req, res) => {
 // Add a new message to a conversation
 router.post('/:ticketId/messages', async (req, res) => {
     try {
-        const { type, content, sender } = req.body;
+        let { type, content, sender } = req.body;
 
         if (!type || !content || !sender) {
             return res.status(400).json({ message: 'type, content, and sender are required' });
         }
+        sender = sender==='user' ? null : sender;
 
         if (!['text', 'image', 'video'].includes(type)) {
             return res.status(400).json({ message: 'Invalid message type' });
