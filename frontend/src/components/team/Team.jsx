@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./Team.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import NewMember from "./NewMember";
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
   const handleAddMember = () => {
@@ -44,7 +46,7 @@ const Team = () => {
           </thead>
           <tbody>
             {teamMembers.map((member) => (
-              <tr key={member.id}>
+              <tr key={member._id}>
                 <td>
                   <img
                     src="https://via.placeholder.com/30"
@@ -90,10 +92,11 @@ const Team = () => {
             ))}
           </tbody>
         </table>
-        <button className={styles.addButton} onClick={handleAddMember}>
+        <button className={styles.addButton} onClick={() => setShowModal(true)}>
           + Add Team members
         </button>
       </div>
+      {showModal && <NewMember />}
     </div>
   );
 };
