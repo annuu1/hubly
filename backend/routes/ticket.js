@@ -31,8 +31,6 @@ route.post('/', async (req, res) =>{
 
         await ticket.save();
         return res.status(201).json({message:'Ticket created successfully', ticket});
-
-
     }catch(err){
         console.log(err);
         return res.status(500).json({message:'Internal server error'});
@@ -44,6 +42,47 @@ route.get('/', auth, async (req, res) =>{
     try{
         const tickets = await Ticket.find({}).populate('assignedTo', 'name email');
         return res.status(200).json(tickets);
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({message:'Internal server error'});
+    }
+})
+//assign ticket to user
+route.put('/:id/assign', auth, async(req, res) =>{
+    const {id} = req.params;
+    const {memberId} = req.body;
+    if(!memberId){
+        return res.status(400).json({message: 'Please select a member'});
+    }
+    try{
+        const ticket = await Ticket.findById(id);
+        if(!ticket){
+            return res.status(404).json({message:'Ticket not found'});
+        }
+        ticket.assignedTo = memberId;
+        await ticket.save();
+        return res.status(200).json({message:'Ticket assigned successfully', ticket});
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({message:'Internal server error'});
+    }
+})
+
+//update ticket status
+route.put('/:id/status', auth, async(req, res) =>{
+    const {id} = req.params;
+    const {status} = req.body;
+    if(!status){
+        return res.status(400).json({message: 'Please select a status'});
+    }
+    try{
+        const ticket = await Ticket.findById(id);
+        if(!ticket){
+            return res.status(404).json({message:'Ticket not found'});
+        }
+        ticket.status = status;
+        await ticket.save();
+        return res.status(200).json({message:'Ticket status updated successfully', ticket});
     }catch(err){
         console.log(err);
         return res.status(500).json({message:'Internal server error'});

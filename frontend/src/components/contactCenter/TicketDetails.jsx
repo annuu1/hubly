@@ -16,6 +16,7 @@ const TicketDetails = ({ ticket }) => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [confirmAction, setConfirmAction] = useState(null);
   const user = JSON.parse(localStorage.getItem("user"));
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchMembers = async () => {
@@ -24,7 +25,7 @@ const TicketDetails = ({ ticket }) => {
           `${import.meta.env.VITE_API_URL}api/users/members`,
           {
             headers: {
-              Authorization: `${user.token}`,
+              Authorization: `${token}`,
             },
           }
         );
@@ -53,15 +54,14 @@ const TicketDetails = ({ ticket }) => {
   const handleAssign = async () => {
     if (!selectedMemberId) return;
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}api/tickets/assign`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}api/tickets/${ticket._id}/assign`,
         {
-          ticketId: ticket._id,
           memberId: selectedMemberId,
         },
         {
           headers: {
-            Authorization: `Bearer ${user.token}`,
+            Authorization: `${token}`,
           },
         }
       );
