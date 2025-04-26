@@ -12,15 +12,15 @@ const TicketDetails = ({ ticket }) => {
       <div className={styles.detailsTitle}>Details</div>
       <div className={styles.detailItem}>
         <span>📧</span>
-        <span>Joe Doe</span>
+        <span>{ticket.name}</span>
       </div>
       <div className={styles.detailItem}>
         <span>📞</span>
-        <span>+1 (000) 000-0000</span>
+        <span>{ticket.phone}</span>
       </div>
       <div className={styles.detailItem}>
         <span>📧</span>
-        <span>example@gmail.com</span>
+        <span>{ticket.email}</span>
       </div>
       <span  className={styles.detailsTitle}>Teammates</span>
       <div className={styles.detailItem}>
