@@ -19,7 +19,7 @@ router.post('/new', async (req, res) => {
       return res.status(409).json({ success: false, message: 'User already exists' });
     }
 
-    const user = new User({ fullName, phone, email, role });
+    const user = new User({ fullName, phone, email, role, password: '' });
     await user.save();
     res.status(201).json({ success: true, message: 'User created' });
   } catch (error) {
