@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ChatBotWindow.module.css';
+import axios from 'axios';
 
 const ChatBotWindow = ({ messages = [] }) => {
   const [showIntroForm, setShowIntroForm] = useState(true);
@@ -8,9 +9,21 @@ const ChatBotWindow = ({ messages = [] }) => {
     setShowIntroForm(!showIntroForm);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
-    setShowIntroForm(false);
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const email = formData.get('email');
+    const url = import.meta.env.VITE_API_URL+"api/tickets"
+    try {
+      const response = await axios.post(url, { name, phone, email });
+      // setShowIntroForm(false); 
+    }
+    catch (error) {
+      console.error('Error submitting form:', error);
+      alert(error.response.data.message);
+    }
   };
 
   return (
@@ -36,13 +49,14 @@ const ChatBotWindow = ({ messages = [] }) => {
           <form onSubmit={handleFormSubmit}>
             <div className={styles.formGroup}>
               <label htmlFor="name">Your Name</label>
-              <input type="text" id="name" placeholder="Your name" required />
+              <input type="text" id="name" name='name' placeholder="Your name" required />
             </div>
             <div className={styles.formGroup}>
               <label htmlFor="phone">Your Phone</label>
               <input
                 type="tel"
                 id="phone"
+                name="phone"
                 placeholder="+1 (000) 000-0000"
                 required
               />
@@ -52,6 +66,7 @@ const ChatBotWindow = ({ messages = [] }) => {
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="example@gmail.com"
                 required
               />

@@ -8,6 +8,7 @@ import Login from './components/auth/Login'
 import Dashboard from './pages/Dashboard'
 import ToastContainer from './components/ui/ToastContainer'
 import NewMember from './components/team/NewMember'
+import ChatBotWindow from './components/chatBot/ChatBotWindow'
 
 function App() {
 
@@ -23,6 +24,8 @@ function App() {
         <Route path='/add-member' element= {<NewMember/>} ></Route>
         <Route path='/dashboard/*' element= {<Dashboard/>} ></Route>
         <Route path='*' element= {<Dashboard/>} ></Route>
+
+        <Route path='/chat' element= {<ChatBotWindow/>} ></Route>
       </Routes>
      </BrowserRouter>
     </>

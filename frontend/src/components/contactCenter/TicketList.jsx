@@ -3,7 +3,6 @@ import styles from './TicketList.module.css';
 import avatar from '../../assets/icons/avatar.png';
 
 const TicketList = ({ tickets, onSelect }) => {
-    console.log(tickets[0])
     return (
         <ul className={styles.ticketList}>
             {tickets.length === 0 && <li>No tickets available</li>}

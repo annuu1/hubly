@@ -8,14 +8,37 @@ import TicketDetails from './TicketDetails';
 const ContactCenter = () => {
     const [tickets, setTickets] = useState([]);
     const [selectedTicket, setSelectedTicket] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch tickets from the API
         const fetchTickets = async () => {
-            const response = await axios.get(import.meta.env.VITE_API_URL+'api/tickets');
-            const data = await response.data;
-            setTickets(data);
+            setLoading(true);
+            setError(null);
+            try {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    throw new Error('No authentication token found');
+                }
+
+                const response = await axios.get(
+                    `${import.meta.env.VITE_API_URL}api/tickets`,
+                    {
+                        headers: {
+                            Authorization: `${token}`,
+                        },
+                    }
+                );
+
+                setTickets(response.data);
+            } catch (error) {
+                console.error('Error fetching tickets:', error);
+                setError('Failed to fetch tickets. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
         };
+
         fetchTickets();
     }, []);
 
@@ -25,15 +48,21 @@ const ContactCenter = () => {
 
     return (
         <div className={styles["contact-center"]}>
-            <div className={styles["ticket-list"]}>
-                <TicketList tickets={tickets} onSelect={handleTicketSelect} />
-            </div>
-            <div className={styles["conversation"]}>
-                {selectedTicket && <Conversation ticketId={selectedTicket._id} />}
-            </div>
-            <div className={styles["ticket-details"]}>
-                {selectedTicket && <TicketDetails ticket={selectedTicket} />}
-            </div>
+            {loading && <div>Loading tickets...</div>}
+            {error && <div className={styles.error}>{error}</div>}
+            {!loading && !error && (
+                <>
+                    <div className={styles["ticket-list"]}>
+                        <TicketList tickets={tickets} onSelect={handleTicketSelect} />
+                    </div>
+                    <div className={styles["conversation"]}>
+                        {selectedTicket && <Conversation ticketId={selectedTicket._id} />}
+                    </div>
+                    <div className={styles["ticket-details"]}>
+                        {selectedTicket && <TicketDetails ticket={selectedTicket} />}
+                    </div>
+                </>
+            )}
         </div>
     );
 };
