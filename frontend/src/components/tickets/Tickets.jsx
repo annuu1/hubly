@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Tickets.module.css";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import avatar from "../../assets/icons/avatar.png";
 
 const Tickets = () => {
@@ -11,7 +11,9 @@ const Tickets = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredTickets, setFilteredTickets] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
-  const [, setTick] = useState(0); // State to trigger re-renders
+  const [, setTick] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -31,6 +33,10 @@ const Tickets = () => {
       } catch (error) {
         setError(error.message);
         setLoading(false);
+        if(error.response && error.response.status === 401) {
+          localStorage.removeItem("token");
+          navigate("/login");
+        }
       }
     };
     fetchTickets();
