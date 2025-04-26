@@ -1,87 +1,87 @@
-    .detailsPanel {
-    width: 300px;
-    border-left: 1px solid #e1e8ed;
-    padding: 20px;
-  }
-  
-  .detailsHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-bottom: 10px;
-  }
-  .chatAvatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  .detailsTitle{
-    margin-bottom: 10px;
-  }
-  
-  .detailItem {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    color: #657786;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #e1e8ed;
-  }
-  .dropdownContainer{
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    border: 1px solid #e1e8ed;
-    overflow: hidden;
-    margin-bottom: 15px;
-  }
-  .dropdownHeader{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    border: 1px solid #e1e8ed;
-    padding-right: 10px;
-    border-radius: 20px;
-  }
-  .dropdownHeader>div{
-    display: flex;
-    align-items: center;
-  }
-  .dropdown {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e1e8ed;
-    padding: 5px;
-    background: #fff;
-  }
-  
-  .confirmDialog {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #e1e8ed;
-    border-radius: 8px;
-    background: #fff;
-  }
-  
-  .cancelButton {
-    padding: 5px 10px;
-    margin-right: 10px;
-    border: 1px solid #e1e8ed;
-    border-radius: 4px;
-    background: #fff;
-    cursor: pointer;
-  }
-  
-  .confirmButton {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    background: #1da1f2;
-    color: #fff;
-    cursor: pointer;
-  }
+.detailsPanel {
+  width: 300px;
+  border-left: 1px solid #e1e8ed;
+  padding: 20px;
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+.chatAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.detailsTitle {
+  margin-bottom: 10px;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #657786;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #e1e8ed;
+}
+.dropdownContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 1px solid #e1e8ed;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border: 1px solid #e1e8ed;
+  padding-right: 10px;
+  border-radius: 20px;
+}
+.dropdownHeader > div {
+  display: flex;
+  align-items: center;
+}
+.dropdown {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e1e8ed;
+  padding: 5px;
+  background: #fff;
+}
+
+.confirmDialog {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.cancelButton {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: 1px solid #e1e8ed;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.confirmButton {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background: #1da1f2;
+  color: #fff;
+  cursor: pointer;
+}

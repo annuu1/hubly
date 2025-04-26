@@ -1,50 +1,116 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./TicketDetails.module.css";
 import avatar from "../../assets/icons/avatar.png";
 import axios from "axios";
 
 const TicketDetails = ({ ticket }) => {
-  const [members, setMembers] = React.useState([]);
-  const [statuses, setStatuses] = React.useState([{
-    status: "Resolved"
-  },
-  {
-    status: "Unresolved"
-  }
-])
-
-  const [showMembers, setShowMembers] = React.useState(false);
-  const [showStatus, setShowStatus] = React.useState(false);
-
-
-  let user = JSON.parse(localStorage.getItem("user"));
-
+  const [members, setMembers] = useState([]);
+  const [statuses, setStatuses] = useState([
+    { status: "Resolved" },
+    { status: "Unresolved" },
+  ]);
+  const [showMembers, setShowMembers] = useState(false);
+  const [showStatus, setShowStatus] = useState(false);
+  const [selectedMemberId, setSelectedMemberId] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    const fetchMembers = async () =>{
-      const response = await axios.get(import.meta.env.VITE_API_URL + "api/users/members", {
-        headers: {
-          Authorization: `${user.token}`,
-        },
-      });
-      console.log(response.data.users);
-      setMembers(response.data.users);
-    }
+    const fetchMembers = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}api/users/members`,
+          {
+            headers: {
+              Authorization: `${user.token}`,
+            },
+          }
+        );
+        setMembers(response.data.users || []);
+      } catch (error) {
+        console.error("Error fetching members:", error);
+      }
+    };
     fetchMembers();
-  }, []);
+  }, [user.token]);
 
-  const handleAssign = async (memberId) => {
-    const response = await axios.post(import.meta.env.VITE_API_URL + "api/tickets/assign", {
-      ticketId: ticket._id,
-      memberId: memberId
-    }, {
-      headers: {
-        Authorization: `${user.token}`,
-      },
-    });
-    console.log(response.data);
-  }
+  const handleSelectMember = (memberId) => {
+    setSelectedMemberId(memberId);
+    setConfirmAction("assign");
+    setShowConfirmDialog(true);
+    setShowMembers(false);
+  };
 
+  const handleSelectStatus = (status) => {
+    setSelectedStatus(status);
+    setConfirmAction("status");
+    setShowConfirmDialog(true);
+    setShowStatus(false);
+  };
+
+  const handleAssign = async () => {
+    if (!selectedMemberId) return;
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}api/tickets/assign`,
+        {
+          ticketId: ticket._id,
+          memberId: selectedMemberId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log("Assignment successful:", response.data);
+      setShowConfirmDialog(false);
+      setSelectedMemberId(null);
+      setConfirmAction(null);
+    } catch (error) {
+      console.error("Error assigning ticket:", error);
+    }
+  };
+
+  const handleUpdateStatus = async () => {
+    if (!selectedStatus) return;
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}api/tickets/${ticket._id}/status`,
+        {
+          status: selectedStatus,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log("Status update successful:", response.data);
+      setShowConfirmDialog(false);
+      setSelectedStatus(null);
+      setConfirmAction(null);
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+
+  const handleConfirm = () => {
+    if (confirmAction === "assign") {
+      handleAssign();
+    } else if (confirmAction === "status") {
+      handleUpdateStatus();
+    }
+  };
+
+  const handleCancelAssign = () => {
+    setShowConfirmDialog(false);
+    setSelectedMemberId(null);
+    setSelectedStatus(null);
+    setConfirmAction(null);
+  };
 
   return (
     <div className={styles.detailsPanel}>
@@ -67,8 +133,11 @@ const TicketDetails = ({ ticket }) => {
       </div>
       <span className={styles.detailsTitle}>Teammates</span>
       <div>
-        <div className={styles.dropdownHeader} onClick={() => setShowMembers(!showMembers)}>
-          <div>
+        <div
+          className={styles.dropdownHeader}
+          onClick={() => setShowMembers(!showMembers)}
+        >
+          <div className={styles.dropdown}>
             <img src={avatar} alt="" className={styles.chatAvatar} />
             <span>{user.name}</span>
           </div>
@@ -78,6 +147,7 @@ const TicketDetails = ({ ticket }) => {
             viewBox="0 0 14 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className={showMembers ? styles.dropdownArrowOpen : ""}
           >
             <path
               fillRule="evenodd"
@@ -87,25 +157,27 @@ const TicketDetails = ({ ticket }) => {
             />
           </svg>
         </div>
-        
-        {
-         showMembers && (
+        {showMembers && (
           <div className={styles.dropdownContainer}>
-            {members.map((member) => {
-            return (
-              <div key={member._id} className={styles.dropdown} onClick={() => handleAssign(member._id)}>
+            {members.map((member) => (
+              <div
+                key={member._id}
+                className={styles.dropdown}
+                onClick={() => handleSelectMember(member._id)}
+              >
                 <img src={avatar} alt="" className={styles.chatAvatar} />
                 <span>{member.fullName}</span>
               </div>
-            );
-          })}
-            </div>
-         )
-        }
+            ))}
+          </div>
+        )}
       </div>
       <div>
-        <div className={styles.dropdownHeader} onClick={() => setShowStatus(!showStatus)}>
-          <div>
+        <div
+          className={styles.dropdownHeader}
+          onClick={() => setShowStatus(!showStatus)}
+        >
+          <div className={styles.dropdown}>
             <img src={avatar} alt="" className={styles.chatAvatar} />
             <span>Ticket status</span>
           </div>
@@ -115,6 +187,7 @@ const TicketDetails = ({ ticket }) => {
             viewBox="0 0 14 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className={showStatus ? styles.dropdownArrowOpen : ""}
           >
             <path
               fillRule="evenodd"
@@ -124,29 +197,41 @@ const TicketDetails = ({ ticket }) => {
             />
           </svg>
         </div>
-        
-        {
-         showStatus && (
+        {showStatus && (
           <div className={styles.dropdownContainer}>
-            {statuses.map((status, index) => {
-            return (
-              <div key={index} className={styles.dropdown}>
+            {statuses.map((status, index) => (
+              <div
+                key={index}
+                className={styles.dropdown}
+                onClick={() => handleSelectStatus(status.status)}
+              >
                 <img src={avatar} alt="" className={styles.chatAvatar} />
                 <span>{status.status}</span>
               </div>
-            );
-          })}
-            </div>
-         )
-        }
+            ))}
+          </div>
+        )}
       </div>
-      <div className={styles.confirmDialog}>
-        <span>Chat would be assigned to Different team member</span>
-        <div>
-          <button className={styles.cancelButton}>Cancel</button>
-          <button className={styles.confirmButton}>Confirm</button>
+      {showConfirmDialog && (
+        <div className={styles.confirmDialog}>
+          <span>
+            {confirmAction === "assign"
+              ? "Chat would be assigned to a different team member"
+              : `Ticket status will be updated to ${selectedStatus}`}
+          </span>
+          <div>
+            <button
+              className={styles.cancelButton}
+              onClick={handleCancelAssign}
+            >
+              Cancel
+            </button>
+            <button className={styles.confirmButton} onClick={handleConfirm}>
+              Confirm
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
