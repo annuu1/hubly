@@ -31,7 +31,7 @@ router.post('/new', async (req, res) => {
 
 router.get('/members', async (req, res) => {
   try {
-    const users = await User.find({role: 'member'}).select('name phone email role');
+    const users = await User.find({role: 'member'}).select('fullName phone email role');
     if (!users) {
       return res.status(404).json({ success: false, message: 'No users found' });
     }

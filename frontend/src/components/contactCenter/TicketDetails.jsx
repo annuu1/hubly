@@ -1,23 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./TicketDetails.module.css";
 import avatar from "../../assets/icons/avatar.png";
+import axios from "axios";
 
 const TicketDetails = ({ ticket }) => {
-  const [members, setMembers] = React.useState([
-    {
-      name: "Joe Doe",
-    },
-    {
-      name: "Jane Doe",
-    },
-    {
-      name: "John Doe",
-    },
-    {
-      name: "Jill Doe",
-    },
-  ]);
-
+  const [members, setMembers] = React.useState([]);
   const [statuses, setStatuses] = React.useState([{
     status: "Resolved"
   },
@@ -31,6 +18,33 @@ const TicketDetails = ({ ticket }) => {
 
 
   let user = JSON.parse(localStorage.getItem("user"));
+
+
+  useEffect(() => {
+    const fetchMembers = async () =>{
+      const response = await axios.get(import.meta.env.VITE_API_URL + "api/users/members", {
+        headers: {
+          Authorization: `${user.token}`,
+        },
+      });
+      console.log(response.data.users);
+      setMembers(response.data.users);
+    }
+    fetchMembers();
+  }, []);
+
+  const handleAssign = async (memberId) => {
+    const response = await axios.post(import.meta.env.VITE_API_URL + "api/tickets/assign", {
+      ticketId: ticket._id,
+      memberId: memberId
+    }, {
+      headers: {
+        Authorization: `${user.token}`,
+      },
+    });
+    console.log(response.data);
+  }
+
 
   return (
     <div className={styles.detailsPanel}>
@@ -77,11 +91,11 @@ const TicketDetails = ({ ticket }) => {
         {
          showMembers && (
           <div className={styles.dropdownContainer}>
-            {members.map((member, index) => {
+            {members.map((member) => {
             return (
-              <div key={index} className={styles.dropdown}>
+              <div key={member._id} className={styles.dropdown} onClick={() => handleAssign(member._id)}>
                 <img src={avatar} alt="" className={styles.chatAvatar} />
-                <span>{member.name}</span>
+                <span>{member.fullName}</span>
               </div>
             );
           })}
