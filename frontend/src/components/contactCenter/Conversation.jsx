@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Conversation = ({ ticketId, userName }) => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState(""); // Controlled input state
+  const [newMessage, setNewMessage] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
   const sender = user.id;
 
@@ -17,7 +17,7 @@ const Conversation = ({ ticketId, userName }) => {
           `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}`,
           {
             headers: {
-              Authorization: `${token}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -47,39 +47,70 @@ const Conversation = ({ ticketId, userName }) => {
         }
       );
       setMessages((prevMessages) => [...prevMessages, response.data]);
-      setNewMessage(""); // Clear input
+      setNewMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
     }
+  };
+  // Function to format date for display
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  // Function to get date part (YYYY-MM-DD) for comparison
+  const getDatePart = (dateString) => {
+    return dateString.split("T")[0];
+  };
+
+  // Render messages with dynamic date dividers
+  const renderMessages = () => {
+    let lastDate = null;
+    const elements = [];
+
+    messages.forEach((message) => {
+      const messageDate = getDatePart(message.createdAt);
+      if (messageDate !== lastDate) {
+        elements.push(
+          <div key={`date-${messageDate}`} className={styles.dateDivider}>
+            <span>{formatDate(message.createdAt)}</span>
+          </div>
+        );
+        lastDate = messageDate;
+      }
+
+      elements.push(
+        <div
+          key={message._id}
+          className={`${styles.chatMessage} ${
+            message.sender === sender ? styles.sent : styles.received
+          }`}
+        >
+          {message.sender !== sender && (
+            <img src={avatar} alt="Avatar" className={styles.avatar} />
+          )}
+          <div className={styles.messageContent}>
+            <span className={styles.messageText}>
+              {message.sender === sender ? "You" : userName}
+            </span>
+            <p>{message.content}</p>
+          </div>
+        </div>
+      );
+    });
+
+    return elements;
   };
 
   return (
     <div className={styles.ticketsContainer}>
       <div className={styles.ticketHeader}>Ticket# {ticketId}</div>
       <div className={styles.mainContent}>
-        <div className={styles.chatWindow}>
-          <div className={styles.dateDivider}>
-            <span>March 7, 2025</span>
-          </div>
-          {messages.map((message) => (
-            <div
-              key={message._id}
-              className={`${styles.chatMessage} ${
-                message.sender === sender ? styles.sent : styles.received
-              }`}
-            >
-              {message.sender !== sender && (
-                <img src={avatar} alt="Avatar" className={styles.avatar} />
-              )}
-              <div className={styles.messageContent}>
-                <span className={styles.messageText}>
-                  {message.sender === sender ? "You" : userName}
-                </span>
-                <p>{message.content}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <div className={styles.chatWindow}>{renderMessages()}</div>
       </div>
       <div className={styles.inputArea}>
         <input
