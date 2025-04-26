@@ -18,7 +18,7 @@ const ChatBotWindow = ({ messages = [] }) => {
     const url = import.meta.env.VITE_API_URL+"api/tickets"
     try {
       const response = await axios.post(url, { name, phone, email });
-      // setShowIntroForm(false); 
+      setShowIntroForm(false); 
     }
     catch (error) {
       console.error('Error submitting form:', error);
