@@ -103,6 +103,7 @@
     }
 
   .chatMessage {
+    background-color: #c4f21d;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -113,7 +114,10 @@
     font-weight: bold;
     margin-right: 10px;
   }
-  
+  .sent{
+    justify-content: flex-end;
+    background-color: #1da1f2;
+  }
   .messageTime {
     color: #657786;
     font-size: 12px;

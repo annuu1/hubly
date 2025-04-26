@@ -32,7 +32,11 @@ router.get('/:ticketId', async (req, res) => {
             // .populate('ticketId', 'title');
 
         if (!conversation) {
-            return res.status(404).json({ message: 'Conversation not found' });
+            const newConversation = new Conversation({
+                ticketId: req.params.ticketId,
+                messages: [],
+            });
+            await newConversation.save();
         }
 
         res.status(200).json(conversation);

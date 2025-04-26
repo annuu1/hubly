@@ -61,7 +61,7 @@ const ContactCenter = () => {
                         />
                     </div>
                     <div className={styles["conversation"]}>
-                        {selectedTicket && <Conversation ticketId={selectedTicket._id} />}
+                        {selectedTicket && <Conversation ticketId={selectedTicket._id} userName={selectedTicket.name} />}
                     </div>
                     <div className={styles["ticket-details"]}>
                         {selectedTicket && <TicketDetails ticket={selectedTicket} />}

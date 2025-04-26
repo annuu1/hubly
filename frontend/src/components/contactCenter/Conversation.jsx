@@ -3,8 +3,10 @@ import styles from "./Conversation.module.css";
 import avatar from "../../assets/icons/avatar.png";
 import axios from 'axios';
 
-const Conversation = ({ ticketId }) => {
+const Conversation = ({ ticketId, userName }) => {
   const [messages, setMessages] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const sender = user.id;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -12,7 +14,6 @@ const Conversation = ({ ticketId }) => {
           const response = await axios.get(import.meta.env.VITE_API_URL + `api/conversations/${ticketId}`);
           const data = await response.data;
           setMessages(data.messages);
-          console.log(data);
       };
       fetchMessages();
   }, [ticketId]);
@@ -22,7 +23,7 @@ const Conversation = ({ ticketId }) => {
     const response = await axios.post(import.meta.env.VITE_API_URL + `api/conversations/${ticketId}/messages`, {
       type: "text",
       content: message,
-      sender: "user",
+      sender,
     }, {
       headers: {
         Authorization: `${token}`,
@@ -45,9 +46,9 @@ const Conversation = ({ ticketId }) => {
             <div>
               {
                 messages.map((message) => (
-                  <div>
-                    <span className={styles.messageText}>Chat 1</span>
-                    <p>{message.content}</p>
+                  <div key={message._id} className={`${styles.message} ${message.sender? styles['sent'] : styles['received']}`}>
+                    <span className={`${styles.messageText}`}>{userName}</span>
+                    <p>{message?.content}</p>
                   </div>
                 ))
               }
@@ -55,7 +56,7 @@ const Conversation = ({ ticketId }) => {
           </div>
         </div>
       </div>
-      <div class={styles["inputArea"]}>
+      <div className={styles["inputArea"]}>
         <input
           type="text"
           placeholder="Type here"
