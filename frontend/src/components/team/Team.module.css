@@ -64,7 +64,12 @@
   .sortIcon {
     font-size: 12px;
   }
-  
+  .actionIcons{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
   .actionIcon {
     margin-left: 10px;
     font-size: 16px;

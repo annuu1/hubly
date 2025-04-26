@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import styles from './Team.module.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import styles from "./Team.module.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
 
   const navigate = useNavigate();
   const handleAddMember = () => {
-    navigate('/add-member');
+    navigate("/add-member");
   };
 
   useEffect(() => {
     const fetchTeamMembers = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + 'api/users/members');
+        const response = await axios.get(
+          import.meta.env.VITE_API_URL + "api/users/members"
+        );
         setTeamMembers(response.data.users);
       } catch (error) {
-        console.error('Error fetching team members:', error);
+        console.error("Error fetching team members:", error);
       }
     };
-  
+
     fetchTeamMembers();
   }, []);
 
-
   return (
     <div className={styles.teamContainer}>
-
       {/* Main Content */}
       <div className={styles.mainContent}>
         <table className={styles.teamTable}>
           <thead>
             <tr>
-              <th>Full Name <span className={styles.sortIcon}>⬇</span></th>
+              <th>
+                Full Name <span className={styles.sortIcon}>⬇</span>
+              </th>
               <th>Phone</th>
               <th>Email</th>
               <th>Role</th>
@@ -44,21 +46,53 @@ const Team = () => {
             {teamMembers.map((member) => (
               <tr key={member.id}>
                 <td>
-                  <img src="https://via.placeholder.com/30" alt="Avatar" className={styles.avatar} />
+                  <img
+                    src="https://via.placeholder.com/30"
+                    alt="Avatar"
+                    className={styles.avatar}
+                  />
                   {member.name}
                 </td>
                 <td>{member.phone}</td>
                 <td>{member.email}</td>
                 <td>{member.role}</td>
-                <td>
-                  <span className={styles.actionIcon}>✂️</span>
-                  <span className={styles.actionIcon}>🗑️</span>
+                <td className={styles.actionIcons}>
+                  <span className={styles.actionIcon}>
+                    <svg
+                      width="16"
+                      height="18"
+                      viewBox="0 0 16 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.345 12.2417L11.7967 3.79002L10.6183 2.61169L2.16667 11.0634V12.2417H3.345ZM4.03583 13.9084H0.5V10.3725L10.0292 0.843354C10.1854 0.687128 10.3974 0.599365 10.6183 0.599365C10.8393 0.599365 11.0512 0.687128 11.2075 0.843354L13.565 3.20085C13.7212 3.35713 13.809 3.56905 13.809 3.79002C13.809 4.01099 13.7212 4.22291 13.565 4.37919L4.03583 13.9084ZM0.5 15.575H15.5V17.2417H0.5V15.575Z"
+                        fill="#545454"
+                      />
+                    </svg>
+                  </span>
+                  <span className={styles.actionIcon}>
+                    <svg
+                      width="12"
+                      height="16"
+                      viewBox="0 0 12 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.00033 13.8333C1.00033 14.2754 1.17592 14.6993 1.48848 15.0118C1.80104 15.3244 2.22496 15.5 2.66699 15.5H9.33366C9.77568 15.5 10.1996 15.3244 10.5122 15.0118C10.8247 14.6993 11.0003 14.2754 11.0003 13.8333V3.83333H1.00033V13.8333ZM2.66699 5.5H9.33366V13.8333H2.66699V5.5ZM8.91699 1.33333L8.08366 0.5H3.91699L3.08366 1.33333H0.166992V3H11.8337V1.33333H8.91699Z"
+                        fill="#545454"
+                      />
+                    </svg>
+                  </span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <button className={styles.addButton} onClick={handleAddMember} >+ Add Team members</button>
+        <button className={styles.addButton} onClick={handleAddMember}>
+          + Add Team members
+        </button>
       </div>
     </div>
   );
