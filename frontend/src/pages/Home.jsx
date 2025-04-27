@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Home.module.css';
+import ChatIcon from '../components/ui/ChatIcon';
 
 const Home = () => {
   return (
@@ -152,6 +153,7 @@ const Home = () => {
           <span>📧</span><span>🐦</span><span>📸</span><span>🎥</span><span>🌐</span>
         </div>
       </footer>
+      <ChatIcon/>
     </div>
   );
 };

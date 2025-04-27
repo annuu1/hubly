@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ChatBotWindow.module.css";
 import axios from "axios";
 import IntroForm from "./IntroForm";
+import ChatIcon from "../../assets/ChatIcon.svg";
 
 const ChatBotWindow = ({ messages = [], botSetting }) => {
   const [showIntroForm, setShowIntroForm] = useState(true);
@@ -55,7 +56,9 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
         style={{ backgroundColor: botSettings.headerColor }}
       >
         <div className={styles.chatLogo}>
-          <div className={styles.avatar}></div>
+          <div className={styles.avatar}>
+          <img src={ChatIcon} alt="Chat Icon" />
+          </div>
           <div className={styles.statusIndicator}></div>
         </div>
         <h1>Hubly</h1>
