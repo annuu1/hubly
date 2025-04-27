@@ -3,16 +3,22 @@ import ChatBotWindow from './ChatBotWindow';
 import styles from './ChatBot.module.css';
 
 const ChatBot = () => {
-  // Sample messages for the ChatBotWindow
+  const [botSettings, setBotSettings] = React.useState({
+    headerColor: '#33475B',
+    backgroundColor: '#EEEEEE',
+    customizedMessages: ['How can I help you?', 'Ask me anything!'],
+    welcomeMessage: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
+    missedChatTimer: '09:00:00',
+  });
   const messages = [
-    {
-      type: 'incoming',
-      content: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
-    },
-    {
-      type: 'outgoing',
-      content: ['How can I help you?', 'Ask me anything!'],
-    },
+    // {
+    //   type: 'incoming',
+    //   content: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
+    // },
+    // {
+    //   type: 'outgoing',
+    //   content: ['How can I help you?', 'Ask me anything!'],
+    // },
   ];
 
   return (
@@ -20,7 +26,7 @@ const ChatBot = () => {
       <main className={styles.mainContent}>
         {/* Chatbot Window */}
         <div className={styles.chatBotPreview}>
-        <ChatBotWindow messages={messages} />
+        <ChatBotWindow messages={messages} botSetting={botSettings} />
         </div>
 
         {/* Settings Panels */}

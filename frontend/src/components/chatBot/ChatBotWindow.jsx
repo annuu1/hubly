@@ -1,34 +1,73 @@
-import React, { useState } from 'react';
-import styles from './ChatBotWindow.module.css';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import styles from "./ChatBotWindow.module.css";
+import axios from "axios";
 
-const ChatBotWindow = ({ messages = [] }) => {
+const ChatBotWindow = ({ messages = [], botSetting }) => {
   const [showIntroForm, setShowIntroForm] = useState(true);
+  const [botSettings, setBotSettings] = useState({
+    headerColor: "",
+    backgroundColor: "",
+    customizedMessages: [],
+    welcomeMessage: "",
+    missedChatTimer: "",
+  });
+
+  useEffect(() => {
+    const fetchBotSettings = async () => {
+      const url = import.meta.env.VITE_API_URL + "api/botSettings";
+      try {
+        const response = await axios.get(url);
+        const {
+          headerColor,
+          backgroundColor,
+          customizedMessages,
+          welcomeMessage,
+          missedChatTimer,
+        } = response.data.botSettings;
+        setBotSettings({
+          headerColor,
+          backgroundColor,
+          customizedMessages,
+          welcomeMessage,
+          missedChatTimer,
+        });
+      } catch (error) {
+        console.error("Error fetching bot settings:", error);
+        alert("Error fetching bot settings");
+      }
+    };
+    fetchBotSettings();
+  }, []);
 
   const handleChatIconClick = () => {
     setShowIntroForm(!showIntroForm);
   };
 
-  const handleFormSubmit = async(e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const name = formData.get('name');
-    const phone = formData.get('phone');
-    const email = formData.get('email');
-    const url = import.meta.env.VITE_API_URL+"api/tickets"
+    const name = formData.get("name");
+    const phone = formData.get("phone");
+    const email = formData.get("email");
+    const url = import.meta.env.VITE_API_URL + "api/tickets";
     try {
       const response = await axios.post(url, { name, phone, email });
-      setShowIntroForm(false); 
-    }
-    catch (error) {
-      console.error('Error submitting form:', error);
+      setShowIntroForm(false);
+    } catch (error) {
+      console.error("Error submitting form:", error);
       alert(error.response.data.message);
     }
   };
 
   return (
-    <section className={styles.chatbotWindow}>
-      <header className={styles.chatHeader}>
+    <section
+      className={styles.chatbotWindow}
+      style={{ backgroundColor: botSettings.backgroundColor }}
+    >
+      <header
+        className={styles.chatHeader}
+        style={{ backgroundColor: botSettings.headerColor }}
+      >
         <div className={styles.chatLogo}>
           <div className={styles.avatar}></div>
           <div className={styles.statusIndicator}></div>
@@ -38,72 +77,96 @@ const ChatBotWindow = ({ messages = [] }) => {
         <button
           className={styles.chatIcon}
           onClick={handleChatIconClick}
-          title={showIntroForm ? 'Show Chat' : 'Show Form'}
+          title={showIntroForm ? "Show Chat" : "Show Form"}
         >
           <span className={styles.chatIconInner}></span>
         </button>
       </header>
-      {showIntroForm ? (
-        <div className={styles.introForm}>
-          <h3>Introduce Yourself</h3>
-          <form onSubmit={handleFormSubmit}>
-            <div className={styles.formGroup}>
-              <label htmlFor="name">Your Name</label>
-              <input type="text" id="name" name='name' placeholder="Your name" required />
+      <>
+        <div className={styles.chatBody}>
+          {botSettings.customizedMessages?.map((message, index) => (
+            <div
+              key={index}
+              className={`${styles.message} ${styles["incoming"]}`}
+            >
+              <p>{message}</p>
             </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="phone">Your Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="+1 (000) 000-0000"
-                required
-              />
+          ))}
+          {
+            <div className={styles.introForm}>
+              <h3>Introduce Yourself</h3>
+              <form onSubmit={handleFormSubmit}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="phone">Your Phone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="+1 (000) 000-0000"
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label htmlFor="email">Your Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="example@gmail.com"
+                    required
+                  />
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Thank You!
+                </button>
+              </form>
             </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email">Your Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="example@gmail.com"
-                required
-              />
+          }
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`${styles.message} ${styles[message.type]}`}
+            >
+              {Array.isArray(message.content) ? (
+                message.content.map((text, i) => <p key={i}>{text}</p>)
+              ) : (
+                <p>{message.content}</p>
+              )}
             </div>
-            <button type="submit" className={styles.submitButton}>
-              Thank You!
-            </button>
-          </form>
+          ))}
         </div>
-      ) : (
-        <>
-          <div className={styles.chatBody}>
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`${styles.message} ${styles[message.type]}`}
-              >
-                {Array.isArray(message.content) ? (
-                  message.content.map((text, i) => <p key={i}>{text}</p>)
-                ) : (
-                  <p>{message.content}</p>
-                )}
-              </div>
-            ))}
-          </div>
-          <footer className={styles.chatFooter}>
-            <input
-              type="text"
-              placeholder="Write a message"
-              className={styles.messageInput}
-            />
-            <button className={styles.sendButton}>
-              <span className={styles.sendIcon}></span>
-            </button>
-          </footer>
-        </>
-      )}
+        <footer className={styles.chatFooter}>
+          <input
+            type="text"
+            placeholder="Write a message"
+            className={styles.messageInput}
+          />
+          <button className={styles.sendButton}>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5117 0.196887C17.8668 0.442981 18.0531 0.868372 17.9863 1.29376L15.7363 15.9188C15.6836 16.2598 15.4761 16.5586 15.1738 16.7274C14.8715 16.8961 14.5094 16.9172 14.1894 16.7836L9.98474 15.0363L7.57654 17.6414C7.26365 17.9824 6.77146 18.0949 6.33904 17.9262C5.90662 17.7574 5.62537 17.3391 5.62537 16.875V13.9359C5.62537 13.7953 5.6781 13.6617 5.77302 13.5598L11.6652 7.1297C11.8691 6.90822 11.8621 6.5672 11.6511 6.35626C11.4402 6.14533 11.0992 6.13126 10.8777 6.33165L3.72693 12.6844L0.622632 11.1305C0.249976 10.9442 0.010913 10.5715 0.000366172 10.1567C-0.0101807 9.74181 0.207788 9.35509 0.566382 9.14767L16.3164 0.147669C16.6926 -0.0667845 17.1566 -0.0456908 17.5117 0.196887Z"
+                fill="#B0C1D4"
+              />
+            </svg>
+          </button>
+        </footer>
+      </>
     </section>
   );
 };
