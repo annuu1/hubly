@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import styles from "./ChatIcon.module.css";
 import ChatBotWindow from "../chatBot/ChatBotWindow";
 import axios from "axios";
+import WelcomeMessage from "./WelcomeMessage";
 
 function ChatIcon() {
   const [showChat, setShowChat] = useState(false);
@@ -91,8 +92,8 @@ function ChatIcon() {
       </button>
       {
         showWelcomeMessage && (
-          <div className={styles.welcomeMessage}>
-            <p>Hi there! How can I assist you today?</p>
+          <div className={styles.chatWindow}>
+            <WelcomeMessage message={botSettings.welcomeMessage} onClose={setShowWelcomeMessage} />
           </div>
         )
       }
