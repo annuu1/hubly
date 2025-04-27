@@ -62,14 +62,6 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
           <div className={styles.statusIndicator}></div>
         </div>
         <h1>Hubly</h1>
-        <h2>Chat Bot</h2>
-        <button
-          className={styles.chatIcon}
-          onClick={handleChatIconClick}
-          title={showIntroForm ? "Show Chat" : "Show Form"}
-        >
-          <span className={styles.chatIconInner}></span>
-        </button>
       </header>
       <>
         <div className={styles.chatBody}>
