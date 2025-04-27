@@ -1,6 +1,7 @@
 import React from 'react';
 import ChatBotWindow from './ChatBotWindow';
 import styles from './ChatBot.module.css';
+import IntroForm from './IntroForm';
 
 const ChatBot = () => {
   const [botSettings, setBotSettings] = React.useState({
@@ -86,34 +87,7 @@ const ChatBot = () => {
               <input type="text" defaultValue="Ask me anything!" />
             </div>
           </div>
-          <div className={styles.settingsCard}>
-            <h3>Introduction Form</h3>
-            <form>
-              <div className={styles.formGroup}>
-                <label htmlFor="form-name">Your Name</label>
-                <input type="text" id="form-name" placeholder="Your name" />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="form-phone">Your Phone</label>
-                <input
-                  type="tel"
-                  id="form-phone"
-                  placeholder="+1 (000) 000-0000"
-                />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="form-email">Your Email</label>
-                <input
-                  type="email"
-                  id="form-email"
-                  placeholder="example@gmail.com"
-                />
-              </div>
-              <button type="submit" className={styles.submitButton}>
-                Thank You!
-              </button>
-            </form>
-          </div>
+          <IntroForm />
           <div className={styles.settingsCard}>
             <h3>Welcome Message</h3>
             <textarea
