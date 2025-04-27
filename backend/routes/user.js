@@ -19,7 +19,13 @@ router.post('/new', async (req, res) => {
       return res.status(409).json({ success: false, message: 'User already exists' });
     }
 
-    const user = new User({ fullName, phone, email, role, password: '' });
+    const adminUser = await User.findOne({ role: 'admin' });
+    if (!adminUser) {
+      return res.status(403).json({ success: false, message: 'No admin user found' });
+    }
+
+
+    const user = new User({ firstName : fullName, fullName, phone, email, role, password: adminUser.password });
     await user.save();
     res.status(201).json({ success: true, message: 'User created' });
   } catch (error) {

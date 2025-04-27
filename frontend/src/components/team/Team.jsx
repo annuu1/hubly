@@ -96,7 +96,7 @@ const Team = () => {
           + Add Team members
         </button>
       </div>
-      {showModal && <NewMember />}
+      {showModal && <NewMember setShowModal = {setShowModal} />}
     </div>
   );
 };
