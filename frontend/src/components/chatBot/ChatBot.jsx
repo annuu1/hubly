@@ -19,7 +19,9 @@ const ChatBot = () => {
     <div className={styles.appContainer}>
       <main className={styles.mainContent}>
         {/* Chatbot Window */}
+        <div className={styles.chatBotPreview}>
         <ChatBotWindow messages={messages} />
+        </div>
 
         {/* Settings Panels */}
         <aside className={styles.settingsPanel}>

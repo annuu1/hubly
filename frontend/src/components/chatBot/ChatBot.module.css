@@ -1,63 +1,66 @@
-:local(.appContainer) {
+.appContainer {
   display: flex;
-  min-height: 100vh;
+  min-height: 100%;
+  width: 100%;
 }
 
-:local(.mainContent) {
-  flex: 1;
+.mainContent {
   display: flex;
+  flex: 1;
   padding: 20px;
   gap: 20px;
 }
-
-:local(.settingsPanel) {
+.chatBotPreview{
+  min-width: 70%;
+}
+.settingsPanel {
   width: 400px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-:local(.settingsCard) {
+.settingsCard {
   background: #fff;
   border-radius: 23px;
   padding: 20px;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
 }
 
-:local(.settingsCard) h3 {
+.settingsCard h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-:local(.colorOptions) {
+.colorOptions {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-:local(.colorSwatch) {
+.colorSwatch {
   width: 48px;
   height: 48px;
   border-radius: 100px;
   cursor: pointer;
 }
 
-:local(.colorInput) {
+.colorInput {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-:local(.colorPreview) {
+.colorPreview {
   width: 48px;
   height: 48px;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
-:local(.colorInput) input {
+.colorInput input {
   width: 231px;
   padding: 10px;
   background: #F6F7F5;
@@ -67,7 +70,7 @@
   font-size: 13px;
 }
 
-:local(.messageInputs) input {
+.messageInputs input {
   width: 100%;
   padding: 10px;
   background: #F6F7F5;
@@ -78,7 +81,7 @@
   margin-bottom: 10px;
 }
 
-:local(.settingsCard) textarea {
+.settingsCard textarea {
   width: 100%;
   padding: 10px;
   background: #F6F7F5;
@@ -89,7 +92,7 @@
   resize: none;
 }
 
-:local(.charCount) {
+.charCount {
   display: block;
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
@@ -97,13 +100,13 @@
   margin-top: 5px;
 }
 
-:local(.timerInputs) {
+.timerInputs {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-:local(.timerInputs) input {
+.timerInputs input {
   width: 30px;
   padding: 5px;
   background: #EDF4F5;
@@ -113,7 +116,7 @@
   font-size: 16px;
 }
 
-:local(.saveButton) {
+.saveButton {
   padding: 8px 42px;
   background: #184E7F;
   border: none;
@@ -126,54 +129,54 @@
   align-self: flex-end;
 }
 
-:local(.settingsPanel) {
+.settingsPanel {
   width: 400px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-:local(.settingsCard) {
+.settingsCard {
   background: #fff;
   border-radius: 23px;
   padding: 20px;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
 }
 
-:local(.settingsCard) h3 {
+.settingsCard h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-:local(.colorOptions) {
+.colorOptions {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-:local(.colorSwatch) {
+.colorSwatch {
   width: 48px;
   height: 48px;
   border-radius: 100px;
   cursor: pointer;
 }
 
-:local(.colorInput) {
+.colorInput {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-:local(.colorPreview) {
+.colorPreview {
   width: 48px;
   height: 48px;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
-:local(.colorInput) input {
+.colorInput input {
   width: 231px;
   padding: 10px;
   background: #F6F7F5;
@@ -183,7 +186,7 @@
   font-size: 13px;
 }
 
-:local(.messageInputs) input {
+.messageInputs input {
   width: 100%;
   padding: 10px;
   background: #F6F7F5;
@@ -194,7 +197,7 @@
   margin-bottom: 10px;
 }
 
-:local(.settingsCard) textarea {
+.settingsCard textarea {
   width: 100%;
   padding: 10px;
   background: #F6F7F5;
@@ -205,7 +208,7 @@
   resize: none;
 }
 
-:local(.charCount) {
+.charCount {
   display: block;
   font-family: 'Poppins', sans-serif;
   font-size: 10px;
@@ -213,13 +216,13 @@
   margin-top: 5px;
 }
 
-:local(.timerInputs) {
+.timerInputs {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-:local(.timerInputs) input {
+.timerInputs input {
   width: 30px;
   padding: 5px;
   background: #EDF4F5;
@@ -229,7 +232,7 @@
   font-size: 16px;
 }
 
-:local(.saveButton) {
+.saveButton {
   padding: 8px 42px;
   background: #184E7F;
   border: none;
