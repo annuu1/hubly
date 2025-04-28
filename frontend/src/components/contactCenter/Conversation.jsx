@@ -46,7 +46,21 @@ const Conversation = ({ ticketId, userName, status}) => {
           },
         }
       );
-      setMessages((prevMessages) => [...prevMessages, response.data]);
+
+      const newMessageObj = {
+        _id: response.data._id,
+        content: newMessage,
+        sender: sender,
+        type: "text",
+        createdAt: new Date().toISOString()
+      };
+
+      setMessages(prevMessages => {
+        const updatedMessages = [...prevMessages, newMessageObj];
+        // soring of the messages
+        return updatedMessages.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      });
+      
       setNewMessage("");
     } catch (error) {
       console.error("Error sending message:", error);
