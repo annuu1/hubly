@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import styles from "./ChatBotWindow.module.css";
+import axios from "axios";
 
-function IntroForm() {
+function IntroForm({setTicketId}) {
   const [isTicketCreated, setIsTicketCreated] = useState(false);
 
       const handleFormSubmit = async (e) => {
         e.preventDefault();
+        if(!setTicketId) return;
         const formData = new FormData(e.target);
         const name = formData.get("name");
         const phone = formData.get("phone");
@@ -14,6 +16,7 @@ function IntroForm() {
         try {
           const response = await axios.post(url, { name, phone, email });
           if (response.status === 201) {
+            setTicketId(response.data.ticket._id);
             setIsTicketCreated(true);
             e.target.reset();
           } else {
@@ -60,7 +63,7 @@ function IntroForm() {
                         required
                       />
                     </div>
-                    <button type="submit" className={styles.submitButton} disabled={isTicketCreated}> 
+                    <button type="submit" className={styles.submitButton} disabled={isTicketCreated} style={isTicketCreated ? {backgroundColor: "#ccc", cursor: "not-allowed"} : {}}> 
                       Thank You!
                     </button>
                   </form>
