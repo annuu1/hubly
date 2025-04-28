@@ -7,11 +7,11 @@ import axios from 'axios';
 
 const ChatBot = () => {
   const [botSettings, setBotSettings] = React.useState({
-    headerColor: '#33475B',
-    backgroundColor: '#EEEEEE',
-    customizedMessages: ['How can I help you?', 'Ask me anything!'],
-    welcomeMessage: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
-    missedChatTimer: '09:00:00',
+    headerColor: '',
+    backgroundColor: '',
+    customizedMessages: [''],
+    welcomeMessage: '',
+    missedChatTimer: '',
   });
   const messages = [
     // {
@@ -42,23 +42,23 @@ const ChatBot = () => {
           welcomeMessage,
           missedChatTimer,
         });
+        console.log(response.data)
       } catch (error) {
         console.log('Error fetching bot settings:', error);
       }
     };
-  
     fetchBotSettings();
   }, []);
-  
+
 
   return (
     <div className={styles.appContainer}>
       <main className={styles.mainContent}>
         {/* Chatbot Window */}
         <div className={styles.chatBotPreview}>
-        <ChatBotWindow messages={messages} botSetting={botSettings} />
+        <ChatBotWindow messages={messages}  botSettings={botSettings} setBotSettings={setBotSettings} />
         </div>
-        <SettingsPanel />
+        <SettingsPanel botSettings={botSettings} setBotSettings={setBotSettings} />
         
       </main>
     </div>

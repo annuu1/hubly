@@ -4,19 +4,11 @@ import axios from "axios";
 import IntroForm from "./IntroForm";
 import ChatIcon from "../../assets/ChatIcon.svg";
 
-const ChatBotWindow = ({ botSetting }) => {
+const ChatBotWindow = ({ botSettings, setBotSettings }) => {
   const [showIntroForm, setShowIntroForm] = useState(false);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [ticketId, setTicketId] = useState("");
-
-  const [botSettings, setBotSettings] = useState({
-    headerColor: "",
-    backgroundColor: "",
-    customizedMessages: [],
-    welcomeMessage: "",
-    missedChatTimer: "",
-  });
 
   useEffect(() => {
     const fetchBotSettings = async () => {

@@ -34,4 +34,34 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.put('/', async (req, res) => {
+    const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer } = req.body;
+
+    // Validate the request body
+    if (!headerColor || !backgroundColor || !customizedMessages || !welcomeMessage || !missedChatTimer) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    try {
+        const botSettings = await BotSettings.findOne();
+        if (!botSettings) {
+            return res.status(404).json({ message: 'Bot settings not found' });
+        }
+
+        // Update fields
+        botSettings.headerColor = headerColor;
+        botSettings.backgroundColor = backgroundColor;
+        botSettings.customizedMessages = customizedMessages;
+        botSettings.welcomeMessage = welcomeMessage;
+        botSettings.missedChatTimer = missedChatTimer;
+
+        await botSettings.save();
+        res.status(200).json({ message: 'Bot settings updated successfully', botSettings });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
 module.exports = router;
