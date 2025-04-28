@@ -99,7 +99,7 @@ function ChatIcon() {
       }
       {showChat && (
         <div className={styles.chatWindow}>
-          <ChatBotWindow onClose={handleCloseChat} />
+          <ChatBotWindow onClose={handleCloseChat} botSettings={botSettings} setBotSettings={setBotSettings} />
         </div>
       )}
     </div>
