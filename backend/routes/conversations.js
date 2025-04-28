@@ -60,12 +60,24 @@ router.post('/:ticketId/messages', async (req, res) => {
             return res.status(400).json({ message: 'Invalid message type' });
         }
 
-        const conversation = await Conversation.findOne({
+        let conversation = await Conversation.findOne({
             ticketId: req.params.ticketId,
         });
 
         if (!conversation) {
-            return res.status(404).json({ message: 'Conversation not found' });
+                conversation = new Conversation({
+                ticketId: req.params.ticketId,
+                messages: [
+                    {
+                        type,
+                        content,
+                        sender,
+                        createdAt: new Date(),
+                    }
+                ],
+            });
+            const updatedConversation = await conversation.save();
+            return res.status(200).json(updatedConversation);
         }
 
         conversation.messages.push({

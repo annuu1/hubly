@@ -9,6 +9,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [ticketId, setTicketId] = useState("");
+  const [pendingMessage, setPendingMessage] = useState(null);
 
   useEffect(() => {
     const fetchBotSettings = async () => {
@@ -43,6 +44,35 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
     fetchBotSettings();
   }, []);
 
+  // Effect to handle sending pending message when ticketId is available
+  useEffect(() => {
+    const sendPendingMessage = async () => {
+      if (ticketId && pendingMessage) {
+        const token = localStorage.getItem("token");
+        try {
+          await axios.post(
+            `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}/messages`,
+            {
+              type: "text",
+              content: pendingMessage,
+              sender: "user",
+            },
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+          setPendingMessage(null);
+        } catch (error) {
+          console.error("Error sending pending message:", error);
+        }
+      }
+    };
+
+    sendPendingMessage();
+  }, [ticketId, pendingMessage]);
+
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
 
@@ -54,41 +84,17 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       const updatedMessages = [...prevMessages, newMessageObj];
       if (updatedMessages.length === 2) {
         setShowIntroForm(true);
+        // Store the first user message as pending
+        setPendingMessage(newMessage);
       }
       return updatedMessages;
     });
 
     setNewMessage("");
+  };
 
-    // Uncomment and adjust the API call as needed
-    /*
-    const token = localStorage.getItem("token");
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}api/conversations/${botSetting.ticketId}/messages`,
-        {
-          type: "text",
-          content: newMessage,
-          sender: "user",
-        },
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      setMessages((prevMessages) => {
-        const updatedMessages = [...prevMessages, response.data];
-        // Show IntroForm when there are exactly 2 messages
-        if (updatedMessages.length === 2) {
-          setShowIntroForm(true);
-        }
-        return updatedMessages;
-      });
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
-    */
+  const handleTicketCreated = (id) => {
+    setTicketId(id);
   };
 
   return (
@@ -98,7 +104,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
     >
       <header
         className={styles.chatHeader}
-      style={{ backgroundColor: botSettings.headerColor }}
+        style={{ backgroundColor: botSettings.headerColor }}
       >
         <div className={styles.chatLogo}>
           <div className={styles.avatar}>
@@ -119,7 +125,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
               </div>
               {showIntroForm && msgIndex === 1 && textIndex === message.content.length - 1 && (
                 <div className={styles.introFormContainer}>
-                  <IntroForm setTicketId={setTicketId} />
+                  <IntroForm setTicketId={handleTicketCreated} />
                 </div>
               )}
             </React.Fragment>
