@@ -4,12 +4,14 @@ import styles from './ContactCenter.module.css';
 import TicketList from './TicketList';
 import Conversation from './Conversation';
 import TicketDetails from './TicketDetails';
+import { useSearchParams } from 'react-router-dom';
 
 const ContactCenter = () => {
     const [tickets, setTickets] = useState([]);
     const [selectedTicket, setSelectedTicket] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
         const fetchTickets = async () => {
@@ -31,7 +33,15 @@ const ContactCenter = () => {
                 );
 
                 setTickets(response.data);
-                if (response.data.length > 0) {
+                
+                // get tocket from searchbar and add to selected ticket
+                const ticketId = searchParams.get('ticketId');
+                if (ticketId) {
+                    const ticket = response.data.find(t => t._id === ticketId);
+                    if (ticket) {
+                        setSelectedTicket(ticket);
+                    }
+                } else if (response.data.length > 0) {
                     setSelectedTicket(response.data[0]);
                 }
             } catch (error) {
@@ -43,7 +53,7 @@ const ContactCenter = () => {
         };
 
         fetchTickets();
-    }, []);
+    }, [searchParams]);
 
     const handleTicketSelect = (ticket) => {
         setSelectedTicket(ticket);

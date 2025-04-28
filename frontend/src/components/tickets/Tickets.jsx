@@ -172,7 +172,12 @@ const Tickets = () => {
                       </span>
                   </div>
                 </div>
-                <button className={styles.openButton}>Open Ticket</button>
+                <button 
+                  className={styles.openButton}
+                  onClick={() => navigate(`/dashboard/contact-center?ticketId=${ticket._id}`)}
+                >
+                  Open Ticket
+                </button>
               </div>
             </div>
           ))
