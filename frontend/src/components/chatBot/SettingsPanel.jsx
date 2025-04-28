@@ -3,6 +3,7 @@ import styles from './SettingsPanel.module.css';
 import IntroForm from './IntroForm';
 import axios from 'axios';
 
+// Debounce Hook
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
 
@@ -31,119 +32,93 @@ function useDebounce(callback, delay) {
 }
 
 function SettingsPanel({ botSettings, setBotSettings }) {
-  const debouncedSave = useDebounce(() => {
+  const saveSettings = (settings) => {
     const url = import.meta.env.VITE_API_URL + 'api/botSettings';
     axios
-      .put(url, {
-        headerColor: botSettings.headerColor,
-        backgroundColor: botSettings.backgroundColor,
-        customizedMessages: botSettings.customizedMessages,
-        welcomeMessage: botSettings.welcomeMessage,
-        missedChatTimer: botSettings.missedChatTimer,
-      })
+      .put(url, settings)
       .then((response) => {
         console.log('Settings saved successfully:', response.data);
       })
       .catch((error) => {
         console.error('Error saving settings:', error);
       });
-  }, 500); 
+  };
 
+  const debouncedSave = useDebounce((settings) => {
+    saveSettings(settings);
+  }, 500);
+
+  // Header Color Change (Immediate save)
   const handleHeaderColorChange = (color) => {
-    setBotSettings({
-      ...botSettings,
-      headerColor: color,
-    });
+    const updatedSettings = { ...botSettings, headerColor: color };
+    setBotSettings(updatedSettings);
+    saveSettings(updatedSettings);
   };
 
+  // Background Color Change (Immediate save)
   const handleBackgroundColorChange = (color) => {
-    setBotSettings({
-      ...botSettings,
-      backgroundColor: color,
-    });
+    const updatedSettings = { ...botSettings, backgroundColor: color };
+    setBotSettings(updatedSettings);
+    saveSettings(updatedSettings);
   };
 
+  // Customize Message Change (Debounced save)
   const handleMessageChange = (index, value) => {
     const updatedMessages = [...botSettings.customizedMessages];
     updatedMessages[index] = value;
-    setBotSettings({
+    const updatedSettings = {
       ...botSettings,
       customizedMessages: updatedMessages,
-    });
-    debouncedSave();
+    };
+    setBotSettings(updatedSettings);
+    debouncedSave(updatedSettings);
   };
 
+  // Welcome Message Change (Debounced save)
   const handleWelcomeMessageChange = (value) => {
-    setBotSettings({
+    const updatedSettings = {
       ...botSettings,
       welcomeMessage: value,
-    });
-    debouncedSave();
+    };
+    setBotSettings(updatedSettings);
+    debouncedSave(updatedSettings);
   };
 
+  // Missed Chat Timer Change (Debounced save)
   const handleMissedChatTimerChange = (value) => {
-    setBotSettings({
+    const updatedSettings = {
       ...botSettings,
       missedChatTimer: value,
-    });
-    debouncedSave(); 
+    };
+    setBotSettings(updatedSettings);
+    debouncedSave(updatedSettings);
   };
 
+  // Manual Save Button
   const handleSave = () => {
-    const url = import.meta.env.VITE_API_URL + 'api/botSettings';
-    axios
-      .put(url, {
-        headerColor: botSettings.headerColor,
-        backgroundColor: botSettings.backgroundColor,
-        customizedMessages: botSettings.customizedMessages,
-        welcomeMessage: botSettings.welcomeMessage,
-        missedChatTimer: botSettings.missedChatTimer,
-      })
-      .then((response) => {
-        console.log('Settings saved successfully:', response.data);
-      })
-      .catch((error) => {
-        console.error('Error saving settings:', error);
-      });
+    saveSettings(botSettings);
   };
-
-  useEffect(() =>{
-    const url = import.meta.env.VITE_API_URL + 'api/botSettings';
-    axios
-      .put(url, {
-        headerColor: botSettings.headerColor,
-        backgroundColor: botSettings.backgroundColor,
-        customizedMessages: botSettings.customizedMessages,
-        welcomeMessage: botSettings.welcomeMessage,
-        missedChatTimer: botSettings.missedChatTimer,
-      })
-  }, [botSettings.headerColor, botSettings.backgroundColor]);
 
   return (
     <aside className={styles.settingsPanel}>
+      {/* Header Color */}
       <div className={styles.settingsCard}>
         <h3>Header Color</h3>
         <div className={styles.colorOptions}>
           <div
             className={styles.colorSwatch}
             style={{ background: '#fff', border: '1px solid #000' }}
-            onClick={() => {
-              handleHeaderColorChange('#ffffff');
-            }}
+            onClick={() => handleHeaderColorChange('#ffffff')}
           ></div>
           <div
             className={styles.colorSwatch}
             style={{ background: '#000' }}
-            onClick={() => {
-              handleHeaderColorChange('#000000');
-            }}
+            onClick={() => handleHeaderColorChange('#000000')}
           ></div>
           <div
             className={styles.colorSwatch}
             style={{ background: '#33475B' }}
-            onClick={() => {
-              handleHeaderColorChange('#33475B');
-            }}
+            onClick={() => handleHeaderColorChange('#33475B')}
           ></div>
         </div>
         <div className={styles.colorInput}>
@@ -154,32 +129,25 @@ function SettingsPanel({ botSettings, setBotSettings }) {
           <input type="text" value={botSettings.headerColor} readOnly />
         </div>
       </div>
+
+      {/* Background Color */}
       <div className={styles.settingsCard}>
         <h3>Custom Background Color</h3>
         <div className={styles.colorOptions}>
           <div
             className={styles.colorSwatch}
             style={{ background: '#fff', border: '1px solid #000' }}
-            onClick={() => {
-              handleBackgroundColorChange('#ffffff');
-              handleSave();
-            }}
+            onClick={() => handleBackgroundColorChange('#ffffff')}
           ></div>
           <div
             className={styles.colorSwatch}
             style={{ background: '#000' }}
-            onClick={() => {
-              handleBackgroundColorChange('#000000');
-              handleSave();
-            }}
+            onClick={() => handleBackgroundColorChange('#000000')}
           ></div>
           <div
             className={styles.colorSwatch}
             style={{ background: '#EEEEEE' }}
-            onClick={() => {
-              handleBackgroundColorChange('#EEEEEE');
-              handleSave();
-            }}
+            onClick={() => handleBackgroundColorChange('#EEEEEE')}
           ></div>
         </div>
         <div className={styles.colorInput}>
@@ -190,6 +158,8 @@ function SettingsPanel({ botSettings, setBotSettings }) {
           <input type="text" value={botSettings.backgroundColor} readOnly />
         </div>
       </div>
+
+      {/* Customize Messages */}
       <div className={styles.settingsCard}>
         <h3>Customize Message</h3>
         <div className={styles.messageInputs}>
@@ -205,7 +175,11 @@ function SettingsPanel({ botSettings, setBotSettings }) {
           />
         </div>
       </div>
+
+      {/* Intro Form */}
       <IntroForm />
+
+      {/* Welcome Message */}
       <div className={styles.settingsCard}>
         <h3>Welcome Message</h3>
         <textarea
@@ -216,6 +190,8 @@ function SettingsPanel({ botSettings, setBotSettings }) {
           {botSettings.welcomeMessage.length}/50
         </span>
       </div>
+
+      {/* Missed Chat Timer */}
       <div className={styles.settingsCard}>
         <h3>Missed Chat Timer</h3>
         <div className={styles.timerInputs}>
@@ -250,6 +226,8 @@ function SettingsPanel({ botSettings, setBotSettings }) {
           />
         </div>
       </div>
+
+      {/* Manual Save Button */}
       <button className={styles.saveButton} onClick={handleSave}>
         Save
       </button>
