@@ -159,17 +159,17 @@ const Tickets = () => {
                     : "Unknown"}
                 </span>
               </div>
-              <hr />
+              <hr style={{border: "none", backgroundColor: '#E7E7E7', height: '1px'}} />
               <div className={styles.ticketFooter}>
                 <div className={styles.ticketInfo}>
                   <img src={avatar} alt="User" className={styles.userImg} />
                   <div>
-                    <strong>{ticket.name || "Unknown"}</strong>
-                    <p>
+                    <span className={styles.userDetails}>{ticket.name || "Unknown"}
+                      <br/>
                       {ticket.phone || "N/A"}
                       <br />
                       {ticket.email || "N/A"}
-                    </p>
+                      </span>
                   </div>
                 </div>
                 <button className={styles.openButton}>Open Ticket</button>
