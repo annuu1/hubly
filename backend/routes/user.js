@@ -47,6 +47,35 @@ router.get('/members', async (req, res) => {
   }
 });
 
+// Update member
+router.put('/members/:id', async (req, res) => {
+  try {
+    const { fullName, phone, email, role } = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { fullName, phone, email, role },
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    res.json({ success: true, user });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
+// Delete member
+router.delete('/members/:id', async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    res.json({ success: true, message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
 module.exports = router;

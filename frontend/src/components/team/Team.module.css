@@ -86,3 +86,80 @@
     cursor: pointer;
     font-size: 14px;
   }
+
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modalContent {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+  }
+
+  .modalContent h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+  }
+
+  .modalContent p {
+    margin: 0 0 1.5rem 0;
+    color: #666;
+  }
+
+  .modalButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .cancelButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .deleteButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+  }
+
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+
+  /* Edit mode styles */
+  input[type="text"],
+  input[type="email"] {
+    padding: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .actionIcon {
+    cursor: pointer;
+    margin-left: 0.5rem;
+  }
+
+  .actionIcon:hover {
+    opacity: 0.8;
+  }

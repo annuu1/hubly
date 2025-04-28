@@ -3,30 +3,61 @@ import styles from "./Team.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NewMember from "./NewMember";
+import EditMember from "./EditMember";
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
 
   const navigate = useNavigate();
-  const handleAddMember = () => {
-    navigate("/add-member");
-  };
 
   useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const response = await axios.get(
-          import.meta.env.VITE_API_URL + "api/users/members"
-        );
-        setTeamMembers(response.data.users);
-      } catch (error) {
-        console.error("Error fetching team members:", error);
-      }
-    };
-
     fetchTeamMembers();
   }, []);
+
+  const fetchTeamMembers = async () => {
+    try {
+      const response = await axios.get(
+        import.meta.env.VITE_API_URL + "api/users/members"
+      );
+      setTeamMembers(response.data.users);
+    } catch (error) {
+      console.error("Error fetching team members:", error);
+    }
+  };
+
+  const handleEdit = (member) => {
+    setSelectedMember(member);
+    setShowEditModal(true);
+  };
+
+  const handleUpdate = async (memberId, updatedData) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
+        updatedData
+      );
+      fetchTeamMembers();
+    } catch (error) {
+      console.error("Error updating member:", error);
+      throw error;
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}api/users/members/${selectedMember._id}`
+      );
+      setShowDeleteModal(false);
+      fetchTeamMembers();
+    } catch (error) {
+      console.error("Error deleting member:", error);
+    }
+  };
 
   return (
     <div className={styles.teamContainer}>
@@ -53,13 +84,13 @@ const Team = () => {
                     alt="Avatar"
                     className={styles.avatar}
                   />
-                  {member.name}
+                  {member.fullName}
                 </td>
                 <td>{member.phone}</td>
                 <td>{member.email}</td>
                 <td>{member.role}</td>
                 <td className={styles.actionIcons}>
-                  <span className={styles.actionIcon}>
+                  <span className={styles.actionIcon} onClick={() => handleEdit(member)}>
                     <svg
                       width="16"
                       height="18"
@@ -73,7 +104,13 @@ const Team = () => {
                       />
                     </svg>
                   </span>
-                  <span className={styles.actionIcon}>
+                  <span
+                    className={styles.actionIcon}
+                    onClick={() => {
+                      setSelectedMember(member);
+                      setShowDeleteModal(true);
+                    }}
+                  >
                     <svg
                       width="12"
                       height="16"
@@ -96,7 +133,38 @@ const Team = () => {
           + Add Team members
         </button>
       </div>
-      {showModal && <NewMember setShowModal = {setShowModal} />}
+      {showModal && <NewMember setShowModal={setShowModal} />}
+      {showEditModal && (
+        <EditMember
+          setShowModal={setShowEditModal}
+          member={selectedMember}
+          onUpdate={handleUpdate}
+        />
+      )}
+      
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h3>Delete Team Member</h3>
+            <p>Are you sure you want to delete {selectedMember?.fullName}? This action cannot be undone.</p>
+            <div className={styles.modalButtons}>
+              <button
+                className={styles.cancelButton}
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className={styles.deleteButton}
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
