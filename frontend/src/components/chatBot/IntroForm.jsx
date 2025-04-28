@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from "./ChatBotWindow.module.css";
 
 function IntroForm() {
+  const [isTicketCreated, setIsTicketCreated] = useState(false);
 
       const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -12,7 +13,12 @@ function IntroForm() {
         const url = import.meta.env.VITE_API_URL + "api/tickets";
         try {
           const response = await axios.post(url, { name, phone, email });
-          setShowIntroForm(false);
+          if (response.status === 201) {
+            setIsTicketCreated(true);
+            e.target.reset();
+          } else {
+            alert("Error creating ticket");
+          }
         } catch (error) {
           console.error("Error submitting form:", error);
           alert(error.response.data.message);
@@ -54,7 +60,7 @@ function IntroForm() {
                         required
                       />
                     </div>
-                    <button type="submit" className={styles.submitButton}>
+                    <button type="submit" className={styles.submitButton} disabled={isTicketCreated}> 
                       Thank You!
                     </button>
                   </form>

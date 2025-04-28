@@ -4,8 +4,16 @@ import axios from "axios";
 import IntroForm from "./IntroForm";
 import ChatIcon from "../../assets/ChatIcon.svg";
 
-const ChatBotWindow = ({ messages = [], botSetting }) => {
-  const [showIntroForm, setShowIntroForm] = useState(true);
+const ChatBotWindow = ({ botSetting }) => {
+  const [showIntroForm, setShowIntroForm] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      type: "incoming",
+      content: ["how are you"],
+    },
+  ]);
+  const [newMessage, setNewMessage] = useState("");
+
   const [botSettings, setBotSettings] = useState({
     headerColor: "",
     backgroundColor: "",
@@ -33,6 +41,12 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
           welcomeMessage,
           missedChatTimer,
         });
+        setMessages([
+          {
+            type: "incoming",
+            content: customizedMessages,
+          },
+        ]);
       } catch (error) {
         console.error("Error fetching bot settings:", error);
         alert("Error fetching bot settings");
@@ -40,11 +54,41 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
     };
     fetchBotSettings();
   }, []);
-
-  const handleChatIconClick = () => {
-    setShowIntroForm(!showIntroForm);
+  
+  const handleSendMessage = async () => {
+    if (!newMessage.trim()) return;
+    if (!showIntroForm) {
+      setShowIntroForm(true);
+      return;
+    }
+    const newMessageObj = {
+      type: "outgoing",
+      content: [newMessage],
+    };
+    setMessages((prevMessages) => [...prevMessages, newMessageObj]);
+    console.log(messages);
+    const token = localStorage.getItem("token");
+    // try {
+    //   const response = await axios.post(
+    //     `${import.meta.env.VITE_API_URL}api/conversations/${botSetting.ticketId}/messages`,
+    //     {
+    //       type: "text",
+    //       content: newMessage,
+    //       sender: 'user',
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `${token}`,
+    //       },
+    //     }
+    //   );
+    //   setMessages((prevMessages) => [...prevMessages, response.data]);
+    //   setNewMessage("");
+    // }
+    // catch (error) {
+    //   console.error("Error sending message:", error);
+    // }
   };
-
 
   return (
     <section
@@ -57,7 +101,7 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
       >
         <div className={styles.chatLogo}>
           <div className={styles.avatar}>
-          <img src={ChatIcon} alt="Chat Icon" />
+            <img src={ChatIcon} alt="Chat Icon" />
           </div>
           <div className={styles.statusIndicator}></div>
         </div>
@@ -65,37 +109,31 @@ const ChatBotWindow = ({ messages = [], botSetting }) => {
       </header>
       <>
         <div className={styles.chatBody}>
-          {botSettings.customizedMessages?.map((message, index) => (
-            <div
-              key={index}
-              className={`${styles.message} ${styles["incoming"]}`}
-            >
-              <p>{message}</p>
-            </div>
-          ))}
-          {
-           <IntroForm/>
-          }
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`${styles.message} ${styles[message.type]}`}
-            >
-              {Array.isArray(message.content) ? (
-                message.content.map((text, i) => <p key={i}>{text}</p>)
-              ) : (
-                <p>{message.content}</p>
-              )}
-            </div>
-          ))}
+          {messages.map((message, msgIndex) =>
+            message.content.map((text, textIndex) => (
+              <React.Fragment key={`${msgIndex}-${textIndex}`}>
+                <div className={`${styles.message} ${styles[message.type]}`}>
+                  <p>{text}</p>
+                </div>
+                {textIndex === 0 && <IntroForm />}
+              </React.Fragment>
+            ))
+          )}
         </div>
         <footer className={styles.chatFooter}>
           <input
             type="text"
             placeholder="Write a message"
             className={styles.messageInput}
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSendMessage();
+              }
+            }}
           />
-          <button className={styles.sendButton}>
+          <button className={styles.sendButton} onClick={handleSendMessage}>
             <svg
               width="18"
               height="18"
