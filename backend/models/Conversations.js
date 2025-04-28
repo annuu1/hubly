@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const ConversationSchema = new mongoose.Schema(
     {
         ticketId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Ticket',
+            type: String,
             required: true,
         },
         messages: [
