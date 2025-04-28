@@ -12,6 +12,7 @@ const Tickets = () => {
   const [filteredTickets, setFilteredTickets] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
   const [, setTick] = useState(0);
+  const [ticketMessages, setTicketMessages] = useState({});
 
   const navigate = useNavigate();
 
@@ -30,6 +31,28 @@ const Tickets = () => {
         setTickets(data);
         setFilteredTickets(data);
         setLoading(false);
+
+        // Fetch conversations for each ticket
+        const messages = {};
+        for (const ticket of data) {
+          try {
+            const convResponse = await axios.get(
+              `${import.meta.env.VITE_API_URL}api/conversations/${ticket._id}`,
+              {
+                headers: {
+                  Authorization: token,
+                },
+              }
+            );
+            const conversation = convResponse.data;
+            if (conversation.messages && conversation.messages.length > 0) {
+              messages[ticket._id] = conversation.messages[0].content;
+            }
+          } catch (error) {
+            console.error(`Error fetching conversation for ticket ${ticket._id}:`, error);
+          }
+        }
+        setTicketMessages(messages);
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -152,7 +175,7 @@ const Tickets = () => {
                 </span>
               </div>
               <div className={styles.ticketBody}>
-                <p>Hey!</p>
+                <p>{ticketMessages[ticket._id] || "No messages yet"}</p>
                 <span className={styles.ticketDuration}>
                   {ticket.createdAt
                     ? formatElapsedTime(ticket.createdAt)
