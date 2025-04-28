@@ -18,7 +18,11 @@ return (
                 }`}
             >
                     <img src={avatar} alt="Avatar" className={styles.avatar} />
-                    {ticket.name}
+                    <div className={styles.ticketDetails}>
+                        <span className={styles.name}>{ticket.name}</span>
+                        <span className={styles.message}>{ticket.status}</span>
+                    </div>
+                    
                 </li>
             ))}
         </ul>
