@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ChatBotWindow from './ChatBotWindow';
 import styles from './ChatBot.module.css';
-import IntroForm from './IntroForm';
+
+import SettingsPanel from './SettingsPanel';
+import axios from 'axios';
 
 const ChatBot = () => {
   const [botSettings, setBotSettings] = React.useState({
@@ -22,6 +24,33 @@ const ChatBot = () => {
     // },
   ];
 
+  useEffect(() => {
+    const fetchBotSettings = async () => {
+      try {
+        const response = await axios.get(import.meta.env.VITE_API_URL + 'api/botSettings');
+        const {
+          headerColor,
+          backgroundColor,
+          customizedMessages,
+          welcomeMessage,
+          missedChatTimer,
+        } = response.data.botSettings;
+        setBotSettings({
+          headerColor,
+          backgroundColor,
+          customizedMessages,
+          welcomeMessage,
+          missedChatTimer,
+        });
+      } catch (error) {
+        console.log('Error fetching bot settings:', error);
+      }
+    };
+  
+    fetchBotSettings();
+  }, []);
+  
+
   return (
     <div className={styles.appContainer}>
       <main className={styles.mainContent}>
@@ -29,82 +58,8 @@ const ChatBot = () => {
         <div className={styles.chatBotPreview}>
         <ChatBotWindow messages={messages} botSetting={botSettings} />
         </div>
-
-        {/* Settings Panels */}
-        <aside className={styles.settingsPanel}>
-          <div className={styles.settingsCard}>
-            <h3>Header Color</h3>
-            <div className={styles.colorOptions}>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#fff', border: '1px solid #000' }}
-              ></div>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#000' }}
-              ></div>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#33475B' }}
-              ></div>
-            </div>
-            <div className={styles.colorInput}>
-              <div
-                className={styles.colorPreview}
-                style={{ background: '#33475B' }}
-              ></div>
-              <input type="text" value="#33475B" readOnly />
-            </div>
-          </div>
-          <div className={styles.settingsCard}>
-            <h3>Custom Background Color</h3>
-            <div className={styles.colorOptions}>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#fff', border: '1px solid #000' }}
-              ></div>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#000' }}
-              ></div>
-              <div
-                className={styles.colorSwatch}
-                style={{ background: '#EEEEEE' }}
-              ></div>
-            </div>
-            <div className={styles.colorInput}>
-              <div
-                className={styles.colorPreview}
-                style={{ background: '#EEEEEE' }}
-              ></div>
-              <input type="text" value="#EEEEEE" readOnly />
-            </div>
-          </div>
-          <div className={styles.settingsCard}>
-            <h3>Customize Message</h3>
-            <div className={styles.messageInputs}>
-              <input type="text" defaultValue="How can I help you?" />
-              <input type="text" defaultValue="Ask me anything!" />
-            </div>
-          </div>
-          <IntroForm />
-          <div className={styles.settingsCard}>
-            <h3>Welcome Message</h3>
-            <textarea
-              defaultValue="👋 Want to chat about Hubly? I'm a chatbot here to help you find your way."
-            ></textarea>
-            <span className={styles.charCount}>15/50</span>
-          </div>
-          <div className={styles.settingsCard}>
-            <h3>Missed Chat Timer</h3>
-            <div className={styles.timerInputs}>
-              <input type="text" defaultValue="09" size="2" />:
-              <input type="text" defaultValue="00" size="2" />:
-              <input type="text" defaultValue="00" size="2" />
-            </div>
-          </div>
-          <button className={styles.saveButton}>Save</button>
-        </aside>
+        <SettingsPanel />
+        
       </main>
     </div>
   );
