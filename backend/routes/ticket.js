@@ -22,7 +22,16 @@ route.post('/', async (req, res) =>{
             return res.status(404).json({message:'Admin user not found'});
         }       
 
+        // tiket id creating here
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const ticketId = `${year}-0${month}${day}-${randomNum}`;
+
         const ticket = new Ticket({
+            _id: ticketId,
             name,
             phone,
             email,
