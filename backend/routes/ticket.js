@@ -47,6 +47,15 @@ route.get('/', auth, async (req, res) =>{
         return res.status(500).json({message:'Internal server error'});
     }
 })
+route.get('/assignedTickets',auth,async(req, res)=>{
+    try{
+        const tickets = await Ticket.find({assignedTo:req.user.id}).populate('assignedTo', 'name email');
+        return res.status(200).json(tickets);
+    }catch(err){
+        console.log(err);
+        return res.status(500).json({message:'Internal server error'});
+    }
+})
 //assign ticket to user
 route.put('/:id/assign', auth, async(req, res) =>{
     const {id} = req.params;

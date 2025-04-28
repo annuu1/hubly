@@ -22,7 +22,7 @@ const ContactCenter = () => {
                 }
 
                 const response = await axios.get(
-                    `${import.meta.env.VITE_API_URL}api/tickets`,
+                    `${import.meta.env.VITE_API_URL}api/tickets/assignedTickets`,
                     {
                         headers: {
                             Authorization: `${token}`,

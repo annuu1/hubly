@@ -19,7 +19,7 @@ const Tickets = () => {
     const fetchTickets = async () => {
       try {
         const token = localStorage.getItem("token");
-        const url = `${import.meta.env.VITE_API_URL}api/tickets`;
+        const url = `${import.meta.env.VITE_API_URL}api/tickets/assignedTickets`;
         const response = await axios.get(url, {
           headers:{
             Authorization:token
