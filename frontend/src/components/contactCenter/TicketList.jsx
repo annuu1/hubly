@@ -18,7 +18,7 @@ return (
                 }`}
             >
                     <img src={avatar} alt="Avatar" className={styles.avatar} />
-                    Chat {index+1}
+                    {ticket.name}
                 </li>
             ))}
         </ul>
