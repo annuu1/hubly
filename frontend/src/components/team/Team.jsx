@@ -133,7 +133,7 @@ const Team = () => {
           + Add Team members
         </button>
       </div>
-      {showModal && <NewMember setShowModal={setShowModal} />}
+      {showModal && <NewMember setShowModal={setShowModal} onMemberAdded={fetchTeamMembers} />}
       {showEditModal && (
         <EditMember
           setShowModal={setShowEditModal}

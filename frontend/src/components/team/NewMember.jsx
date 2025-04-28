@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./NewMember.module.css";
 
-const NewMember = ({setShowModal}) => {
+const NewMember = ({ setShowModal, onMemberAdded }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formValues, setFormValues] = useState({
     fullName: "",
@@ -41,6 +41,7 @@ const NewMember = ({setShowModal}) => {
       if (response.ok) {
         setFormValues({ fullName: "", phone: "", email: "", role: "member" });
         setShowModal(false);
+        onMemberAdded();
       } else {
         alert("Failed to add member.");
       }
