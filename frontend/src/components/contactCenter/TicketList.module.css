@@ -1,14 +1,66 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: 100vh;
+}
+.title{
+    color: #6A6B70;
+    padding: 30px;
+    flex-shrink: 0; 
+    font-size: 18px;
+    font-weight: 500;
+}
+.mainContent{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    overflow: hidden; 
+}
+.tabList{
+    border-bottom: 2px #D7D8D8 solid;
+    flex-shrink: 0;
+}
+.tabList button{
+    background: transparent;
+    border: none;
+    color: #888888;
+    font-weight: 700;
+    border-bottom: 2px solid #D7D8D8;
+    font-size: 14px;
+}
 .ticketList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin: 0;
   padding: 0;
+  overflow-y: auto;
+  max-height: 100%;
+  flex: 1;
 }
+.listItem {
+    position: relative;
+  }
+  
+  .listItem.selected::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 5px;
+    height: 80%;
+    background-color: #184E7F;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+/* .listItem.selected{
+    border-left: 3px #184E7F solid;
+} */
 .ticketList li{
     list-style: none;
     margin: 0;
-    padding: 0;
     padding: 0.5rem;
     border-radius: 2rem;
 }
@@ -40,6 +92,7 @@
 .ticketItem:hover {
     background-color: #f5f5f5;
 }
-.selected {
+.ticketItem.selected {
     background-color: #EFEFEF;
+    margin: 0 0.5rem;
 }

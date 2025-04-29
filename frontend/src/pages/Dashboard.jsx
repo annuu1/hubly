@@ -40,12 +40,12 @@ const Dashboard = () => {
           <Route
             path="contact-center"
             element={
-              <DashboardLayout
-                title="Contact Center"
-                subtitle="See upcoming and past events booked through your event type links."
-              >
+              // <DashboardLayout
+              //   title="Contact Center"
+              //   subtitle="See upcoming and past events booked through your event type links."
+              // >
                 <ContactCenter />
-              </DashboardLayout>
+              // </DashboardLayout>
             }
           />
           <Route
