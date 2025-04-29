@@ -27,16 +27,10 @@ router.get('/:ticketId', async (req, res) => {
     try {
         const conversation = await Conversation.findOne({
             ticketId: req.params.ticketId,
-        })
-            // .populate('messages.sender', 'username')
-            // .populate('ticketId', 'title');
+        });
 
         if (!conversation) {
-            const newConversation = new Conversation({
-                ticketId: req.params.ticketId,
-                messages: [],
-            });
-            await newConversation.save();
+            return res.status(404).json({ message: 'Conversation not found' });
         }
 
         res.status(200).json(conversation);
@@ -46,7 +40,7 @@ router.get('/:ticketId', async (req, res) => {
     }
 });
 
-// Add a new message to a conversation
+// add message to conversation
 router.post('/:ticketId/messages', async (req, res) => {
     try {
         let { type, content, sender } = req.body;
@@ -60,26 +54,36 @@ router.post('/:ticketId/messages', async (req, res) => {
             return res.status(400).json({ message: 'Invalid message type' });
         }
 
+        // check if exsiting conversation
         let conversation = await Conversation.findOne({
             ticketId: req.params.ticketId,
         });
 
+        // create a new convesation
         if (!conversation) {
+            try {
                 conversation = new Conversation({
-                ticketId: req.params.ticketId,
-                messages: [
-                    {
+                    ticketId: req.params.ticketId,
+                    messages: [{
                         type,
                         content,
                         sender,
                         createdAt: new Date(),
-                    }
-                ],
-            });
-            const updatedConversation = await conversation.save();
-            return res.status(200).json(updatedConversation);
+                    }],
+                });
+                const savedConversation = await conversation.save();
+                return res.status(201).json(savedConversation);
+            } catch (error) {
+                if (error.code === 11000) {
+                    //get the ticket that is already created
+                    conversation = await Conversation.findOne({
+                        ticketId: req.params.ticketId,
+                    });
+                } else {
+                    throw error;
+                }
+            }
         }
-
         conversation.messages.push({
             type,
             content,
@@ -91,7 +95,11 @@ router.post('/:ticketId/messages', async (req, res) => {
         res.status(200).json(updatedConversation);
     } catch (error) {
         console.error('Error adding message:', error);
-        res.status(500).json({ message: 'Failed to add message' });
+        if (error.code === 11000) {
+            res.status(409).json({ message: 'Conversation already exists' });
+        } else {
+            res.status(500).json({ message: 'Failed to add message' });
+        }
     }
 });
 

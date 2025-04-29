@@ -5,6 +5,7 @@ const ConversationSchema = new mongoose.Schema(
         ticketId: {
             type: String,
             required: true,
+            unique: true
         },
         messages: [
             {
