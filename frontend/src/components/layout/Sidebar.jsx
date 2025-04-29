@@ -1,8 +1,4 @@
 import React from "react";
-import events from "../../assets/icons/events.svg";
-import availability from "../../assets/icons/availability.svg";
-import booking from "../../assets/icons/booking.svg";
-import settings from "../../assets/icons/settings.svg";
 
 import { Routes, Route, NavLink } from "react-router-dom";
 
