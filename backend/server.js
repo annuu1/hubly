@@ -15,6 +15,7 @@ connectDB();
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/tickets', require('./routes/ticket'))
+app.use('/api/analytics', require('./routes/analytics'))
 app.use('/api/botSettings', require('./routes/botSettings'))
 app.use('/api/conversations', require('./routes/conversations'))
 
