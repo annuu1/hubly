@@ -116,7 +116,7 @@ const TicketDetails = ({ ticket }) => {
     <div className={styles.detailsPanel}>
       <div className={styles.detailsHeader}>
         <img src={avatar} alt="" className={styles.chatAvatar} />
-        <span>{ticket.name}</span>
+        <span className={styles.ticketName}>{ticket.name}</span>
       </div>
       <div className={styles.detailsTitle}>Details</div>
       <div className={styles.detailItem}>
@@ -155,7 +155,7 @@ const TicketDetails = ({ ticket }) => {
         >
           <div className={styles.dropdown}>
             <img src={avatar} alt="" className={styles.chatAvatar} />
-            <span>{user.name}</span>
+            <span className={styles.memberName}>{user.name}</span>
           </div>
           <svg
             width="14"
@@ -182,7 +182,7 @@ const TicketDetails = ({ ticket }) => {
                 onClick={() => handleSelectMember(member._id)}
               >
                 <img src={avatar} alt="" className={styles.chatAvatar} />
-                <span>{member.fullName}</span>
+                <span className={styles.memberName}>{member.fullName}</span>
               </div>
             ))}
           </div>
@@ -208,7 +208,7 @@ const TicketDetails = ({ ticket }) => {
               />
             </svg>
 
-            <span>Ticket status</span>
+            <span className={styles.memberName}>Ticket status</span>
           </div>
           <svg
             width="14"
@@ -235,7 +235,7 @@ const TicketDetails = ({ ticket }) => {
                 onClick={() => handleSelectStatus(status.status)}
               >
                 <img src={avatar} alt="" className={styles.chatAvatar} />
-                <span>{status.status}</span>
+                <span className={styles.memberName}>{status.status}</span>
               </div>
             ))}
           </div>
