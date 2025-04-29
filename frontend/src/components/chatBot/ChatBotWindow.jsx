@@ -29,6 +29,50 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
     localStorage.setItem('chatState', JSON.stringify(chatState));
   }, [messages, ticketId]);
 
+  // Fetch messages from backend when ticketId changes
+  useEffect(() => {
+    if (!ticketId) return;
+
+    const fetchMessages = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        
+        if (response.data && response.data.messages) {
+          const formattedMessages = response.data.messages.map(msg => ({
+            type: msg.sender === null ? "outgoing" : "incoming",
+            content: [msg.content],
+          }));
+          // console.log(messages)
+          
+          // Only update if there are new messages
+          if (formattedMessages.length > messages.length-1) {
+            const updatedMessages = [...messages.slice(0, 1), ...formattedMessages]
+            setMessages(updatedMessages);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    // Initial fetch
+    fetchMessages();
+
+    // Set up polling interval
+    const intervalId = setInterval(fetchMessages, 5000); // Poll every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [ticketId]);
+
+
   useEffect(() => {
     const fetchBotSettings = async () => {
       const url = import.meta.env.VITE_API_URL + "api/botSettings";
@@ -110,6 +154,31 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       }
       return updatedMessages;
     });
+
+        // If ticket exists, send message to backend
+        if (ticketId) {
+          const token = localStorage.getItem("token");
+          try {
+            await axios.post(
+              `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}/messages`,
+              {
+                type: "text",
+                content: newMessage,
+                sender: "user",
+              },
+              {
+                headers: {
+                  Authorization: `${token}`,
+                },
+              }
+            );
+          } catch (error) {
+            console.error("Error sending message:", error);
+            // Remove the message from local state if sending failed
+            setMessages((prevMessages) => prevMessages.slice(0, -1));
+            alert("Failed to send message. Please try again.");
+          }
+        }
 
     setNewMessage("");
   };
