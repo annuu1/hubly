@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import styles from "../../styles/UserProfile.module.css";
-import avatar from "../../assets/icons/avatar.png";
-import logoutIcon from "../../assets/icons/logoutIcon.svg";
-import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   // const [logout, setLogout] = useState(false);
