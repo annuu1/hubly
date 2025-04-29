@@ -5,11 +5,29 @@ import IntroForm from "./IntroForm";
 import ChatIcon from "../../assets/ChatIcon.svg";
 
 const ChatBotWindow = ({ botSettings, setBotSettings }) => {
-  const [showIntroForm, setShowIntroForm] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [showIntroForm, setShowIntroForm] = useState(() => {
+    const savedState = localStorage.getItem('chatState');
+    return savedState ? true : true;
+  });
+  const [messages, setMessages] = useState(() => {
+    const savedState = localStorage.getItem('chatState');
+    return savedState ? JSON.parse(savedState).messages : [];
+  });
   const [newMessage, setNewMessage] = useState("");
-  const [ticketId, setTicketId] = useState("");
+  const [ticketId, setTicketId] = useState(() => {
+    const savedState = localStorage.getItem('chatState');
+    return savedState ? JSON.parse(savedState).ticketId : "";
+  });
   const [pendingMessage, setPendingMessage] = useState(null);
+
+  // Save state to localStorage whenever it changes
+  useEffect(() => {
+    const chatState = {
+      messages,
+      ticketId,
+    };
+    localStorage.setItem('chatState', JSON.stringify(chatState));
+  }, [messages, ticketId]);
 
   useEffect(() => {
     const fetchBotSettings = async () => {
@@ -30,12 +48,16 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
           welcomeMessage,
           missedChatTimer,
         });
-        setMessages([
-          {
-            type: "incoming",
-            content: customizedMessages.length ? customizedMessages : ["Welcome"],
-          },
-        ]);
+        
+        // Only set initial messages if there are no existing messages
+        if (messages.length === 0) {
+          setMessages([
+            {
+              type: "incoming",
+              content: customizedMessages.length ? customizedMessages : ["Welcome"],
+            },
+          ]);
+        }
       } catch (error) {
         console.error("Error fetching bot settings:", error);
         alert("Error fetching bot settings");
@@ -82,9 +104,8 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
     };
     setMessages((prevMessages) => {
       const updatedMessages = [...prevMessages, newMessageObj];
-      if (updatedMessages.length === 2) {
+      if (updatedMessages.length === 2 && !ticketId) {
         setShowIntroForm(true);
-        // Store the first user message as pending
         setPendingMessage(newMessage);
       }
       return updatedMessages;
@@ -95,6 +116,14 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
 
   const handleTicketCreated = (id) => {
     setTicketId(id);
+  };
+
+  const clearChatState = () => {
+    localStorage.removeItem('chatState');
+    setMessages([]);
+    setTicketId("");
+    setShowIntroForm(true);
+    setPendingMessage(null);
   };
 
   return (
