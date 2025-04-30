@@ -12,11 +12,11 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(245, 247, 250, 0.5);
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(8px);
   }
   
   .logo {
@@ -32,18 +32,18 @@
   
   .loginButton, .signupButton {
     padding: 8px 20px;
-    border: 1px solid #1da1f2;
-    border-radius: 4px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
   }
   
   .loginButton {
-    background: none;
-    color: #1da1f2;
+    background: transparent;
+    color: #36364A;
   }
   
   .signupButton {
-    background: #1da1f2;
+    background: #244779;
     color: #fff;
   }
   
