@@ -147,13 +147,13 @@
   }
 
   /* Edit mode styles */
-  input[type="text"],
+  /* input[type="text"],
   input[type="email"] {
     padding: 0.25rem;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
-  }
+  } */
 
   .actionIcon {
     cursor: pointer;

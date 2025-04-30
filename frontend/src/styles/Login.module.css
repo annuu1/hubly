@@ -13,9 +13,10 @@
 }
 
 .formContainer {
+    padding-top: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     width: 60%;
     height: 100%;
@@ -26,16 +27,17 @@
     font-weight: bold;
     font-size: 22px;
     margin-bottom: 0;
-    width: 50%;
+    width: 70%;
 }
 
 .formHeaderSignin {
-    color: #333;
+    width: 70%;
+    color: #000;
     font-weight: bolder;
 }
 
 .form {
-    width: 50%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,8 +54,9 @@
 .input {
     padding: 10px;
     margin-bottom: 15px;
-    background-color: rgba(239, 240, 236, 1);
-    border: none;
+    /* background-color: rgba(239, 240, 236, 1); */
+    /* background-color: rgba(239, 240, 236, 1); */
+    border: 1px rgb(95, 95, 94, 0.2) solid;
     border-radius: 9px;
     font-size: 16px;
     color: #666;
@@ -83,12 +86,13 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    color: #000;
 }
 
 .formFooter a {
     font-size: 12px;
     font-weight: 400;
-    color: rgba(24, 119, 242, 1);
+    color: #244779;
     text-decoration: underline;
 }
 .formFooter > a{
@@ -125,32 +129,8 @@
     position: relative;
     width: 100%;
   }
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    padding-right: 40px;
-    box-sizing: border-box;
-  }
-  
-  .eyeButton {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 0;
-    outline: none;
-  }
-  
-  .eyeButton:hover {
-    opacity: 0.7;
-  }
 
-
+/* 
 
 @media (max-width: 768px) {
     .formContainer {
@@ -187,4 +167,4 @@
     .imageContainer {
         display: none;
     }
-}
+} */
