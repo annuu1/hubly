@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./Home.module.css";
 import ChatIcon from "../components/ui/ChatIcon";
 import socialmediaicons from "../assets/HomeImages/socialmediaicons.png";
+import mainImage from '../assets/HomeImages/MainImage.png'
+import mainImage1 from '../assets/HomeImages/MainImage1.png'
+import mainImage2 from '../assets/HomeImages/MainImage2.png'
 
 const Home = () => {
   const brands = [
@@ -354,6 +357,11 @@ const Home = () => {
           </div>
         </div>
         <div className={styles.imageSection}>
+          <div className={styles.imagesContainer}>
+                <img src={mainImage} alt="" className={styles.mainImage} />
+                <img src={mainImage1} alt="" className={styles.mainImage1} />
+                <img src={mainImage2} alt="" className={styles.mainImage2} />
+          </div>
           {/* <img src="https://via.placeholder.com/400x500" alt="Business Meeting" className={styles.mainImage} />
           <div className={styles.widgetCalendar}>
             <p>June 2021</p>
