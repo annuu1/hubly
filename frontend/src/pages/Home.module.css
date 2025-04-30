@@ -1,6 +1,6 @@
 .landingContainer {
     font-family: Arial, sans-serif;
-    background: #f5f7fa;
+    background: #F8FBFE;
     color: #2c3e50;
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: rgba(245, 247, 250, 0.5);
+    background: rgba(248, 251, 254, 0.5);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -164,62 +164,82 @@
     border-radius: 5px;
     margin: 5px 0;
   }
-  
-  .crmSection {
+  .brands{
+    display: flex;
+    justify-content: space-around;
+    background: #EBF1F9;
+    padding: 40px 10px;
+  }
+  .crmSection, .plansSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 50px 40px;
     text-align: center;
   }
-  
+  .crmDetails{
+    width: 50%;
+  }
   .crmTitle {
-    font-size: 36px;
+    font-size: 44px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: #30404D;
   }
   
   .crmSubtitle {
-    font-size: 16px;
-    color: #7f8c8d;
+    font-size: 18px;
+    color: #30404D;
     margin-bottom: 30px;
+    letter-spacing: 0px;
   }
   
   .funnelDiagram {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 80px;
     background: #fff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 80%;
     margin: 0 auto;
   }
-  
-  .funnelStage {
-    font-size: 18px;
-    font-weight: bold;
-    color: #1da1f2;
-    margin: 10px 0;
-  }
-  
-  .funnelIcons {
+  .funnelList li{
+    list-style-type: none;
     display: flex;
-    justify-content: center;
     gap: 10px;
-    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 40px;
   }
-  
-  .funnelText {
-    font-size: 14px;
-    color: #7f8c8d;
-    margin-bottom: 10px;
+  .listHeading{
+    color: #30404D;
+    font-size: 24px;
+    font-weight: bold;
   }
-  
-  .funnelList {
-    text-align: left;
-    font-size: 14px;
-    color: #7f8c8d;
-    list-style-type: disc;
-    padding-left: 20px;
+  .definition{
+    font-size: 16px;
+    color: #394B59;
+    font-weight: 400;
   }
-  
+  .funnelDiagramImage{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    gap: 0;
+    margin-bottom: 50px;
+  }
+  .funnelDiagramImage img{
+    width: 230px;
+    position: relative;
+    top: 100px;
+    right: -180px;
+  }
+
   .plansSection {
     padding: 50px 40px;
     text-align: center;
@@ -241,30 +261,51 @@
     display: flex;
     justify-content: center;
     gap: 30px;
+    width: 100%;
   }
   
   .planCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background: #fff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 30%;
     text-align: left;
   }
-  
-  .planPrice {
-    font-size: 24px;
+  .planCard h3{
+    font-size: 34px;
     font-weight: bold;
-    color: #1da1f2;
-    margin: 10px 0;
+    color: #30404D;
   }
-  
+  .planPrice{
+    margin: 20px 0;
+  }
+  .planPrice {
+    font-size: 54px;
+    font-weight: bold;
+    color: #3A7ABD;
+    margin: 20px 0;
+    display: inline;
+  }
+  .perMonth{
+    font-family: 20px;
+    color: #98A8B3;
+  }
   .planDescription {
-    font-size: 14px;
-    color: #7f8c8d;
+    font-size: 20px;
+    color: #30404D;
     margin-bottom: 10px;
   }
-  
+  .caption{
+    /* letter-spacing: 0; */
+    font-size: 18px;
+    margin: 20px 0; 
+    color: #30404D;
+    font-weight: 900;
+  }
   .planFeatures {
     list-style-type: none;
     padding-left: 0;
@@ -272,21 +313,30 @@
   }
   
   .planFeatures li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
   
   .planFeatures li:before {
     content: "✔";
-    color: #2ecc71;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #2F5F8B;
+    background: #E1EEFA;
     margin-right: 10px;
+    width:20px;
+    height: 20px;
+    border-radius: 50%;
   }
   
   .planButton {
-    padding: 10px 20px;
-    background: #1da1f2;
-    color: #fff;
-    border: none;
-    border-radius: 25px;
+    background: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px 20px;
+    color: #244779;
+    border: #244779 1px solid;
+    border-radius: 45px;
     cursor: pointer;
     width: 100%;
   }
