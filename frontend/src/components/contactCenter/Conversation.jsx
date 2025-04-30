@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Conversation.module.css";
-import avatar from "../../assets/icons/avatar.png";
+import profile from "../../assets/icons/profile.png";
+import memberProfile from "../../assets/icons/memberProfile.png";
 import axios from "axios";
 
 const Conversation = ({ ticketId, userName, status }) => {
@@ -104,7 +105,7 @@ const Conversation = ({ ticketId, userName, status }) => {
           }`}
         >
           {message.sender !== sender && (
-            <img src={avatar} alt="Avatar" className={styles.avatar} />
+            <img src={profile} alt="Profile" className={styles.profile} />
           )}
           <div className={styles.messageContent}>
             <span className={styles.messageText}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TicketList.module.css";
-import avatar from "../../assets/icons/avatar.png";
+import profile from "../../assets/icons/profile.png";
 import axios from "axios";
 
 const TicketList = ({ tickets, onSelect, selectedTicket }) => {
@@ -64,7 +64,7 @@ const TicketList = ({ tickets, onSelect, selectedTicket }) => {
                   : ""
               }`}
             >
-              <img src={avatar} alt="Avatar" className={styles.avatar} />
+              <img src={profile} alt="Profile" className={styles.profile} />
               <div className={styles.ticketDetails}>
                 <span className={styles.name}>{ticket.name}</span>
                 <span className={styles.message}>

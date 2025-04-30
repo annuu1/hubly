@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TicketDetails.module.css";
-import avatar from "../../assets/icons/avatar.png";
+import profile from "../../assets/icons/profile.png";
 import axios from "axios";
+import memberProfile from "../../assets/icons/memberProfile.png";
 
 const TicketDetails = ({ ticket }) => {
   const [members, setMembers] = useState([]);
@@ -115,7 +116,7 @@ const TicketDetails = ({ ticket }) => {
   return (
     <div className={styles.detailsPanel}>
       <div className={styles.detailsHeader}>
-        <img src={avatar} alt="" className={styles.chatAvatar} />
+        <img src={profile} alt="" className={styles.chatAvatar} />
         <span className={styles.ticketName}>{ticket.name}</span>
       </div>
       <div className={styles.detailsTitle}>Details</div>
@@ -154,7 +155,7 @@ const TicketDetails = ({ ticket }) => {
           onClick={() => setShowMembers(!showMembers)}
         >
           <div className={styles.dropdown}>
-            <img src={avatar} alt="" className={styles.chatAvatar} />
+            <img src={memberProfile} alt="" className={styles.chatAvatar} />
             <span className={styles.memberName}>{user.name}</span>
           </div>
           <svg
@@ -181,7 +182,7 @@ const TicketDetails = ({ ticket }) => {
                 className={styles.dropdown}
                 onClick={() => handleSelectMember(member._id)}
               >
-                <img src={avatar} alt="" className={styles.chatAvatar} />
+                <img src={memberProfile} alt="" className={styles.chatAvatar} />
                 <span className={styles.memberName}>{member.fullName}</span>
               </div>
             ))}
@@ -234,7 +235,7 @@ const TicketDetails = ({ ticket }) => {
                 className={styles.dropdown}
                 onClick={() => handleSelectStatus(status.status)}
               >
-                <img src={avatar} alt="" className={styles.chatAvatar} />
+                <img src={memberProfile} alt="" className={styles.chatProfile} />
                 <span className={styles.memberName}>{status.status}</span>
               </div>
             ))}
