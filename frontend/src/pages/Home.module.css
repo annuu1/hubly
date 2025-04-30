@@ -31,7 +31,8 @@
   }
   
   .loginButton, .signupButton {
-    padding: 8px 20px;
+    font-weight: 600;
+    padding: 8px 16px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -342,29 +343,34 @@
   }
   
   .footer {
-    padding: 40px;
+    padding: 40px 100px;
     background: #fff;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     gap: 20px;
+    position: relative;
   }
   
-  /* .footerLogo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1da1f2;
-  } */
+  .footerLogo {
+    width: 20%;
+   }
   
   .footerColumns {
     display: flex;
     gap: 40px;
     flex-wrap: wrap;
+    flex: 1;
+  }
+  .footerColumns > div{
+    width: 30%;
+    /* flex: 1 1 30%; */
+    padding: 0 2%;
   }
   
   .footerColumns h4 {
+    color: #1B1A1A;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 550;
     margin-bottom: 10px;
   }
   
@@ -375,12 +381,17 @@
   
   .footerColumns ul li {
     font-size: 14px;
-    color: #7f8c8d;
+    color: #1B1A1A;
     margin-bottom: 5px;
+    margin-bottom: 20px;
+    flex: 1 0 30%;
   }
   
   .footerSocial {
+    position: absolute;
     display: flex;
     gap: 10px;
     font-size: 18px;
+    bottom: 50px;
+    right: 50px;
   }
