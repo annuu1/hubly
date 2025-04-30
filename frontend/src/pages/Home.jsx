@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./Home.module.css";
 import ChatIcon from "../components/ui/ChatIcon";
 import socialmediaicons from "../assets/HomeImages/socialmediaicons.png";
-import mainImage from '../assets/HomeImages/MainImage.png'
-import mainImage1 from '../assets/HomeImages/MainImage1.png'
-import mainImage2 from '../assets/HomeImages/MainImage2.png'
+import mainImage from "../assets/HomeImages/MainImage.png";
+import mainImage1 from "../assets/HomeImages/MainImage1.png";
+import mainImage2 from "../assets/HomeImages/MainImage2.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const brands = [
@@ -336,8 +337,12 @@ const Home = () => {
           </svg>
         </div>
         <div className={styles.headerActions}>
-          <button className={styles.loginButton}>Login</button>
-          <button className={styles.signupButton}>Sign up</button>
+          <Link to="/login" className={styles.loginButton}>
+            Login
+          </Link>
+          <Link to="/signup" className={styles.signupButton}>
+            Sign up
+          </Link>
         </div>
       </header>
 
@@ -352,33 +357,52 @@ const Home = () => {
             in one powerful platform.
           </p>
           <div className={styles.buttons}>
-            <button className={styles.getStartedButton}>Get started +</button>
-            <button className={styles.watchVideoButton}>Watch Video</button>
+            <Link to="/signup" className={styles.getStartedButton}>
+              Get started{" "}
+              <svg
+                width="9"
+                height="9"
+                viewBox="0 0 9 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.94 4.21367C8.9043 4.12161 8.85078 4.0375 8.7825 3.96617L5.0325 0.216174C4.96257 0.146245 4.87955 0.0907749 4.78819 0.0529296C4.69682 0.0150844 4.59889 -0.00439453 4.5 -0.00439453C4.30027 -0.00439453 4.10873 0.0749465 3.9675 0.216174C3.89757 0.286103 3.8421 0.369121 3.80426 0.460487C3.76641 0.551854 3.74693 0.64978 3.74693 0.748674C3.74693 0.948401 3.82627 1.13995 3.9675 1.28117L6.4425 3.74867H0.75C0.551088 3.74867 0.360322 3.82769 0.21967 3.96834C0.0790178 4.109 0 4.29976 0 4.49867C0 4.69759 0.0790178 4.88835 0.21967 5.029C0.360322 5.16966 0.551088 5.24867 0.75 5.24867H6.4425L3.9675 7.71618C3.8972 7.7859 3.84141 7.86885 3.80333 7.96024C3.76526 8.05164 3.74565 8.14967 3.74565 8.24867C3.74565 8.34768 3.76526 8.44571 3.80333 8.53711C3.84141 8.6285 3.8972 8.71145 3.9675 8.78117C4.03722 8.85147 4.12017 8.90727 4.21157 8.94534C4.30296 8.98342 4.40099 9.00302 4.5 9.00302C4.59901 9.00302 4.69704 8.98342 4.78843 8.94534C4.87983 8.90727 4.96278 8.85147 5.0325 8.78117L8.7825 5.03117C8.85078 4.95985 8.9043 4.87574 8.94 4.78367C9.01501 4.60108 9.01501 4.39627 8.94 4.21367Z"
+                  fill="white"
+                />
+              </svg>
+            </Link>
+            <button className={styles.watchVideoButton}>
+              {" "}
+              <svg
+                width="41"
+                height="41"
+                viewBox="0 0 41 41"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="20.4985"
+                  cy="20.4984"
+                  r="19.3888"
+                  stroke="#244779"
+                  stroke-width="1.22241"
+                />
+                <path
+                  d="M15.168 16.3904C15.168 14.8234 16.8884 13.8651 18.2207 14.6899L26.421 19.7662C27.6841 20.5481 27.6841 22.3854 26.421 23.1673L18.2207 28.2437C16.8884 29.0685 15.168 28.1102 15.168 26.5431V16.3904Z"
+                  fill="#244779"
+                />
+              </svg>
+              Watch Video
+            </button>
           </div>
         </div>
         <div className={styles.imageSection}>
           <div className={styles.imagesContainer}>
-                <img src={mainImage} alt="" className={styles.mainImage} />
-                <img src={mainImage1} alt="" className={styles.mainImage1} />
-                <img src={mainImage2} alt="" className={styles.mainImage2} />
+            <img src={mainImage} alt="" className={styles.mainImage} />
+            <img src={mainImage1} alt="" className={styles.mainImage1} />
+            <img src={mainImage2} alt="" className={styles.mainImage2} />
           </div>
-          {/* <img src="https://via.placeholder.com/400x500" alt="Business Meeting" className={styles.mainImage} />
-          <div className={styles.widgetCalendar}>
-            <p>June 2021</p>
-            <div className={styles.calendarDays}>
-              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
-              <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
-            </div>
-          </div>
-          <div className={styles.widgetChat}>
-            <p>Jerry Carlson joined Swimming</p>
-            <span className={styles.chatTime}>Class - 11:22 AM</span>
-          </div>
-          <div className={styles.widgetStats}>
-            <p>$18,750</p>
-            <div className={styles.statsGraph}></div>
-            <span>30%</span>
-          </div> */}
         </div>
       </main>
       {/* brands */}
