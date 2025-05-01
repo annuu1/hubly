@@ -29,9 +29,7 @@ const Dashboard = () => {
             path="tickets"
             element={
               <DashboardLayout
-                headerAction="true"
                 title="Dashboard"
-                subtitle="Create events to share for people to book on your calendar."
               >
                 <Tickets />
               </DashboardLayout>
@@ -53,7 +51,6 @@ const Dashboard = () => {
             element={
               <DashboardLayout
                 title="Analytics"
-                subtitle="Set your available times for scheduling."
               >
                 <Analytics />
               </DashboardLayout>
@@ -63,8 +60,7 @@ const Dashboard = () => {
             path="chat-bot"
             element={
               <DashboardLayout
-                title="Create Event"
-                subtitle="New events to share for people to book on your calendar."
+                title="Chat Bot"
               >
                 <ChatBot />
               </DashboardLayout>
@@ -74,8 +70,7 @@ const Dashboard = () => {
             path="team"
             element={
               <DashboardLayout
-                title="Edit Event"
-                subtitle="New events to share for people to book on your calendar."
+                title="Team"
               >
                 <Team />
               </DashboardLayout>
@@ -85,8 +80,7 @@ const Dashboard = () => {
             path="settings"
             element={
               <DashboardLayout
-                title="Profile"
-                subtitle="Manage settings for your profile"
+                title="Settings"
               >
                 <Settings />
               </DashboardLayout>

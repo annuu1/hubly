@@ -11,33 +11,53 @@
     padding: 20px;
     background: #fff;
   }
+  .searchBar{
+    background: #FBFBFB;
+    border: 1px #E7E7E7 solid;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    padding: 10px;
+    color: #B6B6B6;
+    overflow: hidden;
+  }
   
   .searchBar input {
     width: 200px;
     padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    background: transparent;
+  }
+  .searchBar input:focus{
+    outline: none;
   }
   
   .tabs {
     margin: 10px 0;
+    border-bottom: 1px #E7E7E7 solid;
   }
   
   .tab {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
     margin-right: 10px;
     padding: 5px 10px;
     cursor: pointer;
+    color: #888888;
   }
   
   .active {
-    border-bottom: 2px solid #1da1f2;
-    color: #1da1f2;
+    border-bottom: 2px solid #184E7F;
+    color: #184E7F;
   }
   
   .ticketItem {
     border: 1px solid #e1e8ed;
     border-radius: 4px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
   }
   
@@ -47,12 +67,27 @@
     color: #657786;
     font-size: 12px;
   }
-  
+  .ticketNumber{
+    font-size: 16px;
+    color: #000;
+    position: relative;
+  }
+  .ticketNumber::before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #F8A534;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
   .ticketBody {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    margin-left: 30px;
   }
   .ticketFooter{
     display: flex;
@@ -64,11 +99,19 @@
     display: flex;
     align-items: center;
   }
-  .userDetails{
-    font-size: 12px;
+  .userDetails {
+    font-size: 9px;
     color: #84818A;
     margin: 0;
     padding: 0;
+    /* line-height: 12px; */
+  }
+  .userDetails div {
+    margin-bottom: 8px;
+  }
+  
+  .userDetails div:last-child {
+    margin-bottom: 0;
   }
   
   .userImg {
@@ -79,7 +122,9 @@
   }
   
   .ticketDuration {
-    color: #657786;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 500;
   }
   
   .openButton {

@@ -20,13 +20,15 @@ const Tickets = () => {
     const fetchTickets = async () => {
       try {
         const token = localStorage.getItem("token");
-        const url = `${import.meta.env.VITE_API_URL}api/tickets/assignedTickets`;
+        const url = `${
+          import.meta.env.VITE_API_URL
+        }api/tickets/assignedTickets`;
         const response = await axios.get(url, {
-          headers:{
-            Authorization:token
-          }
+          headers: {
+            Authorization: token,
+          },
         });
-        const data = response.data; 
+        const data = response.data;
         console.log(data);
         setTickets(data);
         setFilteredTickets(data);
@@ -49,14 +51,17 @@ const Tickets = () => {
               messages[ticket._id] = conversation.messages[0].content;
             }
           } catch (error) {
-            console.error(`Error fetching conversation for ticket ${ticket._id}:`, error);
+            console.error(
+              `Error fetching conversation for ticket ${ticket._id}:`,
+              error
+            );
           }
         }
         setTicketMessages(messages);
       } catch (error) {
         setError(error.message);
         setLoading(false);
-        if(error.response && error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           localStorage.removeItem("token");
           navigate("/login");
         }
@@ -90,9 +95,13 @@ const Tickets = () => {
     if (tab === "all") {
       setFilteredTickets(tickets);
     } else if (tab === "resolved") {
-      setFilteredTickets(tickets.filter((ticket) => ticket.status === "resolved"));
+      setFilteredTickets(
+        tickets.filter((ticket) => ticket.status === "resolved")
+      );
     } else if (tab === "unresolved") {
-      setFilteredTickets(tickets.filter((ticket) => ticket.status !== "resolved"));
+      setFilteredTickets(
+        tickets.filter((ticket) => ticket.status !== "resolved")
+      );
     }
   };
 
@@ -105,7 +114,10 @@ const Tickets = () => {
     const hours = Math.floor(diffMinutes / 60);
     const minutes = diffMinutes % 60;
 
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+      2,
+      "0"
+    )}`;
   };
 
   if (loading) {
@@ -129,6 +141,29 @@ const Tickets = () => {
     <div className={styles.ticketsContainer}>
       <div className={styles.mainContent}>
         <div className={styles.searchBar}>
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8.50442 15.75C12.424 15.75 15.6014 12.56 15.6014 8.625C15.6014 4.68997 12.424 1.5 8.50442 1.5C4.58488 1.5 1.40747 4.68997 1.40747 8.625C1.40747 12.56 4.58488 15.75 8.50442 15.75Z"
+              stroke="#B6B6B6"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M16.3483 16.5L14.8542 15"
+              stroke="#B6B6B6"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
           <input
             type="text"
             placeholder="Search for ticket"
@@ -138,19 +173,49 @@ const Tickets = () => {
         </div>
         <div className={styles.tabs}>
           <span
-            className={`${styles.tab} ${activeTab === "all" ? styles.active : ""}`}
+            className={`${styles.tab} ${
+              activeTab === "all" ? styles.active : ""
+            }`}
             onClick={() => handleTabChange("all")}
           >
+            <svg
+              width="20"
+              height="16"
+              viewBox="0 0 20 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.1947 15.0833H5.84713C3.34286 15.0833 1.67334 13.8333 1.67334 10.9167V5.08334C1.67334 2.16667 3.34286 0.916672 5.84713 0.916672H14.1947C16.699 0.916672 18.3685 2.16667 18.3685 5.08334V10.9167C18.3685 13.8333 16.699 15.0833 14.1947 15.0833Z"
+                stroke="#184E7F"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14.1947 5.5L11.582 7.58333C10.7222 8.26667 9.31141 8.26667 8.45161 7.58333L5.84717 5.5"
+                stroke="#184E7F"
+                stroke-width="1.5"
+                stroke-miterlimit="10"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
             All Tickets
           </span>
           <span
-            className={`${styles.tab} ${activeTab === "resolved" ? styles.active : ""}`}
+            className={`${styles.tab} ${
+              activeTab === "resolved" ? styles.active : ""
+            }`}
             onClick={() => handleTabChange("resolved")}
           >
             Resolved
           </span>
           <span
-            className={`${styles.tab} ${activeTab === "unresolved" ? styles.active : ""}`}
+            className={`${styles.tab} ${
+              activeTab === "unresolved" ? styles.active : ""
+            }`}
             onClick={() => handleTabChange("unresolved")}
           >
             Unresolved
@@ -162,7 +227,9 @@ const Tickets = () => {
           filteredTickets.map((ticket) => (
             <div key={ticket._id} className={styles.ticketItem}>
               <div className={styles.ticketHeader}>
-                <span className={styles.ticketNumber}>Ticket# {ticket._id}</span>
+                <span className={styles.ticketNumber}>
+                  Ticket# {ticket._id}
+                </span>
                 <span className={styles.ticketTime}>
                   Posted at{" "}
                   {ticket.createdAt
@@ -182,22 +249,29 @@ const Tickets = () => {
                     : "Unknown"}
                 </span>
               </div>
-              <hr style={{border: "none", backgroundColor: '#E7E7E7', height: '1px'}} />
+              <hr
+                style={{
+                  border: "none",
+                  backgroundColor: "#E7E7E7",
+                  height: "1px",
+                }}
+              />
               <div className={styles.ticketFooter}>
                 <div className={styles.ticketInfo}>
                   <img src={avatar} alt="User" className={styles.userImg} />
                   <div>
-                    <span className={styles.userDetails}>{ticket.name || "Unknown"}
-                      <br/>
-                      {ticket.phone || "N/A"}
-                      <br />
-                      {ticket.email || "N/A"}
-                      </span>
+                    <div className={styles.userDetails}>
+                      <div>{ticket.name || "Unknown"}</div>
+                      <div>{ticket.phone || "N/A"}</div>
+                      <div>{ticket.email || "N/A"}</div>
+                    </div>
                   </div>
                 </div>
-                <button 
+                <button
                   className={styles.openButton}
-                  onClick={() => navigate(`/dashboard/contact-center?ticketId=${ticket._id}`)}
+                  onClick={() =>
+                    navigate(`/dashboard/contact-center?ticketId=${ticket._id}`)
+                  }
                 >
                   Open Ticket
                 </button>
