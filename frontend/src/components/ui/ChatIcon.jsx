@@ -25,7 +25,7 @@ function ChatIcon() {
   };
   useEffect(() => {
     const fetchBotSettings = async () => {
-      const url = import.meta.env.VITE_API_URL + "api/botSettings";
+      const url = `${import.meta.env.VITE_API_URL}api/botSettings`;
       try {
         const response = await axios.get(url);
         const {
