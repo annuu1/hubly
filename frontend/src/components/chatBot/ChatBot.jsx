@@ -14,16 +14,7 @@ const ChatBot = () => {
     welcomeMessage: '',
     missedChatTimer: '',
   });
-  const messages = [
-    // {
-    //   type: 'incoming',
-    //   content: '👋 Want to chat about Hubly? I\'m a chatbot here to help you find your way.',
-    // },
-    // {
-    //   type: 'outgoing',
-    //   content: ['How can I help you?', 'Ask me anything!'],
-    // },
-  ];
+  const messages = [];
 
   useEffect(() => {
     const fetchBotSettings = async () => {
@@ -35,6 +26,7 @@ const ChatBot = () => {
           customizedMessages,
           welcomeMessage,
           missedChatTimer,
+          formPlaceholders,
         } = response.data.botSettings;
         setBotSettings({
           headerColor,
@@ -42,8 +34,9 @@ const ChatBot = () => {
           customizedMessages,
           welcomeMessage,
           missedChatTimer,
+          formPlaceholders,
         });
-        console.log(response.data)
+        // console.log(response.data)
       } catch (error) {
         console.log('Error fetching bot settings:', error);
       }

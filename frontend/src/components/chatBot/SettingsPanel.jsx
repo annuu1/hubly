@@ -5,6 +5,7 @@ import axios from 'axios';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TimerSettingsCard from '../ui/TimerSettingsCard';
+import IntroSettingsCard from '../ui/IntroSettingsCard';
 
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
@@ -177,7 +178,7 @@ function SettingsPanel({ botSettings, setBotSettings }) {
 
       {/* Intro Form */}
       <div className={styles.introCard}>
-      <IntroForm />
+      <IntroSettingsCard botSettings={botSettings} setBotSettings={setBotSettings} debouncedSave={debouncedSave} />
       </div>
 
       {/* Welcome Message */}
@@ -198,7 +199,7 @@ function SettingsPanel({ botSettings, setBotSettings }) {
         </div>
       </div>
 
-      <TimerSettingsCard botSettings={botSettings} setBotSettings={setBotSettings} />
+      <TimerSettingsCard botSettings={botSettings}/>
       {/* <button className={styles.saveButton} onClick={handleSave}>
         Save
       </button> */}
