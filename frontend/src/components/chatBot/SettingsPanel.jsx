@@ -4,6 +4,7 @@ import IntroForm from './IntroForm';
 import axios from 'axios';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TimerSettingsCard from '../ui/TimerSettingsCard';
 
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
@@ -191,46 +192,10 @@ function SettingsPanel({ botSettings, setBotSettings }) {
         </span>
       </div>
 
-      {/* Missed Chat Timer */}
-      <div className={styles.settingsCard}>
-        <h3>Missed Chat Timer</h3>
-        <div className={styles.timerInputs}>
-          <input
-            type="text"
-            value={botSettings.missedChatTimer.split(':')[0] || '09'}
-            size="2"
-            onChange={(e) => {
-              const [_, m, s] = botSettings.missedChatTimer.split(':');
-              handleMissedChatTimerChange(`${e.target.value}:${m}:${s}`);
-            }}
-          />
-          :
-          <input
-            type="text"
-            value={botSettings.missedChatTimer.split(':')[1] || '00'}
-            size="2"
-            onChange={(e) => {
-              const [h, _, s] = botSettings.missedChatTimer.split(':');
-              handleMissedChatTimerChange(`${h}:${e.target.value}:${s}`);
-            }}
-          />
-          :
-          <input
-            type="text"
-            value={botSettings.missedChatTimer.split(':')[2] || '00'}
-            size="2"
-            onChange={(e) => {
-              const [h, m] = botSettings.missedChatTimer.split(':');
-              handleMissedChatTimerChange(`${h}:${m}:${e.target.value}`);
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Manual Save Button */}
-      <button className={styles.saveButton} onClick={handleSave}>
+      <TimerSettingsCard botSettings={botSettings} setBotSettings={setBotSettings} />
+      {/* <button className={styles.saveButton} onClick={handleSave}>
         Save
-      </button>
+      </button> */}
     </aside>
   );
 }
