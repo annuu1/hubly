@@ -218,7 +218,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
               </div>
               {showIntroForm && msgIndex === 1 && textIndex === message.content.length - 1 && (
                 <div className={styles.introFormContainer}>
-                  <IntroForm setTicketId={handleTicketCreated} />
+                  <IntroForm setTicketId={handleTicketCreated} botSettings={botSettings} />
                 </div>
               )}
             </React.Fragment>

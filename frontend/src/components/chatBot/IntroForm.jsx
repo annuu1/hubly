@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styles from "./IntroForm.module.css";
 import axios from "axios";
 
-function IntroForm({setTicketId}) {
+function IntroForm({setTicketId, botSettings}) {
   const [isTicketCreated, setIsTicketCreated] = useState(false);
 
       const handleFormSubmit = async (e) => {
@@ -39,7 +39,7 @@ function IntroForm({setTicketId}) {
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Your name"
+                        placeholder={botSettings?.formPlaceholders?.name}
                         required
                       />
                     </div>
@@ -49,7 +49,7 @@ function IntroForm({setTicketId}) {
                         type="tel"
                         id="phone"
                         name="phone"
-                        placeholder="+1 (000) 000-0000"
+                        placeholder={botSettings?.formPlaceholders?.phone}
                         required
                       />
                     </div>
@@ -59,7 +59,7 @@ function IntroForm({setTicketId}) {
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="example@gmail.com"
+                        placeholder={botSettings?.formPlaceholders?.email}
                         required
                       />
                     </div>
