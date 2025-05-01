@@ -1,0 +1,38 @@
+
+  
+  .confirmDialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #D1D6DA;
+    border-radius: 20px;
+    background: #FAFBFC;
+    box-shadow: 0 0 20px #D1D6DA;
+    height: 150px;
+  }
+  .buttons{
+    text-align: right;
+  }
+  
+  .cancelButton {
+    padding: 10px 40px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #fff;
+    color: #AFAFAF;
+    cursor: pointer;
+    border-radius: 2rem;
+  }
+  
+  .confirmButton {
+    padding: 10px 40px;
+    border: none;
+    border-radius: 4px;
+    background: #184E7F;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2rem;
+  }
