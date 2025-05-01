@@ -175,7 +175,9 @@ function SettingsPanel({ botSettings, setBotSettings }) {
       </div>
 
       {/* Intro Form */}
+      <div className={styles.introCard}>
       <IntroForm />
+      </div>
 
       {/* Welcome Message */}
       <div className={styles.settingsCard}>
