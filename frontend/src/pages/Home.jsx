@@ -350,7 +350,7 @@ const Home = () => {
       <main className={styles.mainContent}>
         <div className={styles.textSection}>
           <h1 className={styles.title}>
-            Grow Your Business Faster with Hubby CRM
+            Grow Your Business Faster with Hubly CRM
           </h1>
           <p className={styles.subtitle}>
             Manage leads, automate workflows, and close deals effortlessly—all
@@ -418,12 +418,12 @@ const Home = () => {
       <section className={styles.crmSection}>
         <div className={styles.crmDetails}>
           <h2 className={styles.crmTitle}>
-            At its core, Hubby is a robust CRM solution.
+            At its core, Hubly is a robust CRM solution.
           </h2>
           <p className={styles.crmSubtitle}>
-            Hubby helps businesses streamline customer interactions, track
+            Hubly helps businesses streamline customer interactions, track
             leads, and automate task-saving you time and maximizing revenue.
-            Whether you're a startup or an enterprise, Hubby adapts to your
+            Whether you're a startup or an enterprise, Hubly adapts to your
             needs, giving you the tools to scale efficiently.
           </p>
         </div>
