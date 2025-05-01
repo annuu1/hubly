@@ -89,6 +89,9 @@
     margin-top: 10px;
     margin-left: 30px;
   }
+  .ticketBody p{
+    font-size: 18px;
+  }
   .ticketFooter{
     display: flex;
     justify-content: space-between;
