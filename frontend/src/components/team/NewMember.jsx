@@ -61,7 +61,7 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
     <div className={styles.overlay}>
       <div className={styles.formContainer}>
         <div className={styles.formHeader}>
-          <h1>Add Team members</h1>
+          <h1 className={styles.formHeading}>Add Team members</h1>
           <p>
             Talk with colleagues in a group chat. Messages in this group are
             only visible to it's participants. New teammates may only be invited
@@ -70,34 +70,37 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
         </div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
-            <span>Full Name:</span>
+            <span>User Name:</span>
             <input
               type="text"
               name="fullName"
+              placeholder="User Name"
               value={formValues.fullName}
               onChange={handleInputChange}
             />
           </label>
           <label>
-            Phone:
+          <span>Phone:</span>
             <input
               type="text"
               name="phone"
+              placeholder="Phone"
               value={formValues.phone}
               onChange={handleInputChange}
             />
           </label>
           <label>
-            Email:
+             <span>Email:</span>
             <input
               type="email"
               name="email"
+              placeholder="Email"
               value={formValues.email}
               onChange={handleInputChange}
             />
           </label>
           <label>
-            Designation:
+             <span>Designation:</span>
             <select name="role" value={formValues.role} onChange={handleInputChange}>
               <option value="member">Member</option>
             </select>
