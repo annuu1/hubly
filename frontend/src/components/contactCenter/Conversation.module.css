@@ -113,21 +113,30 @@
   word-wrap: break-word;
   color: #8C8E92;
 }
-
+.messageFooter{
+  padding:15px 20px;
+}
 .inputArea {
   display: flex;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-end;
   background: #fff;
-  border-top: 1px solid #e1e8ed;
+  border: 1px solid #D1D6DA;
+  border-radius: 8px;
+  overflow: hidden;
 }
-
 .chatInput {
   flex: 1;
-  padding: 10px;
-  border: 1px solid #d1d6da;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 15px 20px;
+  border: none;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 150px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  resize: none;
+  color: #86898C;
 }
 
 .chatInput:focus {

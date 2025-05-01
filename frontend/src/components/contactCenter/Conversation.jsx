@@ -104,12 +104,17 @@ const Conversation = ({ ticketId, userName, status }) => {
             message.sender === sender ? styles.sent : styles.received
           }`}
         >
-          {message.sender !== sender && (
+          {message.sender !== sender ? (
             <img src={profile} alt="Profile" className={styles.profile} />
+          ) : (
+            <img src={memberProfile} alt="Profile" className={styles.profile} />
           )}
           <div className={styles.messageContent}>
-            <span className={styles.messageText}>
-              {message.sender === sender ? "You" : userName}
+            <span
+              className={styles.messageText}
+              style={message.sender === sender ? { textAlign: "right" } : {}}
+            >
+              {message.sender === sender ? user.name : userName}
             </span>
             <p>{message.content}</p>
           </div>
@@ -140,34 +145,36 @@ const Conversation = ({ ticketId, userName, status }) => {
       <div className={styles.mainContent}>
         <div className={styles.chatWindow}>{renderMessages()}</div>
       </div>
+      <div className={styles.messageFooter}>
       {status === "unresolved" ? (
         <div className={styles.inputArea}>
-          <input
-            type="text"
-            placeholder="Type here"
-            className={styles.chatInput}
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-          />
-          <button className={styles.sendButton} onClick={handleSendMessage}>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="10" cy="10" r="9.5" stroke="#D1D6DA" />
-              <path d="M7 14V11L11 10L7 9V6L16.5 10L7 14Z" fill="#D1D6DA" />
-            </svg>
-          </button>
-        </div>
+        <textarea
+          placeholder="Type here"
+          className={styles.chatInput}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyPress={(e) => e.key === "Enter" && !e.shiftKey && handleSendMessage()}
+          rows="3"
+        />
+        <button className={styles.sendButton} onClick={handleSendMessage}>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="10" cy="10" r="9.5" stroke="#D1D6DA" />
+            <path d="M7 14V11L11 10L7 9V6L16.5 10L7 14Z" fill="#D1D6DA" />
+          </svg>
+        </button>
+      </div>
       ) : (
         <div className={styles.resolvedContainer}>
           <p className={styles.unresolved}>This chat has been resolved</p>
         </div>
       )}
+      </div>
     </div>
   );
 };
