@@ -183,13 +183,19 @@ function SettingsPanel({ botSettings, setBotSettings }) {
       {/* Welcome Message */}
       <div className={styles.settingsCard}>
         <h3>Welcome Message</h3>
+        <div className={styles.welcomeMessageInput}>
         <textarea
           value={botSettings.welcomeMessage}
           onChange={(e) => handleWelcomeMessageChange(e.target.value)}
         ></textarea>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 9.64004V11.6667C0 11.8534 0.146667 12 0.333333 12H2.36C2.44667 12 2.53333 11.9667 2.59333 11.9L9.87333 4.62671L7.37333 2.12671L0.1 9.40004C0.0333334 9.46671 0 9.54671 0 9.64004ZM11.8067 2.69338C11.8685 2.6317 11.9175 2.55844 11.951 2.47779C11.9844 2.39714 12.0016 2.31069 12.0016 2.22338C12.0016 2.13606 11.9844 2.04961 11.951 1.96896C11.9175 1.88831 11.8685 1.81505 11.8067 1.75338L10.2467 0.193376C10.185 0.131573 10.1117 0.0825417 10.0311 0.0490874C9.95043 0.0156331 9.86398 -0.00158691 9.77667 -0.00158691C9.68935 -0.00158691 9.6029 0.0156331 9.52225 0.0490874C9.4416 0.0825417 9.36834 0.131573 9.30667 0.193376L8.08667 1.41338L10.5867 3.91338L11.8067 2.69338Z" fill="#606060"/>
+</svg>
+
         <span className={styles.charCount}>
           {botSettings.welcomeMessage.length}/50
         </span>
+        </div>
       </div>
 
       <TimerSettingsCard botSettings={botSettings} setBotSettings={setBotSettings} />
