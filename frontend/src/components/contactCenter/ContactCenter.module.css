@@ -1,6 +1,7 @@
 .contact-center {
     display: flex;
     flex-direction: row;
+    background: #FAFBFC;
 }
 
 .ticket-list {

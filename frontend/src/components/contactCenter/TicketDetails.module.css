@@ -64,17 +64,18 @@
   padding-right: 10px;
   border-radius: 20px;
   overflow: hidden;
+  background: #fff;
 }
 .dropdownHeader > div {
   display: flex;
   align-items: center;
 }
 .dropdown {
+  flex: 1;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e1e8ed;
   padding: 5px;
-  background: #fff;
 }
 .memberName{
   color: #808080;

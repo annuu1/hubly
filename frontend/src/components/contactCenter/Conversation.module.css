@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   font-family: Arial, sans-serif;
+  background: #fff;
 }
 
 .ticketHeader {
@@ -21,7 +22,7 @@
 .mainContent {
   flex: 1;
   padding: 10px;
-  background: #fff;
+  /* background: #fff; */
 
 }
 
