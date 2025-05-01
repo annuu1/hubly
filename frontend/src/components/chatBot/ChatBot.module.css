@@ -11,6 +11,11 @@
   gap: 20px;
 }
 .chatBotPreview{
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: center;
+  /* justify-content: center; */
   min-width: 70%;
 }
 .settingsPanel {

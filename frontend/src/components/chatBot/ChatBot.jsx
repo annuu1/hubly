@@ -4,6 +4,7 @@ import styles from './ChatBot.module.css';
 
 import SettingsPanel from './SettingsPanel';
 import axios from 'axios';
+import WelcomeMessage from '../ui/WelcomeMessage';
 
 const ChatBot = () => {
   const [botSettings, setBotSettings] = React.useState({
@@ -57,6 +58,9 @@ const ChatBot = () => {
         {/* Chatbot Window */}
         <div className={styles.chatBotPreview}>
         <ChatBotWindow messages={messages}  botSettings={botSettings} setBotSettings={setBotSettings} />
+        <div>
+          <WelcomeMessage message={botSettings.welcomeMessage} isAbsolute={false}/>
+        </div>
         </div>
         <SettingsPanel botSettings={botSettings} setBotSettings={setBotSettings} />
         

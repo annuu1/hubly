@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./WelcomeMessage.module.css";
 import ChatIcon from "../../assets/ChatIcon.svg";
 
-function WelcomeMessage({ message, onClose }) {
+function WelcomeMessage({ message, onClose, isAbsolute='true'}) {
   return (
-    <div className={styles.welcomeMessageContainer}>
+    <div className={styles.welcomeMessageContainer} style={{ position: isAbsolute ? 'absolute' : 'relative' }}>
       <button
         className={styles.closeButton}
         onClick={() => onClose(false)}
