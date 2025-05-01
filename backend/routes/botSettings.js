@@ -3,7 +3,7 @@ const router = express.Router();
 const BotSettings = require('../models/BotSettings');
 
 router.post('/', async (req, res) => {
-    const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer } = req.body;
+    const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer, formPlaceholders} = req.body;
 
     // Validate the request body
     if (!headerColor || !backgroundColor || !customizedMessages || !welcomeMessage || !missedChatTimer) {
@@ -15,7 +15,8 @@ router.post('/', async (req, res) => {
         backgroundColor,
         customizedMessages,
         welcomeMessage,
-        missedChatTimer
+        missedChatTimer,
+        formPlaceholders
     });
     await newBotSettings.save()
     res.status(201).json({ message: 'Bot settings created successfully', botSettings: newBotSettings });
@@ -35,7 +36,7 @@ router.get('/', async (req, res) => {
 });
 
 router.put('/', async (req, res) => {
-    const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer } = req.body;
+    const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer, formPlaceholders } = req.body;
 
     // Validate the request body
     if (!headerColor || !backgroundColor || !customizedMessages || !welcomeMessage || !missedChatTimer) {
@@ -54,6 +55,9 @@ router.put('/', async (req, res) => {
         botSettings.customizedMessages = customizedMessages;
         botSettings.welcomeMessage = welcomeMessage;
         botSettings.missedChatTimer = missedChatTimer;
+        if (formPlaceholders) {
+            botSettings.formPlaceholders = formPlaceholders;
+        }
 
         await botSettings.save();
         res.status(200).json({ message: 'Bot settings updated successfully', botSettings });

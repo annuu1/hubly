@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import styles from "./ChatBotWindow.module.css";
+import styles from "./IntroForm.module.css";
 import axios from "axios";
 
 function IntroForm({setTicketId}) {
