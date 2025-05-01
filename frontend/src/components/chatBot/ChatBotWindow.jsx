@@ -83,13 +83,13 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
           welcomeMessage,
           missedChatTimer,
         } = response.data.botSettings;
-        setBotSettings({
-          headerColor,
-          backgroundColor,
-          customizedMessages,
-          welcomeMessage,
-          missedChatTimer,
-        });
+        // setBotSettings({
+        //   headerColor,
+        //   backgroundColor,
+        //   customizedMessages,
+        //   welcomeMessage,
+        //   missedChatTimer,
+        // });
         
         // Only set initial messages if there are no existing messages
         if (messages.length === 0) {

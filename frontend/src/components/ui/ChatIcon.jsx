@@ -34,6 +34,8 @@ function ChatIcon() {
           customizedMessages,
           welcomeMessage,
           missedChatTimer,
+          formPlaceholders,
+
         } = response.data.botSettings;
         setBotSettings({
           headerColor,
@@ -41,6 +43,7 @@ function ChatIcon() {
           customizedMessages,
           welcomeMessage,
           missedChatTimer,
+          formPlaceholders
         });
       } catch (error) {
         console.error("Error fetching bot settings:", error);
