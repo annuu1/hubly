@@ -1,17 +1,17 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from './pages/Home'
 
 import Signup from './components/auth/Signup'
 import Login from './components/auth/Login'
 import Dashboard from './pages/Dashboard'
-import ToastContainer from './components/ui/ToastContainer'
 import NewMember from './components/team/NewMember'
 import ChatBotWindow from './components/chatBot/ChatBotWindow'
 
 function App() {
-
   return (
     <>
      <BrowserRouter>

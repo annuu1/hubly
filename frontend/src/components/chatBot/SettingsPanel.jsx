@@ -2,8 +2,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import styles from './SettingsPanel.module.css';
 import IntroForm from './IntroForm';
 import axios from 'axios';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// Debounce Hook
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
 
@@ -37,7 +38,10 @@ function SettingsPanel({ botSettings, setBotSettings }) {
     axios
       .put(url, settings)
       .then((response) => {
-        console.log('Settings saved successfully:', response.data);
+        if(response.status){
+          toast('Settings saved successfully')
+        }
+        // console.log('Settings saved successfully:', response.data);
       })
       .catch((error) => {
         console.error('Error saving settings:', error);
@@ -48,21 +52,18 @@ function SettingsPanel({ botSettings, setBotSettings }) {
     saveSettings(settings);
   }, 500);
 
-  // Header Color Change (Immediate save)
   const handleHeaderColorChange = (color) => {
     const updatedSettings = { ...botSettings, headerColor: color };
     setBotSettings(updatedSettings);
     saveSettings(updatedSettings);
   };
 
-  // Background Color Change (Immediate save)
   const handleBackgroundColorChange = (color) => {
     const updatedSettings = { ...botSettings, backgroundColor: color };
     setBotSettings(updatedSettings);
     saveSettings(updatedSettings);
   };
 
-  // Customize Message Change (Debounced save)
   const handleMessageChange = (index, value) => {
     const updatedMessages = [...botSettings.customizedMessages];
     updatedMessages[index] = value;
@@ -74,7 +75,6 @@ function SettingsPanel({ botSettings, setBotSettings }) {
     debouncedSave(updatedSettings);
   };
 
-  // Welcome Message Change (Debounced save)
   const handleWelcomeMessageChange = (value) => {
     const updatedSettings = {
       ...botSettings,
@@ -84,7 +84,6 @@ function SettingsPanel({ botSettings, setBotSettings }) {
     debouncedSave(updatedSettings);
   };
 
-  // Missed Chat Timer Change (Debounced save)
   const handleMissedChatTimerChange = (value) => {
     const updatedSettings = {
       ...botSettings,
@@ -94,14 +93,13 @@ function SettingsPanel({ botSettings, setBotSettings }) {
     debouncedSave(updatedSettings);
   };
 
-  // Manual Save Button
   const handleSave = () => {
     saveSettings(botSettings);
   };
 
   return (
     <aside className={styles.settingsPanel}>
-      {/* Header Color */}
+
       <div className={styles.settingsCard}>
         <h3>Header Color</h3>
         <div className={styles.colorOptions}>
