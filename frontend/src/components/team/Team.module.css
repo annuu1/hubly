@@ -23,6 +23,8 @@
   }
   
   .mainContent {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     padding: 20px;
     background: #fff;
@@ -40,17 +42,25 @@
     border-collapse: collapse;
     margin-bottom: 20px;
   }
+  .teamTable tr{
+    border-bottom: 1px solid #E2E8F0;
+    display: flexbox;
+    align-items: center;
+    justify-content: space-between;
+  }
   
   .teamTable th {
-    background: #f1f1f1;
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #e1e8ed;
+    border-top: 1px solid #6A6A6A;
+    border-bottom: 1px solid #6A6A6A;
+    color: #184E7F;
+    font-size: 16px;
   }
   
   .teamTable td {
+    line-height: 2;
     padding: 10px;
-    border-bottom: 1px solid #e1e8ed;
   }
   
   .avatar {
@@ -65,28 +75,44 @@
     font-size: 12px;
   }
   .actionIcons{
+    margin-top: 5px;
     display: flex;
     align-items: center;
-    gap: 10px;
     justify-content: center;
+    gap: 10px;
   }
   .actionIcon {
     margin-left: 10px;
     font-size: 16px;
     color: #657786;
     cursor: pointer;
+    display: flex;
   }
   
   .addButton {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
     padding: 10px 20px;
-    background: #1da1f2;
+    background: #184E7F;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
   }
-
+.plus{
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
   .modalOverlay {
     position: fixed;
     top: 0;

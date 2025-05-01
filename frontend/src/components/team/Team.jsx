@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NewMember from "./NewMember";
 import EditMember from "./EditMember";
+import memberProfile from "../../assets/icons/memberProfile.png";
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -66,8 +67,31 @@ const Team = () => {
         <table className={styles.teamTable}>
           <thead>
             <tr>
+              <th></th>
               <th>
-                Full Name <span className={styles.sortIcon}>⬇</span>
+                Full Name{" "}
+                <span className={styles.sortIcon}>
+                  <svg
+                    width="6"
+                    height="10"
+                    viewBox="0 0 6 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.5 6.5L3 9L5.5 6.5"
+                      stroke="#184E7F"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M0.5 3.5L3 1L5.5 3.5"
+                      stroke="#184E7F"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
               </th>
               <th>Phone</th>
               <th>Email</th>
@@ -78,19 +102,22 @@ const Team = () => {
           <tbody>
             {teamMembers.map((member) => (
               <tr key={member._id}>
-                <td>
+                <td style={{ textAlign: "center" }}>
                   <img
-                    src="https://via.placeholder.com/30"
+                    src={memberProfile}
                     alt="Avatar"
                     className={styles.avatar}
                   />
-                  {member.fullName}
                 </td>
+                <td>{member.fullName}</td>
                 <td>{member.phone}</td>
                 <td>{member.email}</td>
                 <td>{member.role}</td>
                 <td className={styles.actionIcons}>
-                  <span className={styles.actionIcon} onClick={() => handleEdit(member)}>
+                  <span
+                    className={styles.actionIcon}
+                    onClick={() => handleEdit(member)}
+                  >
                     <svg
                       width="16"
                       height="18"
@@ -130,10 +157,16 @@ const Team = () => {
           </tbody>
         </table>
         <button className={styles.addButton} onClick={() => setShowModal(true)}>
-          + Add Team members
+          <span className={styles.plus}>+</span> 
+          Add Team members
         </button>
       </div>
-      {showModal && <NewMember setShowModal={setShowModal} onMemberAdded={fetchTeamMembers} />}
+      {showModal && (
+        <NewMember
+          setShowModal={setShowModal}
+          onMemberAdded={fetchTeamMembers}
+        />
+      )}
       {showEditModal && (
         <EditMember
           setShowModal={setShowEditModal}
@@ -141,13 +174,16 @@ const Team = () => {
           onUpdate={handleUpdate}
         />
       )}
-      
+
       {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
             <h3>Delete Team Member</h3>
-            <p>Are you sure you want to delete {selectedMember?.fullName}? This action cannot be undone.</p>
+            <p>
+              Are you sure you want to delete {selectedMember?.fullName}? This
+              action cannot be undone.
+            </p>
             <div className={styles.modalButtons}>
               <button
                 className={styles.cancelButton}
@@ -155,10 +191,7 @@ const Team = () => {
               >
                 Cancel
               </button>
-              <button
-                className={styles.deleteButton}
-                onClick={handleDelete}
-              >
+              <button className={styles.deleteButton} onClick={handleDelete}>
                 Delete
               </button>
             </div>
