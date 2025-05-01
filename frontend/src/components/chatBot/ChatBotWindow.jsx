@@ -20,7 +20,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
   });
   const [pendingMessage, setPendingMessage] = useState(null);
 
-  // Save state to localStorage whenever it changes
+  // Save state
   useEffect(() => {
     const chatState = {
       messages,
@@ -63,13 +63,11 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       }
     };
 
-    // Initial fetch
+    // first fetch
     fetchMessages();
+    const intervalId = setInterval(fetchMessages, 5000); // each 5 seconds
 
-    // Set up polling interval
-    const intervalId = setInterval(fetchMessages, 5000); // Poll every 5 seconds
-
-    return () => clearInterval(intervalId); // Cleanup on unmount
+    return () => clearInterval(intervalId);
   }, [ticketId]);
 
 
@@ -154,8 +152,6 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       }
       return updatedMessages;
     });
-
-        // If ticket exists, send message to backend
         if (ticketId) {
           const token = localStorage.getItem("token");
           try {
@@ -174,7 +170,6 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
             );
           } catch (error) {
             console.error("Error sending message:", error);
-            // Remove the message from local state if sending failed
             setMessages((prevMessages) => prevMessages.slice(0, -1));
             alert("Failed to send message. Please try again.");
           }
