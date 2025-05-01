@@ -41,9 +41,10 @@
   margin-bottom: 10px;
   color: #657786;
   background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #e1e8ed;
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #e1e8ed;
+  
 }
 .dropdownContainer {
   display: flex;
