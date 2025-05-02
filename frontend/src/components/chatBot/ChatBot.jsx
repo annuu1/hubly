@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ChatBotWindow from './ChatBotWindow';
+import ChatBotWindowPreview from './ChatBotWindowPreview';
 import styles from './ChatBot.module.css';
 
 import SettingsPanel from './SettingsPanel';
@@ -50,7 +50,7 @@ const ChatBot = () => {
       <main className={styles.mainContent}>
         {/* Chatbot Window */}
         <div className={styles.chatBotPreview}>
-        <ChatBotWindow messages={messages}  botSettings={botSettings} setBotSettings={setBotSettings} />
+        <ChatBotWindowPreview messages={messages}  botSettings={botSettings}/>
         <div>
           <WelcomeMessage message={botSettings.welcomeMessage} isAbsolute={false}/>
         </div>
