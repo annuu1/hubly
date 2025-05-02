@@ -28,7 +28,7 @@ const Conversation = ({ ticketId, userName, status }) => {
       }
     };
     fetchMessages();
-  }, [ticketId]);
+  }, [ticketId, status]);
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;

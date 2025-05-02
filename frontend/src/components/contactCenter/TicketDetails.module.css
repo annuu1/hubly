@@ -70,12 +70,16 @@
   display: flex;
   align-items: center;
 }
-.dropdown {
+.dropdown, .StatusDropdown {
   flex: 1;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e1e8ed;
   padding: 5px;
+  background: #fff;
+}
+.StatusDropdown{
+  padding: 15px 20px;
 }
 .memberName{
   color: #808080;

@@ -34,7 +34,7 @@ const ContactCenter = () => {
 
                 setTickets(response.data);
                 
-                // get tocket from searchbar and add to selected ticket
+                // get ticket from searchbar and add to selected ticket
                 const ticketId = searchParams.get('ticketId');
                 if (ticketId) {
                     const ticket = response.data.find(t => t._id === ticketId);
@@ -59,6 +59,23 @@ const ContactCenter = () => {
         setSelectedTicket(ticket);
     };
 
+    const updateTicketStatus = (ticketId, newStatus) => {
+        setTickets(prevTickets => 
+            prevTickets.map(ticket => 
+                ticket._id === ticketId 
+                    ? { ...ticket, status: newStatus } 
+                    : ticket
+            )
+        );
+        
+        if (selectedTicket && selectedTicket._id === ticketId) {
+            setSelectedTicket(prevTicket => ({
+                ...prevTicket,
+                status: newStatus
+            }));
+        }
+    };
+
     return (
         <div className={styles["contact-center"]}>
             {loading && <div>Loading tickets...</div>}
@@ -66,16 +83,28 @@ const ContactCenter = () => {
             {!loading && !error && (
                 <>
                     <div className={styles["ticket-list"]}>
-                        <TicketList tickets={tickets} onSelect={handleTicketSelect} 
-                        selectedTicket={selectedTicket}
+                        <TicketList 
+                            tickets={tickets} 
+                            onSelect={handleTicketSelect} 
+                            selectedTicket={selectedTicket}
                         />
                     </div>
                     <div className={styles["conversation"]}>
-                        {selectedTicket && <Conversation ticketId={selectedTicket._id} 
-                        userName={selectedTicket.name} status={selectedTicket.status} />}
+                        {selectedTicket && 
+                            <Conversation 
+                                ticketId={selectedTicket._id} 
+                                userName={selectedTicket.name} 
+                                status={selectedTicket.status} 
+                            />
+                        }
                     </div>
                     <div className={styles["ticket-details"]}>
-                        {selectedTicket && <TicketDetails ticket={selectedTicket} />}
+                        {selectedTicket && 
+                            <TicketDetails 
+                                ticket={selectedTicket} 
+                                onStatusUpdate={updateTicketStatus} 
+                            />
+                        }
                     </div>
                 </>
             )}

@@ -6,7 +6,7 @@ import memberProfile from "../../assets/icons/memberProfile.png";
 import ConfirmationDialog from "../ui/ConfirmationDialog";
 import {toast} from "react-toastify";
 
-const TicketDetails = ({ ticket }) => {
+const TicketDetails = ({ ticket, onStatusUpdate }) => {
   const [members, setMembers] = useState([]);
   const [statuses, setStatuses] = useState([
     { status: "resolved" },
@@ -105,6 +105,11 @@ const TicketDetails = ({ ticket }) => {
       setSelectedStatus(null);
       setConfirmAction(null);
       toast.success(response.data.message);
+
+      if (onStatusUpdate) {
+        onStatusUpdate(ticket._id, selectedStatus);
+      }
+
     } catch (error) {
       setShowConfirmDialog(false);
       setSelectedStatus(null);
@@ -280,14 +285,10 @@ const TicketDetails = ({ ticket }) => {
             {statuses.map((status, index) => (
               <div
                 key={index}
-                className={styles.dropdown}
+                className={styles.StatusDropdown}
                 onClick={() => handleSelectStatus(status.status)}
+                // style={{paddingRight:"20px"}}
               >
-                <img
-                  src={memberProfile}
-                  alt=""
-                  className={styles.chatProfile}
-                />
                 <span className={styles.memberName}>{status.status}</span>
               </div>
             ))}
@@ -295,24 +296,6 @@ const TicketDetails = ({ ticket }) => {
         )}
       </div>
       {showConfirmDialog && (
-        // <div className={styles.confirmDialog}>
-        //   <span>
-        //     {confirmAction === "assign"
-        //       ? "Chat would be assigned to a different team member"
-        //       : `Ticket status will be updated to ${selectedStatus}`}
-        //   </span>
-        //   <div>
-        //     <button
-        //       className={styles.cancelButton}
-        //       onClick={handleCancelAssign}
-        //     >
-        //       Cancel
-        //     </button>
-        //     <button className={styles.confirmButton} onClick={handleConfirm}>
-        //       Confirm
-        //     </button>
-        //   </div>
-        // </div>
         <ConfirmationDialog
           confirmAction={confirmAction}
           selectedStatus={selectedStatus}
