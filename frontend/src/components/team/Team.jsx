@@ -45,7 +45,7 @@ const Team = () => {
 
   const handleUpdate = async (memberId, updatedData) => {
     try {
-      await axios.put(
+      const response = await axios.put(
         `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
         updatedData, {headers: { Authorization: `${token}` }}  
       );
@@ -54,7 +54,7 @@ const Team = () => {
       toast.success(response.data.message)
       fetchTeamMembers();
     } catch (error) {
-      if(error.response && error.response.data) {
+      if(error.response && error.response.data && error.response.data.message) {
         toast.error(error.response.data.message);
       } else {
         toast.error("An error occurred while updating the member.");
