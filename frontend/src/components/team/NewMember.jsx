@@ -1,3 +1,4 @@
+import { axios } from 'axios';
 import React, { useState } from "react";
 import styles from "./NewMember.module.css";
 
@@ -33,10 +34,11 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
     const url = import.meta.env.VITE_API_URL + "api/users/new";
 
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(member),
+      const token = localStorage.getItem("token");
+      const response = await axios.post(url, member, {
+        headers: {
+          Authorization: `${token}`,
+        },
       });
       if (response.ok) {
         setFormValues({ fullName: "", phone: "", email: "", role: "member" });

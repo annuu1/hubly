@@ -73,6 +73,9 @@ route.put('/:id/assign', auth, async(req, res) =>{
         return res.status(400).json({message: 'Please select a member'});
     }
     try{
+        if (!requestingUser || requestingUser.role !== 'admin') {
+            return res.status(403).json({ success: false, message: 'Only admin can assign ticket' });
+          }
         const ticket = await Ticket.findById(id);
         if(!ticket){
             return res.status(404).json({message:'Ticket not found'});
