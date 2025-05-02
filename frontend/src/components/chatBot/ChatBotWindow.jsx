@@ -52,7 +52,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
           }));
           // console.log(messages)
           
-          // Only update if there are new messages
+          // if new meessges, update it
           if (formattedMessages.length > messages.length-1) {
             const updatedMessages = [...messages.slice(0, 1), ...formattedMessages]
             setMessages(updatedMessages);
@@ -211,10 +211,18 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
         {messages.map((message, msgIndex) =>
           message.content.map((text, textIndex) => (
             <React.Fragment key={`${msgIndex}-${textIndex}`}>
+              <div className={styles.messageContainer}>
+                {message.type === "incoming" && (
+                  <div className={styles.messageAvatar}>
+                    <img src={ChatIcon} alt="Chat Icon" />
+                  </div>
+                )}
+              
               <div
                 className={`${styles.message} ${styles[message.type]}`}
               >
                 <p>{text}</p>
+              </div>
               </div>
               {showIntroForm && msgIndex === 1 && textIndex === message.content.length - 1 && (
                 <div className={styles.introFormContainer}>

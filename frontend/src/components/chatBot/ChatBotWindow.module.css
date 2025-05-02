@@ -1,11 +1,10 @@
 .chatbotWindow {
-  width: 376px;
+  width: 420px;
   height: 530px;
   background: #EEEEEE;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
 }
 
 .chatHeader {
@@ -87,13 +86,24 @@
   padding: 20px;
   overflow-y: auto;
 }
-
+.messageContainer{
+  display: flex;
+  gap: 10px;
+}
+.messageContainer img{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
 .message {
   margin-bottom: 20px;
   padding: 10px;
   border-radius: 9px;
 }
-
+.introFormContainer{
+  width: 100%;
+  padding-left: 15%;
+}
 .incoming {
   background: #fff;
   max-width: 80%;
@@ -108,6 +118,8 @@
 .message p {
   font-family: 'Poppins', sans-serif;
   font-size: 11px;
+  margin: 0;
+  padding: 0;
 }
 
 .chatFooter {
@@ -126,6 +138,9 @@
   font-family: 'Helvetica', sans-serif;
   font-size: 16px;
   color: #8498B6;
+}
+.messageInput:focus{
+  outline: none;
 }
 
 .sendButton {
