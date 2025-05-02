@@ -41,14 +41,12 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
           Authorization: `${token}`,
         },
       });
-      if (response.ok) {
+      
         setFormValues({ fullName: "", phone: "", email: "", role: "member" });
         setShowModal(false);
         onMemberAdded();
         toast.success(response.data.message);
-      } else {
-        toast(response.data.message);
-      }
+     
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         toast.error(error.response.data.message);
