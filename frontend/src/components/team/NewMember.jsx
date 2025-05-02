@@ -45,12 +45,16 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
         setFormValues({ fullName: "", phone: "", email: "", role: "member" });
         setShowModal(false);
         onMemberAdded();
-        toast.success("Member added successfully");
+        toast.success(response.data.message);
       } else {
-        toast.error("Failed to add member.");
+        toast(response.data.message);
       }
     } catch (error) {
-      toast.error("Failed to add member.");
+      if (error.response && error.response.data && error.response.data.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     } finally {
       setIsSubmitting(false);
     }
