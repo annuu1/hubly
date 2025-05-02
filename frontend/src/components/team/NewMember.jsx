@@ -1,6 +1,7 @@
-import { axios } from 'axios';
+import axios from 'axios';
 import React, { useState } from "react";
 import styles from "./NewMember.module.css";
+import { toast } from "react-toastify";
 
 const NewMember = ({ setShowModal, onMemberAdded }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,11 +45,12 @@ const NewMember = ({ setShowModal, onMemberAdded }) => {
         setFormValues({ fullName: "", phone: "", email: "", role: "member" });
         setShowModal(false);
         onMemberAdded();
+        toast.success("Member added successfully");
       } else {
-        alert("Failed to add member.");
+        toast.error("Failed to add member.");
       }
     } catch (error) {
-      alert("An error occurred.");
+      toast.error("Failed to add member.");
     } finally {
       setIsSubmitting(false);
     }
