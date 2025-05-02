@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ProfileForm.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import { showToast } from "../ui/ToastContainer";
+import {toast} from 'react-toastify';
 
 function ProfileForm() {
   const [formData, setFormData] = useState({
@@ -62,13 +61,12 @@ function ProfileForm() {
         if (response.data.shouldLogout) {
           localStorage.removeItem("token");
           navigate("/login");
-        } else {
-          navigate("/dashboard");
         }
 
-        showToast()(response.data.message, "success")
+        toast(response.data.message)
       })
       .catch((err) => {
+        toast(err.response.data.error);
         console.log(err.response.data.error);
       });
   };

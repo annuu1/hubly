@@ -16,7 +16,7 @@ import Team from "../components/team/Team";
 const Dashboard = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    // navigate("/dashboard/events");    
+    navigate("/dashboard/tickets");    
   },[])
   return (
     <div className={styles.dashboard}>
