@@ -92,6 +92,10 @@ const Analytics = () => {
     },
   };
 
+  const resolvedCount = analyticsData.resolvedTickets.resolved;
+  const totalCount = analyticsData.resolvedTickets.total;
+  const resolvedPercentage = ((resolvedCount / totalCount) * 100).toFixed(0);
+
   const doughnutData = {
     labels: ['Resolved', 'Unresolved'],
     datasets: [{
@@ -105,6 +109,38 @@ const Analytics = () => {
       borderWidth: 0,
       cutout: '72%',
     }],
+  };
+
+  const centerTextPlugin = {
+    id: 'centerText',
+    beforeDraw: function(chart) {
+      const width = chart.width;
+      const height = chart.height;
+      const ctx = chart.ctx;
+      
+      ctx.restore();
+      
+      // Font settings for percentage
+      const fontSize = (height / 160).toFixed(2) * 10;
+      ctx.font = `bold ${fontSize}px Arial`;
+      ctx.textBaseline = 'middle';
+      ctx.textAlign = 'center';
+      
+      const text = `${resolvedPercentage}%`;
+      const textX = width / 2;
+      const textY = height / 2;
+      ctx.fillStyle = '#333333';
+      ctx.fillText(text, textX, textY);
+      
+      const labelFontSize = (height / 160).toFixed(2) * 4;
+      ctx.font = `${labelFontSize}px Arial`;
+      
+      const labelText = 'Resolved';
+      ctx.fillStyle = '#666666';
+      ctx.fillText(labelText, textX, textY + fontSize * 0.7);
+      
+      ctx.save();
+    }
   };
 
   const doughnutOptions = {
@@ -151,7 +187,11 @@ const Analytics = () => {
             <p>A callback system on a website, as well as proactive invitations, helps to attract even more customers. A separate round button for ordering a call with a small animation helps to motivate more customers to make calls.</p>
           </div>
           <div className={styles.doughnutContainer}>
-            <Doughnut data={doughnutData} options={doughnutOptions} />
+            <Doughnut 
+              data={doughnutData} 
+              options={doughnutOptions} 
+              plugins={[centerTextPlugin]}
+            />
           </div>
         </div>
         <div className={styles.section}>
