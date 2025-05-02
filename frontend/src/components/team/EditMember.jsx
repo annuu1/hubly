@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./NewMember.module.css";
+import {toast} from "react-toastify";
 
 const EditMember = ({ setShowModal, member, onUpdate }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);

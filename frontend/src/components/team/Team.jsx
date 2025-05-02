@@ -49,10 +49,18 @@ const Team = () => {
         `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
         updatedData, {headers: { Authorization: `${token}` }}  
       );
-      fetchTeamMembers();
+      setShowEditModal(false);
+      setSelectedMember(null);
       toast.success(response.data.message)
+      fetchTeamMembers();
     } catch (error) {
-      toast.error(error.response.data.message)
+      if(error.response && error.response.data) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An error occurred while updating the member.");
+      }
+      setShowEditModal(false);
+      setSelectedMember(null);
       console.error("Error updating member:", error.response);
       throw error;
     }
