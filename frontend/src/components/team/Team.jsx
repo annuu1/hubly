@@ -5,6 +5,7 @@ import axios from "axios";
 import NewMember from "./NewMember";
 import EditMember from "./EditMember";
 import memberProfile from "../../assets/icons/memberProfile.png";
+import {toast} from "react-toastify";
 
 const Team = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -12,6 +13,8 @@ const Team = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
+
+  const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
 
@@ -22,7 +25,12 @@ const Team = () => {
   const fetchTeamMembers = async () => {
     try {
       const response = await axios.get(
-        import.meta.env.VITE_API_URL + "api/users/members"
+        import.meta.env.VITE_API_URL + "api/users/members", 
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
       );
       setTeamMembers(response.data.users);
     } catch (error) {
@@ -39,23 +47,43 @@ const Team = () => {
     try {
       await axios.put(
         `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
-        updatedData
+        updatedData, {headers: { Authorization: `${token}` }}  
       );
       fetchTeamMembers();
+      toast.success(response.data.message)
     } catch (error) {
-      console.error("Error updating member:", error);
+      toast.error(error.response.data.message)
+      console.error("Error updating member:", error.response);
       throw error;
     }
   };
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `${import.meta.env.VITE_API_URL}api/users/members/${selectedMember._id}`
-      );
-      setShowDeleteModal(false);
-      fetchTeamMembers();
+      axios.delete(
+        `${import.meta.env.VITE_API_URL}api/users/members/${selectedMember._id}`,
+        { headers: { Authorization: `${token}` } }
+      )
+      .then((response) =>{
+        console.log(response.data);
+        if (response.data.success) {
+          setShowDeleteModal(false);
+          toast.success(response.data.message);
+          fetchTeamMembers();
+        } else {
+          toast.error(response.data.message);
+        }
+      })
+      .catch(error =>{
+        setShowDeleteModal(false);
+        toast.error(error.response.data.message);
+        console.error("Error deleting member:", error);
+      })
+      // setShowDeleteModal(false);
+      // toast.success(response.data.message)
+      // fetchTeamMembers();
     } catch (error) {
+      toast.error("Only admins can delete members")
       console.error("Error deleting member:", error);
     }
   };

@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const auth = require('../middleware/auth');
 
-router.post('/new', async (req, res) => {
+router.post('/new', auth, async (req, res) => {
   const { fullName, phone, email, role } = req.body;
   try {
+    //is valid user is requesting
+    const requestingUser = await User.findById(req.user.id);
+    if (!requestingUser || requestingUser.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Only admins can add new members' });
+    }
+
     if (!fullName || !phone || !email || !role) {
       return res.status(400).json({ success: false, message: 'All fields are required' });
     }
@@ -35,7 +42,7 @@ router.post('/new', async (req, res) => {
 );
 // Get all members
 
-router.get('/members', async (req, res) => {
+router.get('/members', auth, async (req, res) => {
   try {
     const users = await User.find({$or:[{role: 'member'}, {role: 'admin'}]}).select('fullName phone email role');
     if (!users) {
@@ -48,8 +55,14 @@ router.get('/members', async (req, res) => {
 });
 
 // Update member
-router.put('/members/:id', async (req, res) => {
+router.put('/members/:id', auth, async (req, res) => {
   try {
+    //is valid user is requesting
+    const requestingUser = await User.findById(req.user.id);
+    if (!requestingUser || requestingUser.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Only admins can add new members' });
+    }
+
     const { fullName, phone, email, role } = req.body;
     const user = await User.findByIdAndUpdate(
       req.params.id,
@@ -66,8 +79,13 @@ router.put('/members/:id', async (req, res) => {
 });
 
 // Delete member
-router.delete('/members/:id', async (req, res) => {
+router.delete('/members/:id', auth, async (req, res) => {
   try {
+    //is valid user is requesting
+    const requestingUser = await User.findById(req.user.id);
+    if (!requestingUser || requestingUser.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Only admins can delete members' });
+    }
     const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });
