@@ -6,31 +6,26 @@ const auth = require('../middleware/auth');
 // Get analytics data
 router.get('/', auth, async (req, res) => {
     try {
-        // Get all tickets
         const tickets = await Ticket.find({});
         
-        // Calculate resolved vs unresolved tickets
         const resolvedCount = tickets.filter(ticket => ticket.status === 'resolved').length;
         const unresolvedCount = tickets.filter(ticket => ticket.status === 'unresolved').length;
         
-        // Calculate total chats
         const totalChats = tickets.length;
         
-        // Calculate average reply time
         let totalReplyTime = 0;
         let replyCount = 0;
         
         for (const ticket of tickets) {
             const conversation = await Conversation.findOne({ ticketId: ticket._id });
             if (conversation && conversation.messages.length > 1) {
-                // Calculate time between first user message and first agent reply
                 const userMessages = conversation.messages.filter(msg => msg.sender === null);
                 const agentMessages = conversation.messages.filter(msg => msg.sender !== null);
                 
                 if (userMessages.length > 0 && agentMessages.length > 0) {
                     const firstUserMessageTime = new Date(userMessages[0].createdAt);
                     const firstAgentMessageTime = new Date(agentMessages[0].createdAt);
-                    const replyTime = (firstAgentMessageTime - firstUserMessageTime) / 1000; // in seconds
+                    const replyTime = (firstAgentMessageTime - firstUserMessageTime) / 1000;
                     totalReplyTime += replyTime;
                     replyCount++;
                 }
@@ -39,7 +34,6 @@ router.get('/', auth, async (req, res) => {
         
         const averageReplyTime = replyCount > 0 ? Math.round(totalReplyTime / replyCount) : 0;
         
-        // Calculate missed chats (tickets with no agent replies)
         let missedChats = 0;
         for (const ticket of tickets) {
             const conversation = await Conversation.findOne({ ticketId: ticket._id });
@@ -51,7 +45,6 @@ router.get('/', auth, async (req, res) => {
             }
         }
         
-        // Get weekly missed chats data
         const weeklyMissedChats = await getWeeklyMissedChats();
         
         res.status(200).json({
@@ -70,7 +63,6 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-// Helper function to get weekly missed chats
 async function getWeeklyMissedChats() {
     const weeks = 10;
     const weeklyData = [];

@@ -3,11 +3,13 @@ import { Line, Doughnut } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import styles from './Analytics.module.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Analytics = () => {
   const [analyticsData, setAnalyticsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -27,6 +29,10 @@ const Analytics = () => {
         console.error('Error fetching analytics:', error);
         setError('Failed to fetch analytics data');
         setLoading(false);
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        }
       }
     };
 
