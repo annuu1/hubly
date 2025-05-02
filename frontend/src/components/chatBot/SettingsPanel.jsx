@@ -6,6 +6,7 @@ import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TimerSettingsCard from '../ui/TimerSettingsCard';
 import IntroSettingsCard from '../ui/IntroSettingsCard';
+const token = localStorage.getItem('token');
 
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
@@ -38,14 +39,15 @@ function SettingsPanel({ botSettings, setBotSettings }) {
   const saveSettings = (settings) => {
     const url = import.meta.env.VITE_API_URL + 'api/botSettings';
     axios
-      .put(url, settings)
+      .put(url, settings, {headers : {Authorization: `${token}`}})
       .then((response) => {
         if(response.status){
-          toast('Settings saved successfully')
+          toast.success('Settings saved successfully')
         }
         // console.log('Settings saved successfully:', response.data);
       })
       .catch((error) => {
+        toast.error('Error saving settings');
         console.error('Error saving settings:', error);
       });
   };
@@ -199,7 +201,7 @@ function SettingsPanel({ botSettings, setBotSettings }) {
         </div>
       </div>
 
-      <TimerSettingsCard botSettings={botSettings}/>
+      <TimerSettingsCard botSettings={botSettings} setBotSettings={setBotSettings}/>
       {/* <button className={styles.saveButton} onClick={handleSave}>
         Save
       </button> */}

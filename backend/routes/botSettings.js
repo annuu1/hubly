@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const BotSettings = require('../models/BotSettings');
+const auth = require('../middleware/auth');
+
 
 router.post('/', async (req, res) => {
     const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer, formPlaceholders} = req.body;
@@ -35,7 +37,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.put('/', async (req, res) => {
+router.put('/', auth, async (req, res) => {
     const { headerColor, backgroundColor, customizedMessages, welcomeMessage, missedChatTimer, formPlaceholders } = req.body;
 
     // Validate the request body

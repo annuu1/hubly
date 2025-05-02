@@ -17,29 +17,6 @@ function IntroSettingsCard({ botSettings, setBotSettings, debouncedSave }) {
     debouncedSave(updatedSettings);
   };
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if (!setTicketId) return;
-    const formData = new FormData(e.target);
-    const name = formData.get("name");
-    const phone = formData.get("phone");
-    const email = formData.get("email");
-    const url = import.meta.env.VITE_API_URL + "api/tickets";
-    try {
-      const response = await axios.post(url, { name, phone, email });
-      if (response.status === 201) {
-        setTicketId(response.data.ticket._id);
-        setIsTicketCreated(true);
-        e.target.reset();
-      } else {
-        alert("Error creating ticket");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert(error.response.data.message);
-    }
-  };
-
   return (
     <div className={styles.introForm}>
       <h3>Introduce Yourself</h3>
@@ -51,7 +28,7 @@ function IntroSettingsCard({ botSettings, setBotSettings, debouncedSave }) {
             id="name"
             name="name"
             placeholder="Your name"
-            value={botSettings?.formPlaceholders?.name}
+            value={botSettings?.formPlaceholders?.name?? ''}
             onChange={(e) => handleChange("name", e.target.value)}
             required
           />
@@ -62,7 +39,7 @@ function IntroSettingsCard({ botSettings, setBotSettings, debouncedSave }) {
             type="tel"
             id="phone"
             name="phone"
-            value={botSettings?.formPlaceholders?.phone}
+            value={botSettings?.formPlaceholders?.phone ?? ''}
             placeholder="+1 (000) 000-0000"
             onChange={(e) => handleChange("phone", e.target.value)}
             required
@@ -74,7 +51,7 @@ function IntroSettingsCard({ botSettings, setBotSettings, debouncedSave }) {
             type="email"
             id="email"
             name="email"
-            value={botSettings?.formPlaceholders?.email}
+            value={botSettings?.formPlaceholders?.email ?? ''}
             placeholder="example@gmail.com"
             onChange={(e) => handleChange("email", e.target.value)}
             required

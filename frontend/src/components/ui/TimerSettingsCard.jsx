@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import styles from './TimerSettingsCard.module.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function useDebounce(callback, delay) {
   const [timeoutId, setTimeoutId] = useState(null);
@@ -53,20 +52,22 @@ function TimerSettingsCard({ botSettings, setBotSettings }) {
     const timeString = formatTime(time);
     const updatedSettings = { ...botSettings, missedChatTimer: timeString };
     setBotSettings(updatedSettings);
+    const token = localStorage.getItem('token');
     const url = import.meta.env.VITE_API_URL + 'api/botSettings';
     axios
-      .put(url, updatedSettings)
+      .put(url, updatedSettings, { headers: { Authorization: `${token}` } })
       .then((response) => {
         if (response.status) {
-          toast('Timer settings saved successfully');
+          toast.success('Timer settings saved successfully');
         }
       })
       .catch((error) => {
+        toast.error('Failed to save timer settings');
         console.error('Error saving timer settings:', error);
       });
   };
 
-  const debouncedSave = useDebounce(saveSettings, 100);
+  const debouncedSave = useDebounce(saveSettings, 10);
 
   useEffect(() => {
     setTime(parseTime(botSettings.missedChatTimer || '09:00:00'));
