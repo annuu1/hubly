@@ -235,6 +235,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
                 textIndex === message.content.length - 1 && (
                   <div className={styles.introFormContainer}>
                     <IntroForm
+                    ticketId={ticketId}
                       setTicketId={handleTicketCreated}
                       botSettings={botSettings}
                     />

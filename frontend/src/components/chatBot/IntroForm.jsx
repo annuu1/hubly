@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import styles from "./IntroForm.module.css";
 import axios from "axios";
 
-function IntroForm({setTicketId, botSettings}) {
+function IntroForm({ticketId=null, setTicketId, botSettings}) {
   const [isTicketCreated, setIsTicketCreated] = useState(false);
 
       const handleFormSubmit = async (e) => {
@@ -63,7 +63,7 @@ function IntroForm({setTicketId, botSettings}) {
                         required
                       />
                     </div>
-                    <button type="submit" className={styles.submitButton} disabled={isTicketCreated} style={isTicketCreated ? {backgroundColor: "#ccc", cursor: "not-allowed"} : {}}> 
+                    <button type="submit" className={styles.submitButton} disabled={ticketId} style={ticketId ? {backgroundColor: "#ccc", cursor: "not-allowed"} : {}}> 
                       Thank You!
                     </button>
                   </form>
