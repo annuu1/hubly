@@ -6,16 +6,16 @@ import ChatIcon from "../../assets/ChatIcon.svg";
 
 const ChatBotWindow = ({ botSettings, setBotSettings }) => {
   const [showIntroForm, setShowIntroForm] = useState(() => {
-    const savedState = localStorage.getItem('chatState');
+    const savedState = localStorage.getItem("chatState");
     return savedState ? true : true;
   });
   const [messages, setMessages] = useState(() => {
-    const savedState = localStorage.getItem('chatState');
+    const savedState = localStorage.getItem("chatState");
     return savedState ? JSON.parse(savedState).messages : [];
   });
   const [newMessage, setNewMessage] = useState("");
   const [ticketId, setTicketId] = useState(() => {
-    const savedState = localStorage.getItem('chatState');
+    const savedState = localStorage.getItem("chatState");
     return savedState ? JSON.parse(savedState).ticketId : "";
   });
   const [pendingMessage, setPendingMessage] = useState(null);
@@ -26,7 +26,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       messages,
       ticketId,
     };
-    localStorage.setItem('chatState', JSON.stringify(chatState));
+    localStorage.setItem("chatState", JSON.stringify(chatState));
   }, [messages, ticketId]);
 
   // Fetch messages from backend when ticketId changes
@@ -44,17 +44,20 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
             },
           }
         );
-        
+
         if (response.data && response.data.messages) {
-          const formattedMessages = response.data.messages.map(msg => ({
+          const formattedMessages = response.data.messages.map((msg) => ({
             type: msg.sender === null ? "outgoing" : "incoming",
             content: [msg.content],
           }));
           // console.log(messages)
-          
+
           // if new meessges, update it
-          if (formattedMessages.length > messages.length-1) {
-            const updatedMessages = [...messages.slice(0, 1), ...formattedMessages]
+          if (formattedMessages.length > messages.length - 1) {
+            const updatedMessages = [
+              ...messages.slice(0, 1),
+              ...formattedMessages,
+            ];
             setMessages(updatedMessages);
           }
         }
@@ -69,7 +72,6 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
 
     return () => clearInterval(intervalId);
   }, [ticketId]);
-
 
   useEffect(() => {
     const fetchBotSettings = async () => {
@@ -90,13 +92,15 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
         //   welcomeMessage,
         //   missedChatTimer,
         // });
-        
+
         // Only set initial messages if there are no existing messages
         if (messages.length === 0) {
           setMessages([
             {
               type: "incoming",
-              content: customizedMessages.length ? customizedMessages : ["Welcome"],
+              content: customizedMessages.length
+                ? customizedMessages
+                : ["Welcome"],
             },
           ]);
         }
@@ -115,7 +119,9 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
         const token = localStorage.getItem("token");
         try {
           await axios.post(
-            `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}/messages`,
+            `${
+              import.meta.env.VITE_API_URL
+            }api/conversations/${ticketId}/messages`,
             {
               type: "text",
               content: pendingMessage,
@@ -152,28 +158,30 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
       }
       return updatedMessages;
     });
-        if (ticketId) {
-          const token = localStorage.getItem("token");
-          try {
-            await axios.post(
-              `${import.meta.env.VITE_API_URL}api/conversations/${ticketId}/messages`,
-              {
-                type: "text",
-                content: newMessage,
-                sender: "user",
-              },
-              {
-                headers: {
-                  Authorization: `${token}`,
-                },
-              }
-            );
-          } catch (error) {
-            console.error("Error sending message:", error);
-            setMessages((prevMessages) => prevMessages.slice(0, -1));
-            alert("Failed to send message. Please try again.");
+    if (ticketId) {
+      const token = localStorage.getItem("token");
+      try {
+        await axios.post(
+          `${
+            import.meta.env.VITE_API_URL
+          }api/conversations/${ticketId}/messages`,
+          {
+            type: "text",
+            content: newMessage,
+            sender: "user",
+          },
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
           }
-        }
+        );
+      } catch (error) {
+        console.error("Error sending message:", error);
+        setMessages((prevMessages) => prevMessages.slice(0, -1));
+        alert("Failed to send message. Please try again.");
+      }
+    }
 
     setNewMessage("");
   };
@@ -183,7 +191,7 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
   };
 
   const clearChatState = () => {
-    localStorage.removeItem('chatState');
+    localStorage.removeItem("chatState");
     setMessages([]);
     setTicketId("");
     setShowIntroForm(true);
@@ -217,18 +225,21 @@ const ChatBotWindow = ({ botSettings, setBotSettings }) => {
                     <img src={ChatIcon} alt="Chat Icon" />
                   </div>
                 )}
-              
-              <div
-                className={`${styles.message} ${styles[message.type]}`}
-              >
-                <p>{text}</p>
-              </div>
-              </div>
-              {showIntroForm && msgIndex === 1 && textIndex === message.content.length - 1 && (
-                <div className={styles.introFormContainer}>
-                  <IntroForm setTicketId={handleTicketCreated} botSettings={botSettings} />
+
+                <div className={`${styles.message} ${styles[message.type]}`}>
+                  <p>{text}</p>
                 </div>
-              )}
+              </div>
+              {showIntroForm &&
+                msgIndex === 1 &&
+                textIndex === message.content.length - 1 && (
+                  <div className={styles.introFormContainer}>
+                    <IntroForm
+                      setTicketId={handleTicketCreated}
+                      botSettings={botSettings}
+                    />
+                  </div>
+                )}
             </React.Fragment>
           ))
         )}

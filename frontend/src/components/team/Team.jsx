@@ -49,7 +49,6 @@ const Team = () => {
         `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
         updatedData, {headers: { Authorization: `${token}` }}  
       );
-      console.log(response.data)
       setShowEditModal(false);
       setSelectedMember(null);
       if(response.data.success){
