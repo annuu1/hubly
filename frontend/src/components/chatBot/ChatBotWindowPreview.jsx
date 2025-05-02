@@ -32,7 +32,7 @@ const ChatBotWindowPreview = ({ botSettings, setBotSettings }) => {
       <div className={styles.chatBody}>
         {messages.map((message, index) => {
           return (
-            <div className={styles.messageContainer}>
+            <div key={index} className={styles.messageContainer}>
               <div className={styles.messageAvatar}>
                 <img src={ChatIcon} alt="Chat Icon" />
               </div>

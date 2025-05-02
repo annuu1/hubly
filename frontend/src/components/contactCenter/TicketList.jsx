@@ -50,7 +50,7 @@ const TicketList = ({ tickets, onSelect, selectedTicket }) => {
         <ul className={styles.ticketList}>
           {tickets.length === 0 && <li>No tickets available</li>}
           {tickets.map((ticket, index) => (
-            <div className={`${styles.listItem} ${
+            <div key={index} className={`${styles.listItem} ${
                 selectedTicket && selectedTicket._id === ticket._id
                   ? styles.selected
                   : ""

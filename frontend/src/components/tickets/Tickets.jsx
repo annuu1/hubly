@@ -151,16 +151,16 @@ const Tickets = () => {
             <path
               d="M8.50442 15.75C12.424 15.75 15.6014 12.56 15.6014 8.625C15.6014 4.68997 12.424 1.5 8.50442 1.5C4.58488 1.5 1.40747 4.68997 1.40747 8.625C1.40747 12.56 4.58488 15.75 8.50442 15.75Z"
               stroke="#B6B6B6"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M16.3483 16.5L14.8542 15"
               stroke="#B6B6B6"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
 
@@ -188,18 +188,18 @@ const Tickets = () => {
               <path
                 d="M14.1947 15.0833H5.84713C3.34286 15.0833 1.67334 13.8333 1.67334 10.9167V5.08334C1.67334 2.16667 3.34286 0.916672 5.84713 0.916672H14.1947C16.699 0.916672 18.3685 2.16667 18.3685 5.08334V10.9167C18.3685 13.8333 16.699 15.0833 14.1947 15.0833Z"
                 stroke="#184E7F"
-                stroke-width="1.5"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M14.1947 5.5L11.582 7.58333C10.7222 8.26667 9.31141 8.26667 8.45161 7.58333L5.84717 5.5"
                 stroke="#184E7F"
-                stroke-width="1.5"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             All Tickets

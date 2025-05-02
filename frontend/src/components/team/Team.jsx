@@ -122,14 +122,14 @@ const Team = () => {
                     <path
                       d="M0.5 6.5L3 9L5.5 6.5"
                       stroke="#184E7F"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                     <path
                       d="M0.5 3.5L3 1L5.5 3.5"
                       stroke="#184E7F"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   </svg>
                 </span>
