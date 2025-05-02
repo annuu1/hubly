@@ -113,7 +113,7 @@ const Team = () => {
                 <td>{member.phone}</td>
                 <td>{member.email}</td>
                 <td>{member.role}</td>
-                <td className={styles.actionIcons}>
+                {member.role === 'member' && (<td className={styles.actionIcons}>
                   <span
                     className={styles.actionIcon}
                     onClick={() => handleEdit(member)}
@@ -151,7 +151,7 @@ const Team = () => {
                       />
                     </svg>
                   </span>
-                </td>
+                </td>)}
               </tr>
             ))}
           </tbody>
