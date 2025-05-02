@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../styles/ProfileForm.module.css";
+import styles from "./ProfileForm.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
