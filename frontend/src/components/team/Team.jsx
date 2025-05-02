@@ -49,9 +49,15 @@ const Team = () => {
         `${import.meta.env.VITE_API_URL}api/users/members/${memberId}`,
         updatedData, {headers: { Authorization: `${token}` }}  
       );
+      console.log(response.data)
       setShowEditModal(false);
       setSelectedMember(null);
-      toast.success(response.data.message)
+      if(response.data.success){
+        toast.success("Details updated successfully")
+      }else{
+        toast.error("Details could not be udpated")
+      
+      }
       fetchTeamMembers();
     } catch (error) {
       if(error.response && error.response.data && error.response.data.message) {

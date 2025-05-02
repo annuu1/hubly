@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styles from "./Home.module.css";
 import ChatIcon from "../components/ui/ChatIcon";
 import socialmediaicons from "../assets/HomeImages/socialmediaicons.png";
@@ -8,6 +8,24 @@ import mainImage2 from "../assets/HomeImages/MainImage2.png";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (isMobile) {
+    return (
+      <div className={styles.chatBoxContainer}>
+        <ChatIcon />
+      </div>
+    );
+  }
+
   const brands = [
     <svg
       width="134"

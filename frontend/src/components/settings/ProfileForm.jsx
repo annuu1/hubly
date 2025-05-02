@@ -97,7 +97,6 @@ function ProfileForm() {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              required
             />
           </div>
           <div className={styles.formGroup}>

@@ -1,369 +1,377 @@
 .landingContainer {
-    font-family: Arial, sans-serif;
-    background: #F8FBFE;
-    color: #2c3e50;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: rgba(248, 251, 254, 0.5);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(8px);
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #1da1f2;
-  }
-  
-  .headerActions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .loginButton, .signupButton {
-    font-weight: 600;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .loginButton {
-    background: transparent;
-    color: #36364A;
-  }
-  
-  .signupButton {
-    background: #244779;
-    color: #fff;
-  }
-  
-  .mainContent {
-    display: flex;
-    justify-content: space-between;
-    padding: 50px 40px;
-    flex: 1;
-  }
-  
-  .textSection {
-    max-width: 50%;
-    margin-left: 150px;
-  }
-  
-  .title {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .subtitle {
-    font-size: 18px;
-    color: #7f8c8d;
-    margin-bottom: 30px;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .getStartedButton, .watchVideoButton {
-    text-decoration: none;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .getStartedButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    gap: 16px;
-    border-radius: 8px;
-    background: #244779;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-  }
-  
-  .watchVideoButton {
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: none;
-    color: #30404D;
-    border: none;
-  }
-  
-  .imageSection {
-    position: relative;
-    width: 50%;
-  }
-  .imagesContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    /* padding-left: 10%; */
-  }
-  .mainImage {
-    width: 434px;
-    height: 450px;
-    /* object-fit: cover; */
-    /* width: 100%;
-    height: auto; */
-  }
-  .mainImage1, .mainImage2{
-    position: absolute;
-  }
-  .mainImage1{
-    width: 285.36px;
-    top: -50px;
-    right: 100px;
-  }
-  .mainImage2{
-    bottom: 50px;
-    right: 100px;
-  }
-  .brands{
-    display: flex;
-    justify-content: space-around;
-    background: #EBF1F9;
-    padding: 40px 10px;
-  }
-  .crmSection, .plansSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 40px;
-    text-align: center;
-  }
-  .crmDetails{
-    width: 50%;
-  }
-  .crmTitle {
-    font-size: 44px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #30404D;
-  }
-  
-  .crmSubtitle {
-    font-size: 18px;
-    color: #30404D;
-    margin-bottom: 30px;
-    letter-spacing: 0px;
-  }
-  
-  .funnelDiagram {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    margin: 0 auto;
-  }
-  .funnelList li{
-    list-style-type: none;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    align-items: start;
-    margin-bottom: 40px;
-  }
-  .listHeading{
-    color: #30404D;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  .definition{
-    font-size: 16px;
-    color: #394B59;
-    font-weight: 400;
-  }
-  .funnelDiagramImage{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center;
-    justify-content: center; */
-    gap: 0;
-    margin-bottom: 50px;
-  }
-  .funnelDiagramImage img{
-    width: 230px;
-    position: relative;
-    top: 100px;
-    right: -180px;
-  }
+  font-family: Arial, sans-serif;
+  background: #F8FBFE;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .plansSection {
-    padding: 50px 40px;
-    text-align: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(248, 251, 254, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1da1f2;
+}
+
+.headerActions {
+  display: flex;
+  gap: 10px;
+}
+
+.loginButton, .signupButton {
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.loginButton {
+  background: transparent;
+  color: #36364A;
+}
+
+.signupButton {
+  background: #244779;
+  color: #fff;
+}
+
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 40px;
+  flex: 1;
+}
+
+.textSection {
+  max-width: 50%;
+  margin-left: 150px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.getStartedButton, .watchVideoButton {
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.getStartedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  gap: 16px;
+  border-radius: 8px;
+  background: #244779;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+}
+
+.watchVideoButton {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  color: #30404D;
+  border: none;
+}
+
+.imageSection {
+  position: relative;
+  width: 50%;
+}
+.imagesContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* padding-left: 10%; */
+}
+.mainImage {
+  width: 434px;
+  height: 450px;
+  /* object-fit: cover; */
+  /* width: 100%;
+  height: auto; */
+}
+.mainImage1, .mainImage2{
+  position: absolute;
+}
+.mainImage1{
+  width: 285.36px;
+  top: -50px;
+  right: 100px;
+}
+.mainImage2{
+  bottom: 50px;
+  right: 100px;
+}
+.brands{
+  display: flex;
+  justify-content: space-around;
+  background: #EBF1F9;
+  padding: 40px 10px;
+}
+.crmSection, .plansSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 40px;
+  text-align: center;
+}
+.crmDetails{
+  width: 50%;
+}
+.crmTitle {
+  font-size: 44px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #30404D;
+}
+
+.crmSubtitle {
+  font-size: 18px;
+  color: #30404D;
+  margin-bottom: 30px;
+  letter-spacing: 0px;
+}
+
+.funnelDiagram {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0 auto;
+}
+.funnelList li{
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 40px;
+}
+.listHeading{
+  color: #30404D;
+  font-size: 24px;
+  font-weight: bold;
+}
+.definition{
+  font-size: 16px;
+  color: #394B59;
+  font-weight: 400;
+}
+.funnelDiagramImage{
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+  gap: 0;
+  margin-bottom: 50px;
+}
+.funnelDiagramImage img{
+  width: 230px;
+  position: relative;
+  top: 100px;
+  right: -180px;
+}
+
+.plansSection {
+  padding: 50px 40px;
+  text-align: center;
+}
+
+.plansTitle {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.plansSubtitle {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+}
+
+.plansCards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.planCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: left;
+}
+.planCard h3{
+  font-size: 34px;
+  font-weight: bold;
+  color: #30404D;
+}
+.planPrice{
+  margin: 20px 0;
+}
+.planPrice {
+  font-size: 54px;
+  font-weight: bold;
+  color: #3A7ABD;
+  margin: 20px 0;
+  display: inline;
+}
+.perMonth{
+  font-family: 20px;
+  color: #98A8B3;
+}
+.planDescription {
+  font-size: 20px;
+  color: #30404D;
+  margin-bottom: 10px;
+}
+.caption{
+  /* letter-spacing: 0; */
+  font-size: 18px;
+  margin: 20px 0; 
+  color: #30404D;
+  font-weight: 900;
+}
+.planFeatures {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.planFeatures li {
+  margin-bottom: 15px;
+}
+
+.planFeatures li:before {
+  content: "✔";
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #2F5F8B;
+  background: #E1EEFA;
+  margin-right: 10px;
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.planButton {
+  background: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px 20px;
+  color: #244779;
+  border: #244779 1px solid;
+  border-radius: 45px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.footer {
+  padding: 40px 100px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+}
+
+.footerLogo {
+  width: 20%;
+ }
+
+.footerColumns {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.footerColumns > div{
+  width: 30%;
+  /* flex: 1 1 30%; */
+  padding: 0 2%;
+}
+
+.footerColumns h4 {
+  color: #1B1A1A;
+  font-size: 16px;
+  font-weight: 550;
+  margin-bottom: 10px;
+}
+
+.footerColumns ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.footerColumns ul li {
+  font-size: 14px;
+  color: #1B1A1A;
+  margin-bottom: 5px;
+  margin-bottom: 20px;
+  flex: 1 0 30%;
+}
+
+.footerSocial {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+  bottom: 50px;
+  right: 50px;
+}
+
+@media (max-width: 768px) {
+  .chatBoxContainer{
+    background-color: #1da1f2;
+    padding: 0;
+    margin: 0;
   }
-  
-  .plansTitle {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .plansSubtitle {
-    font-size: 16px;
-    color: #7f8c8d;
-    margin-bottom: 30px;
-  }
-  
-  .plansCards {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    width: 100%;
-  }
-  
-  .planCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: #fff;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    text-align: left;
-  }
-  .planCard h3{
-    font-size: 34px;
-    font-weight: bold;
-    color: #30404D;
-  }
-  .planPrice{
-    margin: 20px 0;
-  }
-  .planPrice {
-    font-size: 54px;
-    font-weight: bold;
-    color: #3A7ABD;
-    margin: 20px 0;
-    display: inline;
-  }
-  .perMonth{
-    font-family: 20px;
-    color: #98A8B3;
-  }
-  .planDescription {
-    font-size: 20px;
-    color: #30404D;
-    margin-bottom: 10px;
-  }
-  .caption{
-    /* letter-spacing: 0; */
-    font-size: 18px;
-    margin: 20px 0; 
-    color: #30404D;
-    font-weight: 900;
-  }
-  .planFeatures {
-    list-style-type: none;
-    padding-left: 0;
-    margin-bottom: 20px;
-  }
-  
-  .planFeatures li {
-    margin-bottom: 15px;
-  }
-  
-  .planFeatures li:before {
-    content: "✔";
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    color: #2F5F8B;
-    background: #E1EEFA;
-    margin-right: 10px;
-    width:20px;
-    height: 20px;
-    border-radius: 50%;
-  }
-  
-  .planButton {
-    background: transparent;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 20px 20px;
-    color: #244779;
-    border: #244779 1px solid;
-    border-radius: 45px;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  .footer {
-    padding: 40px 100px;
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    position: relative;
-  }
-  
-  .footerLogo {
-    width: 20%;
-   }
-  
-  .footerColumns {
-    display: flex;
-    gap: 40px;
-    flex-wrap: wrap;
-    flex: 1;
-  }
-  .footerColumns > div{
-    width: 30%;
-    /* flex: 1 1 30%; */
-    padding: 0 2%;
-  }
-  
-  .footerColumns h4 {
-    color: #1B1A1A;
-    font-size: 16px;
-    font-weight: 550;
-    margin-bottom: 10px;
-  }
-  
-  .footerColumns ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .footerColumns ul li {
-    font-size: 14px;
-    color: #1B1A1A;
-    margin-bottom: 5px;
-    margin-bottom: 20px;
-    flex: 1 0 30%;
-  }
-  
-  .footerSocial {
-    position: absolute;
-    display: flex;
-    gap: 10px;
-    font-size: 18px;
-    bottom: 50px;
-    right: 50px;
-  }
+}
