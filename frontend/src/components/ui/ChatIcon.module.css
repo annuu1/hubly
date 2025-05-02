@@ -41,7 +41,7 @@
     }
     .chatWindow, .welcomeMessage{
         width: 100%;
-        bottom: 100px;
+        bottom: 150px;
         right: 0px;
         padding: 10px;
     }
