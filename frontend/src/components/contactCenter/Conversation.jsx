@@ -6,12 +6,26 @@ import axios from "axios";
 
 const Conversation = ({ ticketId, userName, status }) => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState(""); 
+  const [botSettings, setBotSettings] = useState(null);
+  const [isMissedChat, setIsMissedChat] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
   const sender = user.id;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    //getiing the bot settings
+    const fetchBotSettings = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}api/botSettings`
+        );
+        setBotSettings(response.data.botSettings ?? {missedChatTimer:'01:59:59'});
+      } catch (error) {
+        console.error("Error fetching bot settings:", error);
+      }
+    };
+
     const fetchMessages = async () => {
       try {
         const response = await axios.get(
@@ -23,12 +37,37 @@ const Conversation = ({ ticketId, userName, status }) => {
           }
         );
         setMessages(response.data.messages || []);
+        checkIfMissedChat(response.data.messages || [])
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
     };
+    fetchBotSettings();
     fetchMessages();
   }, [ticketId, status]);
+
+    // check for missed chat
+    const checkIfMissedChat = (messages) => {
+      if (!botSettings || !messages.length) return;
+
+      const customerMessages = messages.filter(msg => msg.sender !== sender);
+      const agentMessages = messages.filter(msg => msg.sender === sender);
+      
+      if (customerMessages.length > 0) {
+        const firstCustomerMsg = customerMessages[0];
+        const firstAgentMsg = agentMessages[0];
+        
+        const [hours, minutes, seconds] = botSettings.missedChatTimer?.split(':').map(Number) || [0, 5, 0];
+        const missedTimeLimit = hours * 3600000 + minutes * 60000 + seconds * 1000;
+        
+        const customerMsgTime = new Date(firstCustomerMsg.createdAt).getTime();
+        const agentMsgTime = new Date(firstAgentMsg?.createdAt).getTime() || Date.now();
+        const timeDifference = agentMsgTime - customerMsgTime;
+        console.log(timeDifference > missedTimeLimit)
+        
+        setIsMissedChat(timeDifference > missedTimeLimit);
+      }
+    };
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
@@ -86,7 +125,7 @@ const Conversation = ({ ticketId, userName, status }) => {
     let lastDate = null;
     const elements = [];
 
-    messages.forEach((message) => {
+    messages.forEach((message, index) => {
       const messageDate = getDatePart(message.createdAt);
       if (messageDate !== lastDate) {
         elements.push(
@@ -120,6 +159,13 @@ const Conversation = ({ ticketId, userName, status }) => {
           </div>
         </div>
       );
+      if(isMissedChat && index === 0){
+        elements.push(
+          <div key="missed-chat-notice" className={styles.missedChatNotice}>
+            <p>Replying to a missed chat</p>
+          </div>
+        )
+      }
     });
 
     return elements;
