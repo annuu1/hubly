@@ -4,6 +4,7 @@ import profile from "../../assets/icons/profile.png";
 import axios from "axios";
 import memberProfile from "../../assets/icons/memberProfile.png";
 import ConfirmationDialog from "../ui/ConfirmationDialog";
+import {toast} from "react-toastify";
 
 const TicketDetails = ({ ticket }) => {
   const [members, setMembers] = useState([]);
@@ -71,7 +72,16 @@ const TicketDetails = ({ ticket }) => {
       setShowConfirmDialog(false);
       setSelectedMemberId(null);
       setConfirmAction(null);
+      toast.success(response.data.message);
     } catch (error) {
+      setShowConfirmDialog(false);
+      setSelectedMemberId(null);
+      setConfirmAction(null);
+      if(error.response && error.response.data && error.response.data.message){
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Error assigning ticket");
+      }
       console.error("Error assigning ticket:", error);
     }
   };
@@ -94,7 +104,16 @@ const TicketDetails = ({ ticket }) => {
       setShowConfirmDialog(false);
       setSelectedStatus(null);
       setConfirmAction(null);
+      toast.success(response.data.message);
     } catch (error) {
+      setShowConfirmDialog(false);
+      setSelectedStatus(null);
+      setConfirmAction(null);
+      if(error.response && error.response.data && error.response.data.message){
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Error assigning ticket");
+      }
       console.error("Error updating status:", error);
     }
   };
