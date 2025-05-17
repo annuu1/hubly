@@ -226,7 +226,7 @@ function Signup() {
           )}
 
           <div className={styles.terms}>
-            <input type="checkbox" id="terms" required />
+            <input type="checkbox" id="terms" />
             <label htmlFor="terms">
               By creating an account I agree to our <a href="#">Terms of use</a>{" "}
               and <a href="#">Privacy Policy</a>
